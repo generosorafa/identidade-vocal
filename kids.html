@@ -1,0 +1,1631 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kids · Identidade Vocal</title>
+<meta name="description" content="Área Kids do Grupo Identidade Vocal com jogos bíblicos, histórias, desenhos para colorir e atividades cristãs para crianças.">
+<meta name="theme-color" content="#0F0A1E">
+<link rel="icon" type="image/png" href="logo3_branco.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --purple:#7C3AED;--purple-light:#A855F7;--purple-dark:#5B21B6;
+  --gold:#F59E0B;--gold-light:#FCD34D;
+  --green:#10B981;--green-light:#34D399;
+  --red:#EF4444;--red-light:#FCA5A5;
+  --blue:#3B82F6;--blue-light:#93C5FD;
+  --pink:#EC4899;--pink-light:#F9A8D4;
+  --orange:#F97316;--teal:#14B8A6;
+  --bg:#0F0A1E;--bg2:#1A1035;--bg3:#251848;
+  --text:#F0E6FF;--text-muted:#C4B5FD;--text-dim:#7C6FAD;
+  --ff-title:'Fredoka One',cursive;
+  --ff-body:'Nunito',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--ff-body);min-height:100vh;overflow-x:hidden}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:var(--bg2)}
+::-webkit-scrollbar-thumb{background:var(--purple);border-radius:3px}
+
+/* STARS */
+.stars-bg{position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.star{position:absolute;background:#fff;border-radius:50%;animation:twinkle var(--d,3s) var(--delay,0s) infinite}
+@keyframes twinkle{0%,100%{opacity:.15;transform:scale(1)}50%{opacity:.9;transform:scale(1.4)}}
+
+/* TOPBAR */
+.topbar{background:rgba(15,10,30,.95);border-bottom:2px solid rgba(124,58,237,.3);padding:0 1.5rem;height:60px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+.topbar-back{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color .2s;display:flex;align-items:center;gap:.4rem;font-weight:700}
+.topbar-back:hover{color:var(--purple-light)}
+.topbar-back svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2.5}
+.topbar-brand{font-family:var(--ff-title);font-size:1.35rem;color:var(--gold);text-shadow:0 0 20px rgba(245,158,11,.4)}
+.topbar-stars{font-size:.9rem;font-weight:700;color:var(--gold);background:rgba(245,158,11,.12);padding:.3rem .8rem;border-radius:99px;border:1px solid rgba(245,158,11,.3)}
+
+/* SCREENS */
+.screen{display:none;position:relative;z-index:1}
+.screen.active{display:block}
+
+/* HOME */
+#homeScreen .kids-hero{text-align:center;padding:2.5rem 1.5rem 1.5rem}
+.hero-badge{display:inline-block;background:linear-gradient(135deg,var(--purple),var(--pink));padding:.35rem 1.1rem;border-radius:99px;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#fff;margin-bottom:.8rem;box-shadow:0 4px 15px rgba(124,58,237,.4)}
+.hero-title{font-family:var(--ff-title);font-size:clamp(2.2rem,7vw,4rem);color:#fff;line-height:1;margin-bottom:.4rem}
+.hero-title span{color:var(--gold-light);text-shadow:0 0 25px rgba(252,211,77,.5)}
+.hero-sub{font-size:.95rem;color:var(--text-muted);font-weight:600;margin-bottom:1.5rem}
+.game-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.2rem;max-width:1000px;margin:0 auto;padding:0 1.5rem 3rem}
+.game-card{background:linear-gradient(135deg,var(--bg2),var(--bg3));border:2px solid rgba(124,58,237,.2);border-radius:18px;padding:1.6rem;text-align:center;cursor:pointer;transition:all .3s;position:relative;overflow:hidden}
+.game-card:hover{transform:translateY(-5px);box-shadow:0 12px 35px rgba(0,0,0,.4)}
+.game-card.c-purple:hover{border-color:rgba(124,58,237,.6);box-shadow:0 12px 35px rgba(124,58,237,.25)}
+.game-card.c-green:hover{border-color:rgba(16,185,129,.6);box-shadow:0 12px 35px rgba(16,185,129,.25)}
+.game-card.c-orange:hover{border-color:rgba(249,115,22,.6);box-shadow:0 12px 35px rgba(249,115,22,.25)}
+.game-card.c-blue:hover{border-color:rgba(59,130,246,.6);box-shadow:0 12px 35px rgba(59,130,246,.25)}
+.game-card.c-pink:hover{border-color:rgba(236,72,153,.6);box-shadow:0 12px 35px rgba(236,72,153,.25)}
+.game-card-icon{font-size:3rem;margin-bottom:.8rem;display:block;animation:float 3s ease-in-out infinite}
+.game-card:nth-child(2) .game-card-icon{animation-delay:.4s}
+.game-card:nth-child(3) .game-card-icon{animation-delay:.8s}
+.game-card:nth-child(4) .game-card-icon{animation-delay:1.2s}
+.game-card:nth-child(5) .game-card-icon{animation-delay:1.6s}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.game-card-title{font-family:var(--ff-title);font-size:1.5rem;color:#fff;margin-bottom:.4rem}
+.game-card-desc{font-size:.82rem;color:var(--text-muted);font-weight:600;margin-bottom:1.2rem;line-height:1.5}
+.gc-btn{display:inline-block;padding:.6rem 1.6rem;border-radius:99px;font-family:var(--ff-body);font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;border:none;cursor:pointer;transition:all .2s;color:#fff}
+.gc-btn:hover{transform:scale(1.05)}
+.c-purple .gc-btn{background:linear-gradient(135deg,var(--purple),var(--pink));box-shadow:0 4px 15px rgba(124,58,237,.4)}
+.c-green .gc-btn{background:linear-gradient(135deg,var(--green),var(--teal));box-shadow:0 4px 15px rgba(16,185,129,.4)}
+.c-orange .gc-btn{background:linear-gradient(135deg,var(--orange),var(--gold));box-shadow:0 4px 15px rgba(249,115,22,.4)}
+.c-blue .gc-btn{background:linear-gradient(135deg,var(--blue),var(--purple));box-shadow:0 4px 15px rgba(59,130,246,.4)}
+.c-teal .gc-btn{background:linear-gradient(135deg,var(--teal),var(--blue));box-shadow:0 4px 15px rgba(20,184,166,.4)}
+.game-card.c-teal:hover{border-color:rgba(20,184,166,.6);box-shadow:0 12px 35px rgba(20,184,166,.25)}
+
+/* ══ PUZZLE ══ */
+#puzzleScreen .puzzle-wrap{padding:0 1rem 3rem;max-width:700px;margin:0 auto}
+.puzzle-scene-sel{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:.7rem;margin-bottom:1.2rem}
+.puzzle-scene-btn{background:var(--bg2);border:2px solid rgba(20,184,166,.2);border-radius:12px;padding:.8rem .6rem;text-align:center;cursor:pointer;transition:all .2s}
+.puzzle-scene-btn:hover,.puzzle-scene-btn.active{border-color:var(--teal);background:rgba(20,184,166,.1)}
+.puzzle-scene-btn.active .psb-name{color:#fff}
+.psb-icon{font-size:1.7rem;display:block;margin-bottom:.3rem}
+.psb-name{font-size:.72rem;font-weight:700;color:var(--text-muted)}
+.puzzle-diff-row{display:flex;gap:.6rem;margin-bottom:1.1rem;align-items:center;flex-wrap:wrap}
+.puzzle-diff-lbl{font-size:.68rem;font-weight:700;color:var(--text-dim);letter-spacing:.1em;text-transform:uppercase}
+.puzzle-diff-btn{padding:.4rem 1rem;border-radius:99px;border:2px solid rgba(20,184,166,.25);background:var(--bg2);color:var(--text-muted);font-family:var(--ff-body);font-size:.78rem;font-weight:700;cursor:pointer;transition:all .2s}
+.puzzle-diff-btn:hover,.puzzle-diff-btn.active{border-color:var(--teal);color:#fff;background:rgba(20,184,166,.15)}
+.puzzle-start-btn{width:100%;padding:.85rem;border-radius:12px;background:linear-gradient(135deg,var(--teal),var(--blue));color:#fff;border:none;font-family:var(--ff-body);font-size:.95rem;font-weight:700;cursor:pointer;transition:all .2s;margin-bottom:1rem;letter-spacing:.05em}
+.puzzle-start-btn:hover{transform:scale(1.01);opacity:.92}
+.puzzle-stats{display:flex;gap:1rem;margin-bottom:.8rem;flex-wrap:wrap}
+.puzzle-stat{background:var(--bg2);border:1px solid rgba(20,184,166,.2);border-radius:10px;padding:.6rem 1rem;font-size:.8rem;font-weight:700;color:var(--text-muted);flex:1;min-width:80px;text-align:center}
+.puzzle-stat span{display:block;font-family:'Fredoka One',cursive;font-size:1.4rem;color:var(--teal);line-height:1}
+.puzzle-arena{display:flex;gap:1rem;flex-wrap:wrap;justify-content:center}
+.puzzle-board-wrap{flex:1;min-width:240px}
+.puzzle-board-lbl{font-size:.65rem;font-weight:700;color:var(--text-dim);letter-spacing:.15em;text-transform:uppercase;margin-bottom:.5rem;text-align:center}
+.puzzle-board{display:grid;border:3px solid rgba(20,184,166,.35);border-radius:10px;overflow:hidden;background:rgba(20,184,166,.05);margin:0 auto}
+.puzzle-cell{border:1px solid rgba(20,184,166,.2);position:relative;transition:background .2s;cursor:pointer}
+.puzzle-cell.drag-over{background:rgba(20,184,166,.25)!important;border-color:var(--teal)}
+.puzzle-cell.correct-piece{pointer-events:none}
+.puzzle-cell.correct-piece::after{content:'';position:absolute;inset:0;border:2px solid rgba(16,185,129,.6);pointer-events:none}
+.puzzle-tray-wrap{flex:0 0 auto;width:160px}
+@media(max-width:500px){.puzzle-tray-wrap{width:100%;display:grid;grid-template-columns:repeat(4,1fr);gap:.3rem}.puzzle-tray-wrap .puzzle-board-lbl{grid-column:1/-1}}
+.puzzle-tray{display:flex;flex-direction:column;gap:.4rem}
+@media(max-width:500px){.puzzle-tray{display:contents}}
+.puzzle-piece{border-radius:6px;cursor:grab;border:2px solid rgba(20,184,166,.3);transition:all .15s;overflow:hidden;position:relative;background:#fff}
+.puzzle-piece:hover{transform:scale(1.04);border-color:var(--teal);box-shadow:0 4px 12px rgba(20,184,166,.3)}
+.puzzle-piece.dragging{opacity:.5;transform:scale(.95);cursor:grabbing}
+.puzzle-piece.placed{display:none}
+.puzzle-preview{border:3px solid rgba(245,158,11,.4);border-radius:10px;overflow:hidden;margin-bottom:.7rem}
+.puzzle-preview svg{width:100%;display:block}
+.puzzle-hint{font-size:.7rem;color:var(--text-dim);font-weight:600;text-align:center;margin-top:.5rem}
+.puzzle-win-overlay{position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:200;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem}
+.puzzle-win-overlay.show{display:flex}
+.pw-icon{font-size:5rem;animation:pop .5s .1s both;margin-bottom:1rem}
+.pw-title{font-family:'Fredoka One',cursive;font-size:clamp(2rem,6vw,3.5rem);color:#fff;margin-bottom:.4rem}
+.pw-title em{color:var(--gold-light);font-style:normal}
+.pw-stats{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin:1.2rem 0 1.8rem}
+.pw-stat{background:var(--bg2);border:2px solid rgba(20,184,166,.3);border-radius:12px;padding:1rem 1.4rem;text-align:center;min-width:100px}
+.pw-stat-num{font-family:'Fredoka One',cursive;font-size:2.2rem;color:var(--teal);line-height:1}
+.pw-stat-lbl{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text-dim);margin-top:.2rem}
+.pw-btns{display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center}
+.pw-btn-again{padding:.85rem 1.8rem;border-radius:99px;background:linear-gradient(135deg,var(--teal),var(--blue));color:#fff;border:none;font-family:var(--ff-body);font-size:.88rem;font-weight:700;cursor:pointer;transition:all .2s;text-transform:uppercase}
+.pw-btn-again:hover{transform:scale(1.05)}
+.pw-btn-home{padding:.85rem 1.8rem;border-radius:99px;background:transparent;color:var(--text-muted);border:2px solid rgba(20,184,166,.3);font-family:var(--ff-body);font-size:.88rem;font-weight:700;cursor:pointer;transition:all .2s;text-transform:uppercase}
+.pw-btn-home:hover{border-color:var(--teal);color:var(--teal)}
+
+/* SHARED GAME HEADER */
+.game-header{display:flex;align-items:center;gap:1rem;padding:1.2rem 1.5rem .5rem;flex-wrap:wrap}
+.back-btn{background:transparent;border:none;color:var(--text-muted);font-family:var(--ff-body);font-size:.75rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;gap:.4rem;transition:color .2s;white-space:nowrap}
+.back-btn:hover{color:var(--purple-light)}
+.back-btn svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:2.5}
+.game-title-bar{font-family:var(--ff-title);font-size:1.5rem;color:#fff;flex:1}
+.prog-wrap{flex:1;min-width:160px}
+.prog-label{font-size:.65rem;font-weight:700;color:var(--text-dim);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.3rem;display:flex;justify-content:space-between}
+.prog-bar{height:7px;background:var(--bg3);border-radius:99px;overflow:hidden}
+.prog-fill{height:100%;border-radius:99px;transition:width .4s ease}
+.stars-badge{font-size:.88rem;font-weight:700;color:var(--gold);background:rgba(245,158,11,.1);padding:.35rem .9rem;border-radius:99px;border:1px solid rgba(245,158,11,.3);white-space:nowrap}
+
+/* QUIZ & VERSE SHARED */
+.q-box{background:linear-gradient(135deg,var(--bg2),var(--bg3));border:2px solid rgba(124,58,237,.18);border-radius:18px;padding:1.8rem;margin:0 1.5rem 1rem;max-width:680px;margin-left:auto;margin-right:auto}
+.q-num{font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--purple-light);margin-bottom:.7rem}
+.q-question{font-size:1.18rem;font-weight:700;color:#fff;line-height:1.45;margin-bottom:1.3rem}
+.q-opts{display:grid;grid-template-columns:1fr 1fr;gap:.7rem}
+.q-opt{background:var(--bg);border:2px solid rgba(124,58,237,.18);border-radius:11px;padding:.9rem .7rem;text-align:center;cursor:pointer;font-size:.9rem;font-weight:600;color:var(--text-muted);transition:all .2s}
+.q-opt:hover:not(.disabled){border-color:var(--purple-light);color:#fff;background:rgba(124,58,237,.1);transform:scale(1.02)}
+.q-opt.correct{border-color:var(--green)!important;background:rgba(16,185,129,.15)!important;color:var(--green-light)!important;animation:correctPop .4s ease}
+.q-opt.wrong{border-color:var(--red)!important;background:rgba(239,68,68,.12)!important;color:var(--red-light)!important;animation:wrongShake .4s ease}
+.q-opt.disabled{cursor:default;pointer-events:none}
+.q-feedback{text-align:center;padding:.9rem;border-radius:11px;font-size:.95rem;font-weight:700;margin-top:.7rem;display:none}
+.q-feedback.show{display:block;animation:fadeUp .3s ease}
+.q-feedback.ok{background:rgba(16,185,129,.15);color:var(--green-light);border:1px solid rgba(16,185,129,.3)}
+.q-feedback.no{background:rgba(239,68,68,.12);color:var(--red-light);border:1px solid rgba(239,68,68,.3)}
+.q-next{width:calc(100% - 3rem);max-width:680px;margin:0 auto .5rem;display:block;padding:.9rem;border-radius:11px;border:none;font-family:var(--ff-body);font-size:.95rem;font-weight:700;cursor:pointer;transition:all .2s;display:none}
+.q-next.show{display:block;animation:fadeUp .3s ease}
+.q-next:hover{transform:scale(1.01)}
+.q-next-purple{background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff}
+.q-next-green{background:linear-gradient(135deg,var(--green),var(--blue));color:#fff}
+
+@keyframes correctPop{0%{transform:scale(1)}50%{transform:scale(1.05)}100%{transform:scale(1)}}
+@keyframes wrongShake{0%,100%{transform:translateX(0)}25%{transform:translateX(-5px)}75%{transform:translateX(5px)}}
+
+/* VERSE SPECIFIC */
+.verse-ref{font-size:.78rem;font-weight:700;color:var(--text-dim);margin-bottom:.8rem;letter-spacing:.05em}
+.verse-text{font-size:1.15rem;font-weight:700;color:#fff;line-height:1.7;text-align:center;margin-bottom:1.3rem}
+.v-blank{display:inline-block;background:rgba(16,185,129,.15);border-bottom:3px solid var(--green);padding:.12rem .7rem;border-radius:5px;min-width:80px;color:var(--green-light);font-style:italic;transition:all .3s}
+.v-blank.correct-b{background:rgba(16,185,129,.3);border-color:var(--green-light);color:#fff}
+.v-blank.wrong-b{background:rgba(239,68,68,.2);border-color:var(--red);animation:wrongShake .4s ease}
+.v-opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:.7rem}
+.v-opt{background:var(--bg);border:2px solid rgba(16,185,129,.18);border-radius:11px;padding:.8rem;text-align:center;cursor:pointer;font-size:.95rem;font-weight:700;color:var(--text-muted);transition:all .2s}
+.v-opt:hover:not(.disabled){border-color:var(--green);color:#fff;background:rgba(16,185,129,.1);transform:scale(1.04)}
+.v-opt.correct{border-color:var(--green)!important;background:rgba(16,185,129,.2)!important;color:var(--green-light)!important}
+.v-opt.wrong{border-color:var(--red)!important;background:rgba(239,68,68,.12)!important;color:var(--red-light)!important}
+.v-opt.disabled{cursor:default;pointer-events:none;opacity:.5}
+
+/* CAÇA-PALAVRAS */
+#cacaScreen .caca-wrap{padding:0 1rem 3rem;max-width:700px;margin:0 auto}
+.caca-words{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.2rem;padding:0 .5rem}
+.caca-word{background:var(--bg2);border:2px solid rgba(59,130,246,.25);border-radius:8px;padding:.35rem .8rem;font-size:.82rem;font-weight:700;color:var(--text-muted);transition:all .3s;letter-spacing:.08em}
+.caca-word.found{border-color:var(--green);color:var(--green-light);background:rgba(16,185,129,.12);text-decoration:line-through;opacity:.7}
+.caca-grid{display:inline-grid;gap:2px;background:rgba(59,130,246,.08);border:2px solid rgba(59,130,246,.2);border-radius:12px;padding:8px;margin:0 auto;display:grid}
+.caca-cell{width:clamp(26px,4vw,36px);height:clamp(26px,4vw,36px);display:flex;align-items:center;justify-content:center;font-size:clamp(.7rem,2vw,.95rem);font-weight:800;color:var(--text-muted);cursor:pointer;border-radius:5px;transition:all .15s;user-select:none;letter-spacing:0}
+.caca-cell:hover{background:rgba(59,130,246,.15);color:#fff}
+.caca-cell.selected{background:rgba(59,130,246,.35);color:#fff}
+.caca-cell.found-cell{color:#fff;border-radius:5px}
+.caca-progress{text-align:center;font-size:.82rem;color:var(--text-muted);font-weight:700;margin-top:.8rem}
+.caca-hint{text-align:center;font-size:.75rem;color:var(--text-dim);margin-top:.4rem}
+
+/* HISTÓRIAS */
+#storiesScreen .stories-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;padding:1rem 1.5rem 3rem;max-width:900px;margin:0 auto}
+.story-card{background:linear-gradient(135deg,var(--bg2),var(--bg3));border:2px solid rgba(249,115,22,.2);border-radius:16px;padding:1.5rem;text-align:center;cursor:pointer;transition:all .3s}
+.story-card:hover{transform:translateY(-4px);border-color:rgba(249,115,22,.5);box-shadow:0 8px 25px rgba(249,115,22,.2)}
+.story-emoji{font-size:3rem;display:block;margin-bottom:.7rem}
+.story-title{font-family:var(--ff-title);font-size:1.2rem;color:#fff;margin-bottom:.3rem}
+.story-desc{font-size:.78rem;color:var(--text-muted);font-weight:600}
+#storyReader{display:none;max-width:680px;margin:0 auto;padding:0 1.5rem 3rem}
+.story-page{background:linear-gradient(135deg,var(--bg2),var(--bg3));border:2px solid rgba(249,115,22,.15);border-radius:18px;padding:2rem;text-align:center}
+.story-page-emoji{font-size:5rem;margin-bottom:1rem;display:block;animation:float 3s ease-in-out infinite}
+.story-page-title{font-family:var(--ff-title);font-size:1.8rem;color:var(--gold-light);margin-bottom:1rem}
+.story-page-text{font-size:1rem;color:var(--text);font-weight:600;line-height:1.8;margin-bottom:1.5rem}
+.story-page-text strong{color:var(--gold-light)}
+.story-nav{display:flex;justify-content:space-between;align-items:center;margin-top:1rem}
+.story-nav-btn{padding:.7rem 1.5rem;border-radius:99px;border:none;font-family:var(--ff-body);font-size:.85rem;font-weight:700;cursor:pointer;transition:all .2s;text-transform:uppercase;letter-spacing:.08em}
+.story-prev{background:var(--bg3);color:var(--text-muted)}
+.story-prev:hover{color:#fff}
+.story-next{background:linear-gradient(135deg,var(--orange),var(--gold));color:#fff}
+.story-next:hover{transform:scale(1.05)}
+.story-pager{font-size:.78rem;color:var(--text-dim);font-weight:700}
+.story-back-list{width:100%;margin-top:1rem;padding:.8rem;border-radius:11px;background:transparent;border:2px solid rgba(249,115,22,.3);color:var(--orange);font-family:var(--ff-body);font-size:.85rem;font-weight:700;cursor:pointer;transition:all .2s}
+.story-back-list:hover{border-color:var(--orange);background:rgba(249,115,22,.08)}
+
+/* COLORIR */
+#colorirScreen .colorir-wrap{padding:0 1rem 3rem;max-width:780px;margin:0 auto}
+.scene-selector{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:.8rem;margin-bottom:1.2rem}
+.scene-btn{background:var(--bg2);border:2px solid rgba(236,72,153,.2);border-radius:12px;padding:.9rem;text-align:center;cursor:pointer;transition:all .2s}
+.scene-btn:hover,.scene-btn.active{border-color:var(--pink);background:rgba(236,72,153,.1)}
+.scene-btn-icon{font-size:1.8rem;display:block;margin-bottom:.3rem}
+.scene-btn-name{font-size:.75rem;font-weight:700;color:var(--text-muted)}
+.scene-btn.active .scene-btn-name{color:#fff}
+.color-palette{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1rem;align-items:center}
+.color-swatch{width:32px;height:32px;border-radius:50%;cursor:pointer;border:3px solid transparent;transition:all .2s;flex-shrink:0}
+.color-swatch:hover{transform:scale(1.15)}
+.color-swatch.selected{border-color:#fff;transform:scale(1.2)}
+.eraser-btn{padding:.4rem 1rem;border-radius:99px;background:var(--bg3);border:2px solid rgba(255,255,255,.2);color:var(--text-muted);font-family:var(--ff-body);font-size:.78rem;font-weight:700;cursor:pointer;transition:all .2s}
+.eraser-btn:hover,.eraser-btn.active{border-color:#fff;color:#fff}
+.reset-btn{padding:.4rem 1rem;border-radius:99px;background:rgba(239,68,68,.1);border:2px solid rgba(239,68,68,.3);color:var(--red-light);font-family:var(--ff-body);font-size:.78rem;font-weight:700;cursor:pointer;transition:all .2s;margin-left:.3rem}
+.reset-btn:hover{border-color:var(--red);color:var(--red)}
+.svg-canvas{background:rgba(255,255,255,.97);border-radius:16px;overflow:hidden;border:3px solid rgba(236,72,153,.25);max-width:100%;display:block;margin:0 auto;cursor:crosshair}
+.svg-canvas path,.svg-canvas ellipse,.svg-canvas circle,.svg-canvas rect,.svg-canvas polygon,.svg-canvas polyline{cursor:pointer;transition:opacity .15s}
+.svg-canvas path:hover,.svg-canvas ellipse:hover,.svg-canvas circle:hover,.svg-canvas rect:hover,.svg-canvas polygon:hover{opacity:.85}
+.colorir-tip{text-align:center;font-size:.75rem;color:var(--text-dim);margin-top:.6rem;font-weight:600}
+
+/* RESULT */
+#resultScreen{max-width:520px;margin:0 auto;padding:2rem 1.5rem 4rem;text-align:center}
+.result-icon{font-size:4.5rem;margin-bottom:.8rem;animation:pop .6s .1s both}
+.result-title{font-family:var(--ff-title);font-size:clamp(1.8rem,5vw,3rem);color:#fff;margin-bottom:.4rem}
+.result-sub{font-size:.95rem;color:var(--text-muted);font-weight:600;margin-bottom:1.5rem}
+.stars-row{display:flex;justify-content:center;gap:.25rem;font-size:2.2rem;margin-bottom:1.5rem}
+.stars-row span{animation:starPop .4s both}
+.result-score-box{background:linear-gradient(135deg,var(--bg2),var(--bg3));border:2px solid rgba(245,158,11,.3);border-radius:18px;padding:1.5rem;margin-bottom:1.5rem}
+.result-score-num{font-family:var(--ff-title);font-size:3.5rem;color:var(--gold-light)}
+.result-score-lbl{font-size:.78rem;font-weight:700;color:var(--text-dim);letter-spacing:.1em;text-transform:uppercase}
+.result-msg{font-size:.95rem;font-weight:700;color:var(--text-muted);margin-bottom:1.8rem;line-height:1.6}
+.result-btns{display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center}
+.btn-again{padding:.85rem 1.8rem;border-radius:99px;background:linear-gradient(135deg,var(--purple),var(--pink));color:#fff;border:none;font-family:var(--ff-body);font-size:.88rem;font-weight:700;cursor:pointer;transition:all .2s;text-transform:uppercase;letter-spacing:.08em}
+.btn-again:hover{transform:scale(1.05)}
+.btn-home{padding:.85rem 1.8rem;border-radius:99px;background:transparent;color:var(--text-muted);border:2px solid rgba(124,58,237,.3);font-family:var(--ff-body);font-size:.88rem;font-weight:700;cursor:pointer;transition:all .2s;text-transform:uppercase;letter-spacing:.08em}
+.btn-home:hover{border-color:var(--purple-light);color:var(--purple-light)}
+
+/* CONFETTI */
+.confetti-piece{position:fixed;border-radius:2px;animation:confettiFall 2s ease-in forwards;z-index:300;pointer-events:none}
+@keyframes confettiFall{0%{opacity:1;transform:translateY(-10px) rotate(0)}100%{opacity:0;transform:translateY(100vh) rotate(720deg)}}
+
+/* UTILS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pop{0%{transform:scale(0);opacity:0}80%{transform:scale(1.2)}100%{transform:scale(1);opacity:1}}
+@keyframes starPop{0%{transform:scale(0) rotate(-30deg);opacity:0}70%{transform:scale(1.3)}100%{transform:scale(1);opacity:1}}
+
+@media(max-width:500px){
+  .q-opts,.v-opts{grid-template-columns:1fr}
+  .caca-cell{width:28px;height:28px;font-size:.7rem}
+}
+</style>
+</head>
+<body>
+<div class="stars-bg" id="starsBg"></div>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <a class="topbar-back" href="index.html">
+    <svg viewBox="0 0 24 24"><polyline points="15,18 9,12 15,6"/></svg>Voltar
+  </a>
+  <div class="topbar-brand">✨ Kids</div>
+  <div class="topbar-stars" id="topStars">⭐ 0</div>
+</div>
+
+<!-- ═══ HOME ═══ -->
+<div class="screen active" id="homeScreen">
+  <div class="kids-hero">
+    <div class="hero-badge">🎉 Área Infantil</div>
+    <h1 class="hero-title">Olá, <span>criança!</span> 👋</h1>
+    <p class="hero-sub">Aprenda sobre a Bíblia de um jeito divertido!</p>
+  </div>
+  <div class="game-cards">
+    <div class="game-card c-purple" onclick="startQuiz()">
+      <span class="game-card-icon">🧠</span>
+      <h2 class="game-card-title">Quiz Bíblico</h2>
+      <p class="game-card-desc">Responda perguntas e ganhe estrelinhas!</p>
+      <button class="gc-btn">Jogar!</button>
+    </div>
+    <div class="game-card c-green" onclick="startVerse()">
+      <span class="game-card-icon">📖</span>
+      <h2 class="game-card-title">Complete o Versículo</h2>
+      <p class="game-card-desc">Descubra a palavra que falta!</p>
+      <button class="gc-btn">Jogar!</button>
+    </div>
+    <div class="game-card c-blue" onclick="startCaca()">
+      <span class="game-card-icon">🔤</span>
+      <h2 class="game-card-title">Caça-palavras</h2>
+      <p class="game-card-desc">Encontre palavras bíblicas escondidas!</p>
+      <button class="gc-btn">Jogar!</button>
+    </div>
+    <div class="game-card c-orange" onclick="showStories()">
+      <span class="game-card-icon">📚</span>
+      <h2 class="game-card-title">Histórias Bíblicas</h2>
+      <p class="game-card-desc">Aventuras incríveis da Bíblia!</p>
+      <button class="gc-btn">Ler!</button>
+    </div>
+    <div class="game-card c-pink" onclick="showColorir()">
+      <span class="game-card-icon">🎨</span>
+      <h2 class="game-card-title">Colorir Online</h2>
+      <p class="game-card-desc">Pinte cenas bíblicas com as suas cores!</p>
+      <button class="gc-btn">Colorir!</button>
+    </div>
+    <div class="game-card c-teal" onclick="startPuzzle()">
+      <span class="game-card-icon">🧩</span>
+      <h2 class="game-card-title">Quebra-cabeça</h2>
+      <p class="game-card-desc">Monte cenas bíblicas arrastando as peças!</p>
+      <button class="gc-btn">Montar!</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ QUIZ ═══ -->
+<div class="screen" id="quizScreen">
+  <div class="game-header">
+    <button class="back-btn" onclick="goHome()"><svg viewBox="0 0 24 24"><polyline points="15,18 9,12 15,6"/></svg>Voltar</button>
+    <div class="game-title-bar">🧠 Quiz Bíblico</div>
+    <div class="prog-wrap"><div class="prog-label"><span id="qProgLbl">1 de 10</span><span id="qOkLbl">✅ 0</span></div><div class="prog-bar"><div class="prog-fill" id="qPF" style="width:10%;background:linear-gradient(90deg,var(--purple),var(--pink))"></div></div></div>
+    <div class="stars-badge">⭐ <span id="qSt">0</span></div>
+  </div>
+  <div class="q-box">
+    <div class="q-num" id="qNum"></div>
+    <div class="q-question" id="qQ"></div>
+    <div class="q-opts" id="qOpts"></div>
+    <div class="q-feedback" id="qFb"></div>
+  </div>
+  <button class="q-next q-next-purple" id="qNext" onclick="nextQ()"></button>
+</div>
+
+<!-- ═══ VERSÍCULO ═══ -->
+<div class="screen" id="verseScreen">
+  <div class="game-header">
+    <button class="back-btn" onclick="goHome()"><svg viewBox="0 0 24 24"><polyline points="15,18 9,12 15,6"/></svg>Voltar</button>
+    <div class="game-title-bar">📖 Complete o Versículo</div>
+    <div class="prog-wrap"><div class="prog-label"><span id="vProgLbl">1 de 10</span><span id="vOkLbl">✅ 0</span></div><div class="prog-bar"><div class="prog-fill" id="vPF" style="width:10%;background:linear-gradient(90deg,var(--green),var(--blue))"></div></div></div>
+    <div class="stars-badge" style="border-color:rgba(16,185,129,.3);background:rgba(16,185,129,.08)">⭐ <span id="vSt">0</span></div>
+  </div>
+  <div class="q-box" style="border-color:rgba(16,185,129,.18)">
+    <div class="q-num" id="vNum" style="color:var(--green-light)"></div>
+    <div class="verse-ref" id="vRef"></div>
+    <div class="verse-text" id="vText"></div>
+    <div class="v-opts" id="vOpts"></div>
+    <div class="q-feedback" id="vFb"></div>
+  </div>
+  <button class="q-next q-next-green" id="vNext" onclick="nextV()"></button>
+</div>
+
+<!-- ═══ CAÇA-PALAVRAS ═══ -->
+<div class="screen" id="cacaScreen">
+  <div class="game-header">
+    <button class="back-btn" onclick="goHome()"><svg viewBox="0 0 24 24"><polyline points="15,18 9,12 15,6"/></svg>Voltar</button>
+    <div class="game-title-bar">🔤 Caça-palavras</div>
+    <div class="stars-badge" style="border-color:rgba(59,130,246,.3);background:rgba(59,130,246,.08)">🔍 <span id="cacaFound">0</span>/10</div>
+  </div>
+  <div class="caca-wrap">
+    <div class="caca-words" id="cacaWords"></div>
+    <div style="overflow-x:auto;text-align:center">
+      <div class="caca-grid" id="cacaGrid"></div>
+    </div>
+    <div class="caca-progress" id="cacaProgress"></div>
+    <div class="caca-hint">👆 Clique na primeira letra e depois na última letra da palavra!</div>
+    <div style="text-align:center;margin-top:1rem">
+      <button onclick="initCaca()" style="padding:.6rem 1.5rem;border-radius:99px;background:rgba(59,130,246,.15);border:2px solid rgba(59,130,246,.3);color:var(--blue-light);font-family:var(--ff-body);font-size:.8rem;font-weight:700;cursor:pointer;transition:all .2s">🔀 Novo jogo</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ HISTÓRIAS ═══ -->
+<div class="screen" id="storiesScreen">
+  <div class="game-header">
+    <button class="back-btn" onclick="goHome()"><svg viewBox="0 0 24 24"><polyline points="15,18 9,12 15,6"/></svg>Voltar</button>
+    <div class="game-title-bar">📚 Histórias Bíblicas</div>
+  </div>
+  <div class="stories-list" id="storiesList"></div>
+  <div id="storyReader">
+    <div class="story-page" id="storyPage"></div>
+    <div class="story-nav">
+      <button class="story-nav-btn story-prev" id="storyPrev" onclick="storyNav(-1)">← Anterior</button>
+      <span class="story-pager" id="storyPager"></span>
+      <button class="story-nav-btn story-next" id="storyNext" onclick="storyNav(1)">Próximo →</button>
+    </div>
+    <button class="story-back-list" onclick="showStoriesList()">📚 Ver todas as histórias</button>
+  </div>
+</div>
+
+<!-- ═══ COLORIR ═══ -->
+<div class="screen" id="colorirScreen">
+  <div class="game-header">
+    <button class="back-btn" onclick="goHome()"><svg viewBox="0 0 24 24"><polyline points="15,18 9,12 15,6"/></svg>Voltar</button>
+    <div class="game-title-bar">🎨 Colorir Online</div>
+  </div>
+  <div class="colorir-wrap">
+    <div class="scene-selector" id="sceneSelector"></div>
+    <div class="color-palette" id="colorPalette"></div>
+    <div id="svgContainer"></div>
+    <p class="colorir-tip">🖌️ Escolha uma cor e clique nas partes do desenho para pintar!</p>
+  </div>
+</div>
+
+<!-- ═══ QUEBRA-CABEÇA ═══ -->
+<div class="screen" id="puzzleScreen">
+  <div class="game-header">
+    <button class="back-btn" onclick="goHome()"><svg viewBox="0 0 24 24"><polyline points="15,18 9,12 15,6"/></svg>Voltar</button>
+    <div class="game-title-bar">🧩 Quebra-cabeça</div>
+    <div class="stars-badge" style="border-color:rgba(20,184,166,.3);background:rgba(20,184,166,.08)">⏱️ <span id="pzTimer">00:00</span></div>
+  </div>
+  <div class="puzzle-wrap">
+    <!-- SETUP -->
+    <div id="pzSetup">
+      <div class="puzzle-scene-sel" id="pzSceneSel"></div>
+      <div class="puzzle-diff-row">
+        <span class="puzzle-diff-lbl">Dificuldade:</span>
+        <button class="puzzle-diff-btn active" onclick="setPzDiff(3,this)">😊 Fácil (3×3)</button>
+        <button class="puzzle-diff-btn" onclick="setPzDiff(4,this)">🤔 Médio (4×4)</button>
+        <button class="puzzle-diff-btn" onclick="setPzDiff(5,this)">🔥 Difícil (5×5)</button>
+      </div>
+      <button class="puzzle-start-btn" onclick="launchPuzzle()">🧩 Montar agora!</button>
+    </div>
+    <!-- GAME -->
+    <div id="pzGame" style="display:none">
+      <div class="puzzle-stats">
+        <div class="puzzle-stat"><span id="pzMoves">0</span>Movimentos</div>
+        <div class="puzzle-stat"><span id="pzLeft">0</span>Restando</div>
+        <div class="puzzle-stat"><span id="pzGameTimer">00:00</span>Tempo</div>
+      </div>
+      <div class="puzzle-arena">
+        <div class="puzzle-board-wrap">
+          <div class="puzzle-board-lbl">Monte aqui 👇</div>
+          <div class="puzzle-board" id="pzBoard"></div>
+          <p class="puzzle-hint">Arraste as peças da lateral para o lugar certo!</p>
+        </div>
+        <div class="puzzle-tray-wrap">
+          <div class="puzzle-board-lbl">Peças 🧩</div>
+          <div class="puzzle-tray" id="pzTray"></div>
+          <div class="puzzle-preview" id="pzPreview" style="margin-top:.7rem"></div>
+          <button onclick="togglePreview()" style="width:100%;margin-top:.3rem;padding:.4rem;border-radius:8px;border:1px solid rgba(245,158,11,.3);background:rgba(245,158,11,.08);color:var(--gold-light);font-family:var(--ff-body);font-size:.7rem;font-weight:700;cursor:pointer">👁️ Ver imagem completa</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- WIN OVERLAY -->
+  <div class="puzzle-win-overlay" id="pzWin">
+    <div class="pw-icon">🧩</div>
+    <div class="pw-title">Parabéns! <em>Você montou!</em></div>
+    <div class="pw-stats">
+      <div class="pw-stat"><div class="pw-stat-num" id="pwTime">--</div><div class="pw-stat-lbl">Tempo</div></div>
+      <div class="pw-stat"><div class="pw-stat-num" id="pwMoves">--</div><div class="pw-stat-lbl">Movimentos</div></div>
+      <div class="pw-stat"><div class="pw-stat-num" id="pwStars">⭐⭐⭐</div><div class="pw-stat-lbl">Estrelas</div></div>
+    </div>
+    <div class="pw-btns">
+      <button class="pw-btn-again" onclick="launchPuzzle()">🔀 Jogar de novo</button>
+      <button class="pw-btn-home" onclick="closePzWin()">🏠 Início</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ RESULTADO ═══ -->
+<div class="screen" id="resultScreen">
+  <div class="result-icon" id="rIcon">🏆</div>
+  <h2 class="result-title" id="rTitle"></h2>
+  <p class="result-sub" id="rSub"></p>
+  <div class="stars-row" id="rStars"></div>
+  <div class="result-score-box"><div class="result-score-num" id="rScore"></div><div class="result-score-lbl">acertos</div></div>
+  <p class="result-msg" id="rMsg"></p>
+  <div class="result-btns">
+    <button class="btn-again" id="rAgain">🔄 Jogar de novo</button>
+    <button class="btn-home" onclick="goHome()">🏠 Início</button>
+  </div>
+</div>
+
+<script>
+// ── STARS BG ──
+const sb=document.getElementById('starsBg');
+for(let i=0;i<70;i++){const s=document.createElement('div');s.className='star';const z=Math.random()*2.5+.8;s.style.cssText=`width:${z}px;height:${z}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--d:${2+Math.random()*4}s;--delay:${Math.random()*5}s`;sb.appendChild(s);}
+
+// ── NAV ──
+let totalStars=0;
+function addStars(n){totalStars+=n;document.getElementById('topStars').textContent=`⭐ ${totalStars}`;}
+function showScreen(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0);}
+function goHome(){showScreen('homeScreen');}
+function shuffle(a){const r=[...a];for(let i=r.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[r[i],r[j]]=[r[j],r[i]]}return r;}
+function fmtTime(s){return `${Math.floor(s/60).toString().padStart(2,'0')}:${(s%60).toString().padStart(2,'0')}`;}
+function confetti(n=20){const c=['#C9A84C','#7C3AED','#EC4899','#10B981','#3B82F6','#F59E0B','#fff'];for(let i=0;i<n;i++){const el=document.createElement('div');el.className='confetti-piece';el.style.cssText=`left:${Math.random()*100}vw;top:-8px;background:${c[Math.floor(Math.random()*c.length)]};width:${5+Math.random()*7}px;height:${5+Math.random()*7}px;animation-duration:${1.4+Math.random()*1.4}s;animation-delay:${Math.random()*.4}s;border-radius:${Math.random()>.5?'50%':'2px'}`;document.body.appendChild(el);setTimeout(()=>el.remove(),3000);}}
+
+// ═══════════════════════════════════
+// QUIZ DATA
+// ═══════════════════════════════════
+const QUIZ=[
+  {q:"Quem foi engolido por um grande peixe?",opts:["Jonas","Davi","Moisés","Elias"],a:0,fun:"Jonas ficou 3 dias dentro do peixe! 🐟"},
+  {q:"Quem construiu uma grande arca para salvar os animais?",opts:["Abraão","Noé","Salomão","Josué"],a:1,fun:"Noé colocou dois de cada animal na arca! 🚢"},
+  {q:"Quem matou o gigante Golias com uma pedrinha?",opts:["Sansão","Pedro","Davi","Moisés"],a:2,fun:"Davi usou um estilingue e acertou na primeira! 🪨"},
+  {q:"Quem foi jogado na cova dos leões e saiu ileso?",opts:["Daniel","Paulo","João","Elias"],a:0,fun:"Deus fechou a boca dos leões para salvar Daniel! 🦁"},
+  {q:"Onde nasceu Jesus?",opts:["Nazaré","Jerusalém","Belém","Jericó"],a:2,fun:"Jesus nasceu em Belém, numa manjedoura! 🌟"},
+  {q:"Quantos dias e noites choveu no tempo de Noé?",opts:["7 dias","40 dias","100 dias","365 dias"],a:1,fun:"Choveu 40 dias e 40 noites! ☔"},
+  {q:"Quem foi a mãe de Jesus?",opts:["Sara","Marta","Rute","Maria"],a:3,fun:"Maria foi escolhida por Deus para ser a mãe de Jesus! 💙"},
+  {q:"Quantos apóstolos Jesus escolheu?",opts:["7","10","12","15"],a:2,fun:"Jesus escolheu 12 apóstolos! ✝️"},
+  {q:"O que Deus criou no primeiro dia?",opts:["Os pássaros","A luz","Os peixes","As plantas"],a:1,fun:"'Haja luz!' — e a luz apareceu! ✨"},
+  {q:"Qual foi o nome do primeiro homem criado por Deus?",opts:["Abel","Adão","Sete","Noé"],a:1,fun:"Adão foi formado do pó da terra por Deus! 🌿"},
+  {q:"Em quantos dias Jesus ressuscitou?",opts:["1 dia","2 dias","3 dias","7 dias"],a:2,fun:"No terceiro dia Jesus ressuscitou — Aleluia! 🌅"},
+  {q:"Quem dividiu o mar ao meio?",opts:["Josué","Elias","Salomão","Moisés"],a:3,fun:"Moisés levantou o cajado e o mar se abriu! 🌊"},
+  {q:"Qual animal falou com Eva no jardim do Éden?",opts:["O leão","A serpente","O pombo","O burro"],a:1,fun:"A serpente enganou Eva no jardim! 🐍"},
+  {q:"Quem escreveu a maioria dos Salmos?",opts:["Moisés","Salomão","Davi","Paulo"],a:2,fun:"Davi escreveu mais de 70 salmos cantando para Deus! 🎶"},
+  {q:"Em qual cidade Jesus cresceu?",opts:["Belém","Nazaré","Cafarnaum","Jericó"],a:1,fun:"Jesus cresceu em Nazaré com Maria e José! 🏡"},
+];
+
+let qList=[],qIdx=0,qOk=0,qSt=0;
+function startQuiz(){
+  qList=shuffle(QUIZ).slice(0,10);qIdx=0;qOk=0;qSt=0;
+  document.getElementById('qSt').textContent='0';
+  document.getElementById('qOkLbl').textContent='✅ 0';
+  showScreen('quizScreen');renderQ();
+}
+function renderQ(){
+  const q=qList[qIdx],tot=qList.length;
+  document.getElementById('qNum').textContent=`Pergunta ${qIdx+1}`;
+  document.getElementById('qProgLbl').textContent=`${qIdx+1} de ${tot}`;
+  document.getElementById('qPF').style.width=`${((qIdx+1)/tot)*100}%`;
+  document.getElementById('qQ').textContent=q.q;
+  document.getElementById('qFb').className='q-feedback';document.getElementById('qFb').style.display='none';
+  document.getElementById('qNext').className='q-next q-next-purple';
+  const opts=document.getElementById('qOpts');opts.innerHTML='';
+  shuffle(q.opts.map((o,i)=>({t:o,i}))).forEach(o=>{
+    const b=document.createElement('button');b.className='q-opt';b.textContent=o.t;
+    b.onclick=()=>ansQ(o.i===q.a,b,q);opts.appendChild(b);
+  });
+}
+function ansQ(ok,btn,q){
+  document.querySelectorAll('.q-opt').forEach(b=>b.classList.add('disabled'));
+  const fb=document.getElementById('qFb');
+  if(ok){btn.classList.add('correct');qOk++;qSt+=3;document.getElementById('qSt').textContent=qSt;document.getElementById('qOkLbl').textContent=`✅ ${qOk}`;fb.className='q-feedback ok show';fb.textContent=`✅ Correto! ${q.fun}`;fb.style.display='block';confetti();}
+  else{btn.classList.add('wrong');document.querySelectorAll('.q-opt').forEach(b=>{if(b.textContent===q.opts[q.a])b.classList.add('correct');});fb.className='q-feedback no show';fb.textContent=`❌ A resposta era: ${q.opts[q.a]}. ${q.fun}`;fb.style.display='block';}
+  const nb=document.getElementById('qNext');nb.className='q-next q-next-purple show';nb.textContent=qIdx===qList.length-1?'Ver resultado! 🎉':'Próxima ➜';
+}
+function nextQ(){qIdx++;if(qIdx>=qList.length){addStars(qSt);showResult('quiz',qOk,qList.length,qSt,startQuiz);return;}renderQ();}
+
+// ═══════════════════════════════════
+// VERSE DATA
+// ═══════════════════════════════════
+const VERSES=[
+  {ref:"João 3:16",bef:"Porque Deus amou o mundo de tal maneira que deu o seu",blank:"Filho",aft:"unigênito...",opts:["Filho","Anjo","Amigo","Servo"],fun:"O versículo mais famoso da Bíblia! ❤️"},
+  {ref:"Salmo 23:1",bef:"O Senhor é o meu",blank:"pastor",aft:", nada me faltará.",opts:["pastor","rei","pai","mestre"],fun:"Deus cuida de nós como um pastor! 🐑"},
+  {ref:"Filipenses 4:13",bef:"Tudo posso naquele que me",blank:"fortalece",aft:".",opts:["fortalece","ajuda","ensina","guia"],fun:"Com Deus tudo é possível! 💪"},
+  {ref:"Êxodo 20:12",bef:"Honra teu pai e tua",blank:"mãe",aft:", para que se prolonguem os teus dias.",opts:["mãe","família","irmão","casa"],fun:"Este é um dos Dez Mandamentos! 👨‍👩‍👧"},
+  {ref:"Provérbios 3:5",bef:"Confia no Senhor de todo o teu",blank:"coração",aft:"...",opts:["coração","ser","espírito","amor"],fun:"Devemos confiar em Deus sempre! 💛"},
+  {ref:"Mateus 22:37",bef:"Amarás o Senhor teu Deus de todo o teu",blank:"coração",aft:", e de toda a tua alma...",opts:["coração","tempo","jeito","ser"],fun:"Amar a Deus é o maior mandamento! 🌟"},
+  {ref:"Salmo 119:105",bef:"A tua palavra é",blank:"lâmpada",aft:"para os meus pés...",opts:["lâmpada","guia","chave","força"],fun:"A Bíblia ilumina nosso caminho! 🕯️"},
+  {ref:"Isaías 40:31",bef:"Os que esperam no Senhor renovam as suas",blank:"forças",aft:"...",opts:["forças","asas","vidas","almas"],fun:"Deus nos dá energia quando estamos cansados! 🦅"},
+  {ref:"1 João 4:8",bef:"Deus é",blank:"amor",aft:".",opts:["amor","luz","paz","rei"],fun:"A natureza de Deus é o amor puro! 💖"},
+  {ref:"Jeremias 29:11",bef:"Porque eu sei os planos que tenho para",blank:"vocês",aft:", planos de paz e não de calamidade...",opts:["vocês","mim","todos","eles"],fun:"Deus tem planos lindos para você! ✨"},
+  {ref:"Salmo 46:1",bef:"Deus é o nosso",blank:"refúgio",aft:"e força, socorro bem presente...",opts:["refúgio","escudo","castelo","lar"],fun:"Podemos correr para Deus em qualquer problema! 🏃"},
+  {ref:"Romanos 8:28",bef:"Sabemos que todas as coisas cooperam para o",blank:"bem",aft:"daqueles que amam a Deus.",opts:["bem","fim","amor","plano"],fun:"Deus transforma tudo em algo bom! 🌈"},
+];
+
+let vList=[],vIdx=0,vOk=0,vSt=0;
+function startVerse(){
+  vList=shuffle(VERSES).slice(0,10);vIdx=0;vOk=0;vSt=0;
+  document.getElementById('vSt').textContent='0';document.getElementById('vOkLbl').textContent='✅ 0';
+  showScreen('verseScreen');renderV();
+}
+function renderV(){
+  const v=vList[vIdx],tot=vList.length;
+  document.getElementById('vNum').textContent=`Versículo ${vIdx+1}`;
+  document.getElementById('vProgLbl').textContent=`${vIdx+1} de ${tot}`;
+  document.getElementById('vPF').style.width=`${((vIdx+1)/tot)*100}%`;
+  document.getElementById('vRef').textContent=`📖 ${v.ref}`;
+  document.getElementById('vText').innerHTML=`"${v.bef} <span class="v-blank" id="vBlk">___?___</span> ${v.aft}"`;
+  document.getElementById('vFb').className='q-feedback';document.getElementById('vFb').style.display='none';
+  document.getElementById('vNext').className='q-next q-next-green';
+  const opts=document.getElementById('vOpts');opts.innerHTML='';
+  shuffle(v.opts).forEach(o=>{
+    const b=document.createElement('button');b.className='v-opt';b.textContent=o;
+    b.onclick=()=>ansV(o===v.blank,o,b,v);opts.appendChild(b);
+  });
+}
+function ansV(ok,chosen,btn,v){
+  document.querySelectorAll('.v-opt').forEach(b=>b.classList.add('disabled'));
+  const blk=document.getElementById('vBlk'),fb=document.getElementById('vFb');
+  blk.textContent=chosen;
+  if(ok){btn.classList.add('correct');blk.classList.add('correct-b');vOk++;vSt+=3;document.getElementById('vSt').textContent=vSt;document.getElementById('vOkLbl').textContent=`✅ ${vOk}`;fb.className='q-feedback ok show';fb.textContent=`✅ Correto! ${v.fun}`;fb.style.display='block';confetti();}
+  else{btn.classList.add('wrong');blk.classList.add('wrong-b');document.querySelectorAll('.v-opt').forEach(b=>{if(b.textContent===v.blank)b.classList.add('correct');});fb.className='q-feedback no show';fb.textContent=`❌ A palavra era: "${v.blank}". ${v.fun}`;fb.style.display='block';}
+  const nb=document.getElementById('vNext');nb.className='q-next q-next-green show';nb.textContent=vIdx===vList.length-1?'Ver resultado! 🎉':'Próximo ➜';
+}
+function nextV(){vIdx++;if(vIdx>=vList.length){addStars(vSt);showResult('verse',vOk,vList.length,vSt,startVerse);return;}renderV();}
+
+// ═══════════════════════════════════
+// CAÇA-PALAVRAS
+// ═══════════════════════════════════
+const CACA_WORDS=['DEUS','JESUS','AMOR','MARIA','DAVI','DANIEL','MOISES','BIBLIA','ISRAEL','GLORIA'];
+const GRID_SIZE=12;
+let cacaGrid=[],cacaFound=[],cacaWordPositions={},cacaFirst=null,cacaColors=['#6366F1','#EC4899','#10B981','#F59E0B','#3B82F6','#EF4444','#8B5CF6','#14B8A6','#F97316','#84CC16'];
+
+function initCaca(){
+  cacaGrid=Array.from({length:GRID_SIZE},()=>Array(GRID_SIZE).fill(''));
+  cacaFound=[];cacaWordPositions={};cacaFirst=null;
+  const dirs=[[0,1],[1,0],[1,1],[0,-1],[-1,0],[-1,-1],[1,-1],[-1,1]];
+  const wordsToPlace=shuffle([...CACA_WORDS]);
+  wordsToPlace.forEach(word=>{
+    let placed=false,attempts=0;
+    while(!placed&&attempts<200){
+      attempts++;
+      const dir=dirs[Math.floor(Math.random()*dirs.length)];
+      const [dr,dc]=dir;
+      const maxR=dr>0?GRID_SIZE-word.length:dr<0?word.length-1:GRID_SIZE-1;
+      const maxC=dc>0?GRID_SIZE-word.length:dc<0?word.length-1:GRID_SIZE-1;
+      const minR=dr<0?word.length-1:0;
+      const minC=dc<0?word.length-1:0;
+      if(maxR<minR||maxC<minC)continue;
+      const r=Math.floor(Math.random()*(maxR-minR+1))+minR;
+      const c=Math.floor(Math.random()*(maxC-minC+1))+minC;
+      let ok=true,cells=[];
+      for(let i=0;i<word.length;i++){
+        const nr=r+i*dr,nc=c+i*dc;
+        if(cacaGrid[nr][nc]!==''&&cacaGrid[nr][nc]!==word[i]){ok=false;break;}
+        cells.push([nr,nc]);
+      }
+      if(ok){cells.forEach(([nr,nc],i)=>cacaGrid[nr][nc]=word[i]);cacaWordPositions[word]={cells,color:cacaColors[wordsToPlace.indexOf(word)]};placed=true;}
+    }
+  });
+  // Fill blanks
+  const letters='ABCDEFGHIJKLMNOPRSTUVZ';
+  for(let r=0;r<GRID_SIZE;r++)for(let c=0;c<GRID_SIZE;c++)if(cacaGrid[r][c]==='')cacaGrid[r][c]=letters[Math.floor(Math.random()*letters.length)];
+  renderCaca();
+}
+
+function renderCaca(){
+  // Words list
+  const wl=document.getElementById('cacaWords');
+  wl.innerHTML=CACA_WORDS.map(w=>`<div class="caca-word ${cacaFound.includes(w)?'found':''}" id="cw-${w}">${w}</div>`).join('');
+  // Grid
+  const grid=document.getElementById('cacaGrid');
+  grid.style.gridTemplateColumns=`repeat(${GRID_SIZE},1fr)`;
+  grid.innerHTML='';
+  for(let r=0;r<GRID_SIZE;r++)for(let c=0;c<GRID_SIZE;c++){
+    const cell=document.createElement('div');
+    cell.className='caca-cell';cell.textContent=cacaGrid[r][c];
+    cell.dataset.r=r;cell.dataset.c=c;cell.id=`cc-${r}-${c}`;
+    // Check if already found
+    CACA_WORDS.forEach(w=>{if(cacaFound.includes(w)){const pos=cacaWordPositions[w];if(pos&&pos.cells.some(([fr,fc])=>fr===r&&fc===c)){cell.style.background=pos.color+'33';cell.style.color=pos.color;}}});
+    cell.addEventListener('click',()=>cacaClick(r,c));
+    grid.appendChild(cell);
+  }
+  document.getElementById('cacaFound').textContent=cacaFound.length;
+  document.getElementById('cacaProgress').textContent=`${cacaFound.length} de ${CACA_WORDS.length} palavras encontradas`;
+  if(cacaFound.length===CACA_WORDS.length)setTimeout(()=>{confetti(50);document.getElementById('cacaProgress').textContent='🎉 Parabéns! Você encontrou todas as palavras!';},200);
+}
+
+function cacaClick(r,c){
+  if(!cacaFirst){
+    cacaFirst={r,c};
+    document.getElementById(`cc-${r}-${c}`).classList.add('selected');
+  } else {
+    const {r:r1,c:c1}=cacaFirst;
+    if(r===r1&&c===c1){cacaFirst=null;document.getElementById(`cc-${r}-${c}`).classList.remove('selected');return;}
+    // Find word between these two cells
+    const dr=r-r1,dc=c-c1;
+    const len=Math.max(Math.abs(dr),Math.abs(dc))+1;
+    const stepR=dr===0?0:dr/Math.abs(dr);
+    const stepC=dc===0?0:dc/Math.abs(dc);
+    let sel=[];
+    for(let i=0;i<len;i++)sel.push([r1+i*stepR,c1+i*stepC]);
+    const selWord=sel.map(([sr,sc])=>cacaGrid[sr][sc]).join('');
+    const selWordRev=selWord.split('').reverse().join('');
+    let found=null;
+    CACA_WORDS.forEach(w=>{if((w===selWord||w===selWordRev)&&!cacaFound.includes(w))found=w;});
+    if(found){
+      cacaFound.push(found);
+      const pos=cacaWordPositions[found];
+      pos.cells.forEach(([fr,fc])=>{const el=document.getElementById(`cc-${fr}-${fc}`);if(el){el.style.background=pos.color+'44';el.style.color=pos.color;el.classList.remove('selected');}});
+      document.getElementById(`cw-${found}`).classList.add('found');
+      document.getElementById('cacaFound').textContent=cacaFound.length;
+      document.getElementById('cacaProgress').textContent=`${cacaFound.length} de ${CACA_WORDS.length} palavras encontradas`;
+      confetti(15);
+      if(cacaFound.length===CACA_WORDS.length)setTimeout(()=>{document.getElementById('cacaProgress').textContent='🎉 Parabéns! Você encontrou todas as palavras!';confetti(60);},200);
+    } else {
+      sel.forEach(([sr,sc])=>{const el=document.getElementById(`cc-${sr}-${sc}`);if(el){el.classList.add('selected');setTimeout(()=>el.classList.remove('selected'),600);}});
+    }
+    // Clear first selection
+    document.getElementById(`cc-${r1}-${c1}`)?.classList.remove('selected');
+    cacaFirst=null;
+  }
+}
+
+function startCaca(){showScreen('cacaScreen');initCaca();}
+
+// ═══════════════════════════════════
+// HISTÓRIAS BÍBLICAS
+// ═══════════════════════════════════
+const STORIES=[
+  {id:'noe',emoji:'🚢',title:'Noé e a Arca',desc:'A maior aventura de todos os tempos!',pages:[
+    {emoji:'🌍',title:'Um Homem Especial',text:'Há muitos, muitos anos, vivia um homem chamado <strong>Noé</strong>. Ele era uma pessoa boa e justa, que amava a Deus com todo o coração. Enquanto todos ao seu redor faziam coisas erradas, Noé caminhava com Deus todos os dias.'},
+    {emoji:'🌧️',title:'O Grande Plano de Deus',text:'Um dia, Deus falou com Noé: <strong>"Vou mandar uma grande chuva sobre a terra. Mas não tenha medo — você e sua família estarão seguros. Quero que construa uma enorme arca de madeira!"</strong> Noé confiou em Deus e disse sim!'},
+    {emoji:'🪵',title:'Construindo a Arca',text:'Noé começou a construir. Era um barco <strong>gigantesco</strong> — maior do que qualquer coisa que ele já havia visto! Seus vizinhos riam e diziam que era loucura. Mas Noé continuou trabalhando, dia após dia, confiando em Deus.'},
+    {emoji:'🦁',title:'Os Animais Chegam!',text:'Quando a arca ficou pronta, algo incrível aconteceu: <strong>animais de todo tipo começaram a chegar</strong> — leões, elefantes, girafas, pássaros coloridos, e muito mais! Eles entravam dois a dois. Deus os estava guiando!'},
+    {emoji:'⛈️',title:'A Grande Chuva',text:'Por <strong>40 dias e 40 noites</strong> choveu sem parar. A água cobriu tudo. Mas dentro da arca, Noé, sua família e todos os animais estavam seguros e aquecidos. Deus tinha cumprido Sua promessa!'},
+    {emoji:'🌈',title:'O Arco-Íris da Promessa',text:'Depois que as águas secaram, Deus disse: <strong>"Nunca mais destruirei a terra com uma enchente assim."</strong> E no céu apareceu um lindo arco-íris colorido — o sinal da promessa de Deus. Toda vez que você ver um arco-íris, lembre-se: Deus sempre cumpre Suas promessas! 🌈'},
+  ]},
+  {id:'davi',emoji:'🪨',title:'Davi e Golias',desc:'O menino corajoso que venceu o gigante!',pages:[
+    {emoji:'👦',title:'O Pequeno Pastor',text:'<strong>Davi</strong> era um jovem pastor que cuidava das ovelhas de seu pai. Era pequeno e jovem, mas tinha um coração enorme — cheio de fé em Deus. Enquanto pastoreava, ele tocava harpa e cantava salmos para o Senhor.'},
+    {emoji:'🏔️',title:'O Gigante Aterrorizante',text:'O povo de Israel estava em guerra com os filisteus. E o inimigo tinha um soldado chamado <strong>Golias</strong> — um gigante de mais de 3 metros de altura! Ele usava uma armadura pesadíssima e gritava: "Mandem alguém lutar comigo!" Todos tremiam de medo.'},
+    {emoji:'💪',title:'A Coragem de Davi',text:'Quando Davi foi levar comida para seus irmãos soldados e ouviu Golias gritar, ele não sentiu medo. <strong>"Quem é esse filisteu para desafiar o exército do Deus vivo?"</strong> disse Davi. Ele se ofereceu para lutar contra o gigante!'},
+    {emoji:'🪨',title:'Cinco Pedrinha',text:'O rei Saul tentou colocar sua armadura em Davi, mas era grande demais. Então Davi pegou seu cajado, foi ao riacho e escolheu <strong>cinco pedrinhas lisas</strong>. Com sua funda na mão, ele foi ao encontro do gigante — confiando apenas em Deus.'},
+    {emoji:'🎯',title:'A Vitória!',text:'Golias riu ao ver o garoto se aproximando. Mas Davi colocou uma pedra na funda, girou com toda a força e <strong>PLAF!</strong> — a pedra acertou bem na testa do gigante! Golias caiu no chão como uma árvore derrubada. O exército de Israel gritou de alegria!'},
+    {emoji:'⭐',title:'A Lição de Davi',text:'Davi venceu não porque era forte ou grande. Ele venceu porque <strong>confiava em Deus</strong>. Quando você enfrentar seus "gigantes" — medos, problemas difíceis — lembre-se de Davi. Com Deus ao seu lado, você pode vencer qualquer coisa! 🙏'},
+  ]},
+  {id:'jonas',emoji:'🐳',title:'Jonas e o Grande Peixe',desc:'A história do profeta que fugiu de Deus!',pages:[
+    {emoji:'🗣️',title:'O Chamado de Deus',text:'Deus chamou um profeta chamado <strong>Jonas</strong>: "Vá para a cidade de Nínive e diga ao povo que precisa mudar seus costumes ruins!" Mas Jonas não queria ir — ele tinha medo e não gostava daquele povo. Então tomou uma decisão errada...'},
+    {emoji:'⛵',title:'Fugindo de Deus',text:'Jonas foi até o porto e comprou uma passagem num navio que ia para o <strong>lado oposto</strong> de Nínive! Ele pensou que poderia fugir de Deus. Mas Deus está em todo lugar — não há como se esconder Dele!'},
+    {emoji:'🌊',title:'A Tempestade',text:'Em alto mar, Deus mandou uma <strong>tempestade enorme</strong>. As ondas eram gigantescas e o barco estava prestes a afundar! Os marinheiros gritavam com medo. Jonas sabia que era culpa sua. <strong>"Me joguem no mar"</strong>, ele disse, <strong>"e a tempestade vai parar."</strong>'},
+    {emoji:'🐳',title:'Dentro do Peixe',text:'Os marinheiros jogaram Jonas no mar e... imediatamente a tempestade parou! E então um <strong>enorme peixe</strong> abriu sua boca e engoliu Jonas inteiro! Por três dias e três noites, Jonas ficou dentro do peixe — no escuro, sozinho.'},
+    {emoji:'🙏',title:'A Oração no Escuro',text:'De dentro do peixe, Jonas orou a Deus: <strong>"Me perdoa, Senhor! Eu confiei em mim mesmo, mas só Tu podes me salvar!"</strong> Deus ouviu sua oração. O peixe nadou até a praia e... <strong>VOMITOU Jonas na areia!</strong>'},
+    {emoji:'🏙️',title:'Jonas Obedece',text:'Desta vez, Jonas foi direto para Nínive. Pregou a mensagem de Deus e o povo inteiro se arrependeu! A história de Jonas nos ensina que <strong>não podemos fugir de Deus</strong>, mas também que Ele sempre nos dá uma segunda chance quando nos arrependemos! ❤️'},
+  ]},
+  {id:'daniel',emoji:'🦁',title:'Daniel na Cova dos Leões',desc:'Fé que vence o medo dos leões!',pages:[
+    {emoji:'👑',title:'O Jovem Fiel',text:'<strong>Daniel</strong> era um jovem judeu que vivia numa terra estrangeira como prisioneiro. Mas mesmo assim ele se manteve fiel a Deus. Era tão inteligente e honesto que o rei o colocou como um dos líderes mais importantes do reino!'},
+    {emoji:'😠',title:'Os Invejosos',text:'Os outros líderes ficaram com muita inveja de Daniel. Tentaram encontrar erros no trabalho dele, mas não conseguiram — Daniel era perfeito no que fazia. Então tiveram uma ideia maldosa: <strong>usariam a fé de Daniel contra ele!</strong>'},
+    {emoji:'📜',title:'A Lei Perversa',text:'Os invejosos foram até o rei e o convenceram a assinar uma lei: <strong>ninguém poderia orar a nenhum deus ou pessoa, somente ao rei, por 30 dias.</strong> Quem desobedecesse seria jogado na cova dos leões. O rei assinou sem saber que era uma armadilha para Daniel.'},
+    {emoji:'🙏',title:'Daniel Não Para de Orar',text:'Daniel soube da nova lei. O que ele fez? Foi para seu quarto, abriu a janela em direção a Jerusalém e <strong>orou a Deus três vezes ao dia, como sempre fazia.</strong> Ele não parou de honrar a Deus, mesmo sabendo do perigo!'},
+    {emoji:'🦁',title:'Na Cova dos Leões',text:'Daniel foi preso e jogado na cova cheia de leões famintos. O rei ficou muito triste — ele gostava de Daniel. Mas a lei não podia ser mudada. A pedra foi colocada na entrada da cova e o rei passou a noite inteira sem dormir, preocupado com Daniel.'},
+    {emoji:'☀️',title:'O Milagre da Manhã',text:'De manhã cedo, o rei correu para a cova e gritou: <strong>"Daniel, servo do Deus vivo, teu Deus conseguiu te salvar dos leões?"</strong> E a resposta veio de dentro: <strong>"Meu Deus mandou seu anjo e fechou a boca dos leões!"</strong> Daniel saiu sem nenhum machucado! 🙌'},
+  ]},
+  {id:'natal',emoji:'⭐',title:'O Nascimento de Jesus',desc:'A noite mais especial de toda a história!',pages:[
+    {emoji:'👼',title:'A Visita do Anjo',text:'Numa cidade chamada Nazaré, vivia uma jovem chamada <strong>Maria</strong>. Um dia, um anjo chamado Gabriel apareceu para ela com uma mensagem incrível: <strong>"Maria, você foi escolhida por Deus para ser a mãe do Filho de Deus!"</strong> Maria ficou surpresa, mas disse sim com seu coração cheio de fé.'},
+    {emoji:'🚶',title:'A Longa Jornada',text:'O governador mandou que todos fossem à cidade de sua família para se registrar. <strong>Maria e José</strong> precisaram viajar até Belém, muito longe — e Maria estava grávida! Foi uma viagem longa e cansativa, mas eles confiavam em Deus em cada passo.'},
+    {emoji:'🏠',title:'Sem Lugar na Estalagem',text:'Quando chegaram a Belém, a cidade estava lotada de gente. José bateu em todas as portas procurando um lugar para ficar. Mas a resposta era sempre a mesma: <strong>"Não há lugar!"</strong> Finalmente, alguém ofereceu um estábulo com animais. Era humilde, mas seria o lar para o nascimento mais especial de todos.'},
+    {emoji:'👶',title:'A Noite Mais Santa',text:'Naquela noite simples e estrelada, <strong>Jesus nasceu!</strong> Maria embrulhou o bebê em panos e o colocou numa manjedoura — onde os animais comem. O Filho de Deus havia chegado ao mundo, não como um rei rico, mas como um bebê humilde. Que amor enorme!'},
+    {emoji:'🐑',title:'Os Pastores Visitam',text:'Nos campos perto de Belém, pastores cuidavam de suas ovelhas quando <strong>o céu se iluminou com anjos</strong>! Os anjos cantaram: "Glória a Deus nas alturas! Nasceu hoje o Salvador!" Os pastores correram para ver o bebê e ficaram maravilhados com tudo que encontraram.'},
+    {emoji:'⭐',title:'A Estrela e os Sábios',text:'Uma estrela brilhante apareceu no céu e guiou sábios do Oriente até Jesus. Eles trouxeram presentes preciosos: ouro, incenso e mirra. O nascimento de Jesus é celebrado até hoje como <strong>Natal</strong> — porque Deus nos deu o maior presente de todos: Seu Filho! 🎁❤️'},
+  ]},
+];
+
+let currentStory=null,currentPage=0;
+
+function showStories(){showScreen('storiesScreen');showStoriesList();}
+function showStoriesList(){
+  document.getElementById('storiesList').style.display='grid';
+  document.getElementById('storyReader').style.display='none';
+  const list=document.getElementById('storiesList');
+  list.innerHTML=STORIES.map(s=>`
+    <div class="story-card" onclick="readStory('${s.id}')">
+      <span class="story-emoji">${s.emoji}</span>
+      <div class="story-title">${s.title}</div>
+      <div class="story-desc">${s.desc}</div>
+    </div>`).join('');
+}
+function readStory(id){
+  currentStory=STORIES.find(s=>s.id===id);
+  currentPage=0;
+  document.getElementById('storiesList').style.display='none';
+  document.getElementById('storyReader').style.display='block';
+  renderStoryPage();
+}
+function renderStoryPage(){
+  const p=currentStory.pages[currentPage];
+  const total=currentStory.pages.length;
+  document.getElementById('storyPage').innerHTML=`
+    <span class="story-page-emoji">${p.emoji}</span>
+    <div class="story-page-title">${p.title}</div>
+    <div class="story-page-text">${p.text}</div>`;
+  document.getElementById('storyPager').textContent=`${currentPage+1} / ${total}`;
+  document.getElementById('storyPrev').style.visibility=currentPage===0?'hidden':'visible';
+  const nb=document.getElementById('storyNext');
+  if(currentPage===total-1){nb.textContent='Fim! 🎉';nb.onclick=()=>showStoriesList();}
+  else{nb.textContent='Próximo →';nb.onclick=()=>storyNav(1);}
+}
+function storyNav(dir){
+  currentPage+=dir;
+  if(currentPage<0)currentPage=0;
+  if(currentPage>=currentStory.pages.length){showStoriesList();return;}
+  renderStoryPage();
+}
+
+// ═══════════════════════════════════
+// COLORIR ONLINE
+// ═══════════════════════════════════
+const COLORS=['#FFFFFF','#FFEB3B','#FF9800','#F44336','#E91E63','#9C27B0','#3F51B5','#2196F3','#00BCD4','#4CAF50','#8BC34A','#795548','#607D8B','#000000','#FF6B6B','#A5D6A7'];
+
+const SCENES=[
+  {id:'pomba',name:'Pomba da Paz',emoji:'🕊️',svg:`
+<svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg" class="svg-canvas" style="width:100%;max-height:320px">
+  <!-- SKY -->
+  <rect id="ceu" x="0" y="0" width="400" height="280" fill="#E3F2FD" stroke="#90CAF9" stroke-width="1"/>
+  <!-- SUN -->
+  <circle id="sol" cx="350" cy="50" r="35" fill="#FFF176" stroke="#F9A825" stroke-width="2"/>
+  <!-- SUN RAYS -->
+  <g stroke="#F9A825" stroke-width="2">
+    <line x1="350" y1="5" x2="350" y2="0"/><line x1="350" y1="95" x2="350" y2="100"/>
+    <line x1="305" y1="50" x2="300" y2="50"/><line x1="395" y1="50" x2="400" y2="50"/>
+    <line x1="318" y1="18" x2="314" y2="14"/><line x1="382" y1="82" x2="386" y2="86"/>
+    <line x1="382" y1="18" x2="386" y2="14"/><line x1="318" y1="82" x2="314" y2="86"/>
+  </g>
+  <!-- CLOUDS -->
+  <g id="nuvem1">
+    <ellipse cx="80" cy="60" rx="40" ry="22" fill="#FFFFFF" stroke="#B0BEC5" stroke-width="1.5"/>
+    <ellipse cx="110" cy="52" rx="30" ry="18" fill="#FFFFFF" stroke="#B0BEC5" stroke-width="1.5"/>
+    <ellipse cx="55" cy="58" rx="25" ry="15" fill="#FFFFFF" stroke="#B0BEC5" stroke-width="1.5"/>
+  </g>
+  <g id="nuvem2">
+    <ellipse cx="220" cy="40" rx="35" ry="18" fill="#FFFFFF" stroke="#B0BEC5" stroke-width="1.5"/>
+    <ellipse cx="245" cy="33" rx="25" ry="15" fill="#FFFFFF" stroke="#B0BEC5" stroke-width="1.5"/>
+  </g>
+  <!-- BIRD BODY -->
+  <ellipse id="corpo" cx="200" cy="155" rx="65" ry="38" fill="#F5F5F5" stroke="#9E9E9E" stroke-width="2"/>
+  <!-- LEFT WING -->
+  <path id="asa_esq" d="M140 148 Q90 100 60 130 Q100 160 140 158 Z" fill="#EEEEEE" stroke="#9E9E9E" stroke-width="2"/>
+  <!-- RIGHT WING -->
+  <path id="asa_dir" d="M260 148 Q310 100 340 130 Q300 160 260 158 Z" fill="#EEEEEE" stroke="#9E9E9E" stroke-width="2"/>
+  <!-- TAIL -->
+  <path id="cauda" d="M265 158 Q295 175 300 195 Q280 185 265 175 Q255 190 250 200 Q240 180 265 158 Z" fill="#E0E0E0" stroke="#9E9E9E" stroke-width="2"/>
+  <!-- HEAD -->
+  <circle id="cabeca" cx="152" cy="135" r="28" fill="#F5F5F5" stroke="#9E9E9E" stroke-width="2"/>
+  <!-- EYE -->
+  <circle id="olho_ext" cx="143" cy="130" r="9" fill="#1E88E5" stroke="#0D47A1" stroke-width="1.5"/>
+  <circle cx="143" cy="130" r="5" fill="#0D47A1"/>
+  <circle cx="145" cy="128" r="2" fill="#fff"/>
+  <!-- BEAK -->
+  <path id="bico" d="M128 138 L112 144 L128 148 Z" fill="#FF8F00" stroke="#E65100" stroke-width="1.5"/>
+  <!-- OLIVE BRANCH -->
+  <path id="galho" d="M112 144 Q90 155 70 148 Q80 140 112 138" fill="none" stroke="#5D4037" stroke-width="3" stroke-linecap="round"/>
+  <ellipse id="folha1" cx="85" cy="143" rx="8" ry="5" fill="#66BB6A" stroke="#388E3C" stroke-width="1.2" transform="rotate(-20 85 143)"/>
+  <ellipse id="folha2" cx="75" cy="148" rx="7" ry="4" fill="#66BB6A" stroke="#388E3C" stroke-width="1.2" transform="rotate(10 75 148)"/>
+  <ellipse id="folha3" cx="95" cy="138" rx="7" ry="4" fill="#66BB6A" stroke="#388E3C" stroke-width="1.2" transform="rotate(-35 95 138)"/>
+  <!-- RAINBOW -->
+  <path id="arco1" d="M30 260 Q200 120 370 260" fill="none" stroke="#EF5350" stroke-width="6" opacity="0.7"/>
+  <path id="arco2" d="M40 265 Q200 135 360 265" fill="none" stroke="#FF9800" stroke-width="5" opacity="0.7"/>
+  <path id="arco3" d="M50 270 Q200 150 350 270" fill="none" stroke="#FFEB3B" stroke-width="5" opacity="0.7"/>
+  <path id="arco4" d="M60 275 Q200 163 340 275" fill="none" stroke="#66BB6A" stroke-width="5" opacity="0.7"/>
+  <path id="arco5" d="M70 280 Q200 175 330 280" fill="none" stroke="#42A5F5" stroke-width="5" opacity="0.7"/>
+  <!-- GROUND -->
+  <path id="grama" d="M0 250 Q50 240 100 250 Q150 260 200 250 Q250 240 300 250 Q350 260 400 250 L400 280 L0 280 Z" fill="#A5D6A7" stroke="#66BB6A" stroke-width="1"/>
+</svg>`},
+  {id:'arca',name:'Arca de Noé',emoji:'🚢',svg:`
+<svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg" class="svg-canvas" style="width:100%;max-height:320px">
+  <!-- SKY -->
+  <rect id="ceu" x="0" y="0" width="400" height="180" fill="#B3E5FC" stroke="none"/>
+  <!-- RAIN CLOUDS -->
+  <g id="nuvem1">
+    <ellipse cx="100" cy="50" rx="55" ry="28" fill="#90A4AE" stroke="#607D8B" stroke-width="1.5"/>
+    <ellipse cx="135" cy="38" rx="38" ry="22" fill="#90A4AE" stroke="#607D8B" stroke-width="1.5"/>
+    <ellipse cx="68" cy="46" rx="32" ry="20" fill="#90A4AE" stroke="#607D8B" stroke-width="1.5"/>
+  </g>
+  <g id="nuvem2">
+    <ellipse cx="300" cy="45" rx="60" ry="25" fill="#78909C" stroke="#546E7A" stroke-width="1.5"/>
+    <ellipse cx="335" cy="33" rx="40" ry="20" fill="#78909C" stroke="#546E7A" stroke-width="1.5"/>
+  </g>
+  <!-- RAIN DROPS -->
+  <g id="chuva" stroke="#64B5F6" stroke-width="2">
+    <line x1="60" y1="80" x2="55" y2="100"/><line x1="80" y1="75" x2="75" y2="95"/>
+    <line x1="100" y1="82" x2="95" y2="102"/><line x1="120" y1="78" x2="115" y2="98"/>
+    <line x1="280" y1="75" x2="275" y2="95"/><line x1="300" y1="80" x2="295" y2="100"/>
+    <line x1="320" y1="72" x2="315" y2="92"/><line x1="340" y1="78" x2="335" y2="98"/>
+  </g>
+  <!-- WATER -->
+  <path id="agua" d="M0 185 Q40 175 80 185 Q120 195 160 185 Q200 175 240 185 Q280 195 320 185 Q360 175 400 185 L400 280 L0 280 Z" fill="#29B6F6" stroke="#0288D1" stroke-width="2"/>
+  <path id="onda" d="M0 200 Q50 192 100 200 Q150 208 200 200 Q250 192 300 200 Q350 208 400 200" fill="none" stroke="#0288D1" stroke-width="2"/>
+  <!-- HULL -->
+  <path id="casco" d="M60 185 L60 230 Q200 250 340 230 L340 185 Z" fill="#8D6E63" stroke="#5D4037" stroke-width="2.5"/>
+  <!-- PLANKS -->
+  <g stroke="#6D4C41" stroke-width="1.5" fill="none">
+    <line x1="100" y1="185" x2="95" y2="242"/><line x1="140" y1="185" x2="137" y2="246"/>
+    <line x1="180" y1="185" x2="180" y2="247"/><line x1="220" y1="185" x2="220" y2="247"/>
+    <line x1="260" y1="185" x2="263" y2="246"/><line x1="300" y1="185" x2="305" y2="242"/>
+  </g>
+  <!-- DECK -->
+  <rect id="deck" x="65" y="175" width="270" height="15" rx="3" fill="#A1887F" stroke="#6D4C41" stroke-width="2"/>
+  <!-- CABIN -->
+  <rect id="cabine" x="120" y="130" width="160" height="50" rx="4" fill="#BCAAA4" stroke="#795548" stroke-width="2"/>
+  <!-- ROOF -->
+  <path id="telhado" d="M110 132 L200 100 L290 132 Z" fill="#8D6E63" stroke="#5D4037" stroke-width="2"/>
+  <!-- WINDOW -->
+  <circle id="janela1" cx="160" cy="152" r="12" fill="#B3E5FC" stroke="#795548" stroke-width="2"/>
+  <circle id="janela2" cx="200" cy="152" r="12" fill="#B3E5FC" stroke="#795548" stroke-width="2"/>
+  <circle id="janela3" cx="240" cy="152" r="12" fill="#B3E5FC" stroke="#795548" stroke-width="2"/>
+  <!-- GIRAFFE NECK -->
+  <path id="girafa" d="M295 135 Q300 115 305 105 Q310 95 308 88 Q314 95 312 108 Q313 120 318 135" fill="#FFD54F" stroke="#FF8F00" stroke-width="2"/>
+  <ellipse cx="307" cy="85" rx="8" ry="10" fill="#FFD54F" stroke="#FF8F00" stroke-width="2"/>
+  <!-- ELEPHANT -->
+  <ellipse id="elefante" cx="85" cy="160" rx="18" ry="13" fill="#90A4AE" stroke="#607D8B" stroke-width="2"/>
+  <circle cx="82" cy="151" r="9" fill="#90A4AE" stroke="#607D8B" stroke-width="2"/>
+  <path d="M78 158 Q68 165 70 172" fill="none" stroke="#607D8B" stroke-width="3" stroke-linecap="round"/>
+  <!-- DOVE ON TOP -->
+  <ellipse id="pomba" cx="200" cy="95" rx="12" ry="7" fill="#F5F5F5" stroke="#9E9E9E" stroke-width="1.5"/>
+  <path d="M190 93 Q182 86 178 90 Q184 97 190 95" fill="#EEEEEE" stroke="#9E9E9E" stroke-width="1.5"/>
+  <path d="M210 93 Q218 86 222 90 Q216 97 210 95" fill="#EEEEEE" stroke="#9E9E9E" stroke-width="1.5"/>
+  <circle cx="194" cy="91" r="4" fill="#F5F5F5" stroke="#9E9E9E" stroke-width="1"/>
+  <!-- RAINBOW IN BG -->
+  <path id="arco1" d="M0 180 Q200 60 400 180" fill="none" stroke="#EF5350" stroke-width="5" opacity="0.5"/>
+  <path id="arco2" d="M5 182 Q200 70 395 182" fill="none" stroke="#FFEB3B" stroke-width="4" opacity="0.5"/>
+  <path id="arco3" d="M10 184 Q200 80 390 184" fill="none" stroke="#66BB6A" stroke-width="4" opacity="0.5"/>
+</svg>`},
+  {id:'jesus',name:'Jesus e as Crianças',emoji:'✝️',svg:`
+<svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg" class="svg-canvas" style="width:100%;max-height:320px">
+  <!-- SKY -->
+  <rect id="ceu" x="0" y="0" width="400" height="220" fill="#FFF9C4"/>
+  <!-- SUN -->
+  <circle id="sol" cx="50" cy="50" r="38" fill="#FFEE58" stroke="#FDD835" stroke-width="2"/>
+  <!-- CLOUDS -->
+  <g id="nuvem1">
+    <ellipse cx="320" cy="55" rx="50" ry="24" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1"/>
+    <ellipse cx="350" cy="44" rx="35" ry="20" fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1"/>
+  </g>
+  <!-- GROUND -->
+  <path id="grama" d="M0 220 L400 220 L400 280 L0 280 Z" fill="#C8E6C9" stroke="#A5D6A7" stroke-width="1"/>
+  <path id="grama2" d="M0 218 Q50 210 100 218 Q150 226 200 218 Q250 210 300 218 Q350 226 400 218 L400 225 L0 225 Z" fill="#A5D6A7"/>
+  <!-- TREE -->
+  <rect id="tronco" x="345" y="170" width="18" height="55" fill="#8D6E63" stroke="#6D4C41" stroke-width="1.5"/>
+  <ellipse id="arvore3" cx="354" cy="155" rx="30" ry="35" fill="#66BB6A" stroke="#388E3C" stroke-width="2"/>
+  <ellipse id="arvore2" cx="354" cy="140" rx="24" ry="28" fill="#4CAF50" stroke="#388E3C" stroke-width="2"/>
+  <ellipse id="arvore1" cx="354" cy="127" rx="18" ry="22" fill="#81C784" stroke="#388E3C" stroke-width="2"/>
+  <!-- FLOWERS -->
+  <g id="flor1"><circle cx="30" cy="225" r="6" fill="#FF8A80" stroke="#E53935" stroke-width="1.5"/>
+    <circle cx="40" cy="218" r="5" fill="#FF8A80" stroke="#E53935" stroke-width="1.5"/></g>
+  <g id="flor2"><circle cx="370" cy="222" r="6" fill="#FF80AB" stroke="#E91E63" stroke-width="1.5"/>
+    <circle cx="380" cy="228" r="5" fill="#EA80FC" stroke="#AA00FF" stroke-width="1.5"/></g>
+  <!-- JESUS - CENTER FIGURE -->
+  <!-- Robe -->
+  <path id="robe_jesus" d="M180 155 Q170 175 165 225 L215 225 Q210 175 200 155 Z" fill="#BBDEFB" stroke="#90CAF9" stroke-width="2"/>
+  <!-- Belt -->
+  <path id="cinto" d="M168 178 Q190 182 212 178" fill="none" stroke="#FF8F00" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Arms open -->
+  <path id="braco_esq" d="M172 165 Q150 170 130 165" fill="none" stroke="#BBDEFB" stroke-width="10" stroke-linecap="round"/>
+  <path id="braco_dir" d="M208 165 Q230 170 250 165" fill="none" stroke="#BBDEFB" stroke-width="10" stroke-linecap="round"/>
+  <!-- Hands -->
+  <circle id="mao_esq" cx="128" cy="165" r="7" fill="#FFCC80" stroke="#FF8F00" stroke-width="1.5"/>
+  <circle id="mao_dir" cx="252" cy="165" r="7" fill="#FFCC80" stroke="#FF8F00" stroke-width="1.5"/>
+  <!-- Head -->
+  <circle id="cabeca_jesus" cx="190" cy="140" r="22" fill="#FFCC80" stroke="#FF8F00" stroke-width="2"/>
+  <!-- Hair -->
+  <path id="cabelo" d="M170 135 Q168 120 190 118 Q212 120 210 135 Q205 128 190 126 Q175 128 170 135 Z" fill="#8D6E63" stroke="#6D4C41" stroke-width="1"/>
+  <!-- Eyes smile -->
+  <path d="M183 137 Q186 141 189 137" fill="none" stroke="#5D4037" stroke-width="2" stroke-linecap="round"/>
+  <path d="M191 137 Q194 141 197 137" fill="none" stroke="#5D4037" stroke-width="2" stroke-linecap="round"/>
+  <!-- Smile -->
+  <path id="sorriso_jesus" d="M183 146 Q190 152 197 146" fill="none" stroke="#E65100" stroke-width="2" stroke-linecap="round"/>
+  <!-- Halo -->
+  <circle id="aureola" cx="190" cy="134" r="30" fill="none" stroke="#FDD835" stroke-width="3" opacity="0.8"/>
+  <!-- CHILD LEFT -->
+  <path id="crianca1_body" d="M110 185 Q105 205 100 225 L130 225 Q125 205 120 185 Z" fill="#FFCCBC" stroke="#FF8A65" stroke-width="1.5"/>
+  <circle id="crianca1_head" cx="115" cy="174" r="14" fill="#FFCC80" stroke="#FF8F00" stroke-width="1.5"/>
+  <path d="M107 172 Q108 164 115 163 Q122 164 123 172 Q119 167 115 167 Q111 167 107 172 Z" fill="#FF8F00" stroke="#E65100" stroke-width="1"/>
+  <!-- CHILD RIGHT -->
+  <path id="crianca2_body" d="M260 185 Q255 205 250 225 L280 225 Q275 205 270 185 Z" fill="#B2EBF2" stroke="#4DD0E1" stroke-width="1.5"/>
+  <circle id="crianca2_head" cx="265" cy="174" r="14" fill="#FFCC80" stroke="#FF8F00" stroke-width="1.5"/>
+  <path d="M257 169 Q260 162 265 161 Q270 162 274 167 Q270 164 265 164 Q260 164 257 169 Z" fill="#FF8F00" stroke="#E65100" stroke-width="1"/>
+  <!-- STARS -->
+  <text x="160" y="25" font-size="18" fill="#FDD835">★</text>
+  <text x="220" y="30" font-size="14" fill="#FDD835">★</text>
+  <text x="280" y="20" font-size="16" fill="#FDD835">★</text>
+</svg>`},
+  {id:'estrela',name:'Estrela de Belém',emoji:'⭐',svg:`
+<svg viewBox="0 0 400 280" xmlns="http://www.w3.org/2000/svg" class="svg-canvas" style="width:100%;max-height:320px">
+  <!-- NIGHT SKY -->
+  <rect id="ceu_noite" x="0" y="0" width="400" height="220" fill="#1A237E"/>
+  <!-- SMALL STARS -->
+  <g id="estrelinhas" fill="#E8EAF6">
+    <circle cx="20" cy="20" r="2"/><circle cx="60" cy="35" r="1.5"/><circle cx="100" cy="15" r="2"/>
+    <circle cx="150" cy="28" r="1.5"/><circle cx="250" cy="18" r="2"/><circle cx="300" cy="32" r="1.5"/>
+    <circle cx="350" cy="12" r="2"/><circle cx="380" cy="40" r="1.5"/><circle cx="30" cy="70" r="1.5"/>
+    <circle cx="80" cy="55" r="2"/><circle cx="130" cy="65" r="1.5"/><circle cx="330" cy="60" r="2"/>
+    <circle cx="370" cy="75" r="1.5"/><circle cx="45" cy="100" r="1.5"/><circle cx="370" cy="95" r="2"/>
+  </g>
+  <!-- BIG STAR -->
+  <polygon id="estrela_grande" points="200,15 208,38 232,38 213,52 220,75 200,61 180,75 187,52 168,38 192,38" fill="#FFF176" stroke="#FDD835" stroke-width="1.5"/>
+  <!-- STAR RAYS -->
+  <g id="raios" stroke="#FFF176" stroke-width="2" opacity="0.8">
+    <line x1="200" y1="5" x2="200" y2="0"/>
+    <line x1="215" y1="8" x2="220" y2="3"/>
+    <line x1="185" y1="8" x2="180" y2="3"/>
+    <line x1="225" y1="20" x2="232" y2="18"/>
+    <line x1="175" y1="20" x2="168" y2="18"/>
+  </g>
+  <!-- STAR GLOW -->
+  <circle cx="200" cy="45" r="45" fill="#FFF176" opacity="0.08"/>
+  <circle cx="200" cy="45" r="25" fill="#FFF176" opacity="0.06"/>
+  <!-- HILLS -->
+  <path id="colina_dir" d="M220 220 Q300 150 400 190 L400 220 Z" fill="#2E7D32" stroke="#1B5E20" stroke-width="1"/>
+  <path id="colina_esq" d="M0 200 Q80 145 180 210 L0 220 Z" fill="#388E3C" stroke="#2E7D32" stroke-width="1"/>
+  <!-- GROUND -->
+  <path id="chao" d="M0 215 Q100 205 200 215 Q300 225 400 215 L400 280 L0 280 Z" fill="#33691E" stroke="#1B5E20" stroke-width="1"/>
+  <!-- STABLE -->
+  <path id="telhado_estabulo" d="M120 195 L200 155 L280 195 Z" fill="#8D6E63" stroke="#5D4037" stroke-width="2"/>
+  <rect id="estabulo" x="130" y="193" width="140" height="35" fill="#A1887F" stroke="#6D4C41" stroke-width="2"/>
+  <!-- DOOR -->
+  <path id="porta" d="M180 228 L180 205 Q200 198 220 205 L220 228 Z" fill="#6D4C41" stroke="#4E342E" stroke-width="1.5"/>
+  <!-- MANGER -->
+  <rect id="manjedoura" x="168" y="210" width="24" height="14" rx="3" fill="#FF8F00" stroke="#E65100" stroke-width="1.5"/>
+  <!-- BABY JESUS -->
+  <ellipse id="bebe" cx="180" cy="212" rx="10" ry="7" fill="#FFCCBC" stroke="#FF8A65" stroke-width="1.5"/>
+  <circle id="cabeca_bebe" cx="180" cy="207" r="6" fill="#FFCC80" stroke="#FF8F00" stroke-width="1"/>
+  <!-- MARY -->
+  <path id="manto_maria" d="M143 228 Q140 210 145 195 Q155 193 160 200 Q158 215 155 228 Z" fill="#1565C0" stroke="#0D47A1" stroke-width="1.5"/>
+  <circle cx="152" cy="192" r="9" fill="#FFCC80" stroke="#FF8F00" stroke-width="1.5"/>
+  <!-- JOSEPH -->
+  <path id="robe_jose" d="M225 228 Q222 210 228 195 Q238 193 243 200 Q241 215 238 228 Z" fill="#4CAF50" stroke="#2E7D32" stroke-width="1.5"/>
+  <circle cx="235" cy="192" r="9" fill="#FFCC80" stroke="#FF8F00" stroke-width="1.5"/>
+  <!-- STAR SHINE ON STABLE -->
+  <line x1="200" y1="75" x2="200" y2="157" stroke="#FFF176" stroke-width="1.5" stroke-dasharray="4,4" opacity="0.5"/>
+  <!-- CAMELS/WISE MEN SILHOUETTE FAR -->
+  <g id="reis_magos" fill="#0D47A1" opacity="0.6">
+    <rect x="30" y="205" width="6" height="18"/><ellipse cx="33" cy="202" rx="5" ry="6"/>
+    <rect x="50" y="203" width="6" height="20"/><ellipse cx="53" cy="200" rx="5" ry="6"/>
+    <!-- Camel shapes -->
+    <path d="M20 223 Q25 215 35 215 Q30 215 25 223 Z"/>
+  </g>
+</svg>`},
+];
+
+let selectedColor='#FF6B6B',eraser=false,currentScene=0;
+
+function showColorir(){
+  showScreen('colorirScreen');
+  // Scene selector
+  const sel=document.getElementById('sceneSelector');
+  sel.innerHTML=SCENES.map((s,i)=>`<div class="scene-btn ${i===0?'active':''}" onclick="selectScene(${i})"><span class="scene-btn-icon">${s.emoji}</span><div class="scene-btn-name">${s.name}</div></div>`).join('');
+  // Color palette
+  const pal=document.getElementById('colorPalette');
+  pal.innerHTML=COLORS.map(c=>`<div class="color-swatch ${c===selectedColor?'selected':''}" style="background:${c};border-color:${c==='#FFFFFF'?'#ccc':'transparent'}" onclick="selectColor('${c}')"></div>`).join('');
+  pal.innerHTML+=`<button class="eraser-btn" id="eraserBtn" onclick="toggleEraser()">🧹 Borracha</button>`;
+  pal.innerHTML+=`<button class="reset-btn" onclick="resetColors()">↺ Limpar</button>`;
+  loadScene(0);
+}
+
+function selectScene(i){
+  currentScene=i;
+  document.querySelectorAll('.scene-btn').forEach((b,j)=>b.classList.toggle('active',j===i));
+  loadScene(i);
+}
+
+function loadScene(i){
+  const container=document.getElementById('svgContainer');
+  container.innerHTML=SCENES[i].svg;
+  // Add click handlers to all SVG elements
+  container.querySelectorAll('path,ellipse,circle,rect,polygon,line').forEach(el=>{
+    if(el.tagName!=='line'){
+      el.style.cursor='pointer';
+      el.addEventListener('click',function(){
+        if(eraser){this.setAttribute('fill',this.getAttribute('data-orig-fill')||this.getAttribute('fill'));}
+        else if(this.getAttribute('fill')&&this.getAttribute('fill')!=='none'&&this.getAttribute('fill')!=='transparent'){
+          if(!this.getAttribute('data-orig-fill'))this.setAttribute('data-orig-fill',this.getAttribute('fill'));
+          this.setAttribute('fill',selectedColor);
+        }
+      });
+    }
+  });
+}
+
+function selectColor(c){
+  selectedColor=c;eraser=false;
+  document.querySelectorAll('.color-swatch').forEach(s=>s.classList.toggle('selected',s.style.background===c||s.style.backgroundColor===c));
+  document.getElementById('eraserBtn').classList.remove('active');
+}
+function toggleEraser(){
+  eraser=!eraser;
+  document.getElementById('eraserBtn').classList.toggle('active',eraser);
+  document.querySelectorAll('.color-swatch').forEach(s=>s.classList.remove('selected'));
+}
+function resetColors(){
+  loadScene(currentScene);
+}
+
+// ═══════════════════════════════════
+// RESULT
+// ═══════════════════════════════════
+function showResult(type,ok,tot,stars,replayFn){
+  showScreen('resultScreen');
+  const pct=ok/tot;
+  let icon,title,msg;
+  if(pct===1){icon='🏆';title='Perfeito!';msg='Você acertou tudo! Você é um expert da Bíblia! 🌟';}
+  else if(pct>=.8){icon='🌟';title='Incrível!';msg='Muito bem! Continue estudando a Bíblia! 📖';}
+  else if(pct>=.6){icon='😊';title='Muito bem!';msg='Bom trabalho! A Bíblia tem histórias incríveis esperando por você! ✨';}
+  else{icon='📖';title='Continue tentando!';msg='Não desista! Cada vez que você jogar vai aprender mais. Você consegue! 🙏';}
+  document.getElementById('rIcon').textContent=icon;
+  document.getElementById('rTitle').textContent=title;
+  document.getElementById('rSub').textContent=type==='quiz'?'Quiz Bíblico':'Complete o Versículo';
+  document.getElementById('rScore').textContent=`${ok}/${tot}`;
+  document.getElementById('rMsg').textContent=msg;
+  const starsEl=document.getElementById('rStars');
+  const full=Math.round(pct*5);
+  starsEl.innerHTML='';
+  for(let i=0;i<5;i++){const s=document.createElement('span');s.textContent=i<full?'⭐':'☆';s.style.animationDelay=`${i*.12}s`;starsEl.appendChild(s);}
+  document.getElementById('rAgain').onclick=replayFn;
+  if(pct===1)setTimeout(()=>confetti(60),300);
+}
+
+// ═══════════════════════════════════
+// QUEBRA-CABEÇA
+// ═══════════════════════════════════
+const PZ_SCENES=[
+  {id:'noe',name:'Arca de Noé',icon:'🚢',color:'#29B6F6',
+   viewBox:'0 0 400 280',
+   bg:'#B3E5FC',
+   elements:[
+    {tag:'rect',a:{x:0,y:0,width:400,height:280,fill:'#B3E5FC'}},
+    {tag:'path',a:{d:'M0 185 Q80 170 160 185 Q240 200 320 185 Q360 175 400 185 L400 280 L0 280 Z',fill:'#29B6F6',stroke:'#0288D1','stroke-width':2}},
+    {tag:'path',a:{d:'M60 185 L60 230 Q200 252 340 230 L340 185 Z',fill:'#8D6E63',stroke:'#5D4037','stroke-width':2.5}},
+    {tag:'rect',a:{x:65,y:175,width:270,height:14,rx:3,fill:'#A1887F',stroke:'#6D4C41','stroke-width':2}},
+    {tag:'rect',a:{x:120,y:130,width:160,height:50,rx:4,fill:'#BCAAA4',stroke:'#795548','stroke-width':2}},
+    {tag:'path',a:{d:'M110 132 L200 100 L290 132 Z',fill:'#8D6E63',stroke:'#5D4037','stroke-width':2}},
+    {tag:'circle',a:{cx:160,cy:152,r:12,fill:'#B3E5FC',stroke:'#795548','stroke-width':2}},
+    {tag:'circle',a:{cx:200,cy:152,r:12,fill:'#B3E5FC',stroke:'#795548','stroke-width':2}},
+    {tag:'circle',a:{cx:240,cy:152,r:12,fill:'#B3E5FC',stroke:'#795548','stroke-width':2}},
+    {tag:'ellipse',a:{cx:80,cy:165,rx:18,ry:13,fill:'#90A4AE',stroke:'#607D8B','stroke-width':2}},
+    {tag:'circle',a:{cx:77,cy:156,r:9,fill:'#90A4AE',stroke:'#607D8B','stroke-width':2}},
+    {tag:'path',a:{d:'M74 163 Q64 170 66 178',fill:'none',stroke:'#607D8B','stroke-width':3,'stroke-linecap':'round'}},
+    {tag:'path',a:{d:'M295 138 Q300 118 308 105 Q312 96 310 88 Q316 96 314 110 Q315 122 320 138',fill:'#FFD54F',stroke:'#FF8F00','stroke-width':2}},
+    {tag:'ellipse',a:{cx:308,cy:86,rx:8,ry:10,fill:'#FFD54F',stroke:'#FF8F00','stroke-width':2}},
+    {tag:'ellipse',a:{cx:100,cy:42,rx:55,ry:26,fill:'#78909C',stroke:'#546E7A','stroke-width':1.5}},
+    {tag:'ellipse',a:{cx:300,cy:38,rx:60,ry:24,fill:'#78909C',stroke:'#546E7A','stroke-width':1.5}},
+    {tag:'path',a:{d:'M0 180 Q200 60 400 180',fill:'none',stroke:'#EF5350','stroke-width':5,opacity:.55}},
+    {tag:'path',a:{d:'M5 188 Q200 75 395 188',fill:'none',stroke:'#FFEB3B','stroke-width':4,opacity:.55}},
+    {tag:'path',a:{d:'M12 196 Q200 90 388 196',fill:'none',stroke:'#66BB6A','stroke-width':4,opacity:.55}},
+   ]},
+  {id:'davi',name:'Davi e Golias',icon:'🪨',color:'#EF5350',
+   viewBox:'0 0 400 280',
+   bg:'#FFF8E1',
+   elements:[
+    {tag:'rect',a:{x:0,y:0,width:400,height:280,fill:'#FFF8E1'}},
+    {tag:'circle',a:{cx:340,cy:55,r:40,fill:'#FFEE58',stroke:'#FDD835','stroke-width':2}},
+    {tag:'path',a:{d:'M0 220 Q100 205 200 220 Q300 235 400 220 L400 280 L0 280 Z',fill:'#8D6E63',stroke:'#6D4C41','stroke-width':1}},
+    {tag:'path',a:{d:'M0 215 Q100 200 200 215 Q300 230 400 215 L400 222 L0 222 Z',fill:'#A5D6A7'}},
+    // GOLIATH
+    {tag:'rect',a:{x:260,y:80,width:60,height:140,rx:8,fill:'#78909C',stroke:'#546E7A','stroke-width':2}},
+    {tag:'circle',a:{cx:290,cy:70,r:28,fill:'#FFCC80',stroke:'#FF8F00','stroke-width':2}},
+    {tag:'rect',a:{x:265,y:50,width:50,height:22,rx:3,fill:'#78909C',stroke:'#546E7A','stroke-width':1.5}},
+    {tag:'path',a:{d:'M320 100 L355 90 L360 110 L325 118 Z',fill:'#9E9E9E',stroke:'#616161','stroke-width':1.5}},
+    // DAVID
+    {tag:'path',a:{d:'M88 185 Q83 205 78 222 L108 222 Q104 205 100 185 Z',fill:'#FFCCBC',stroke:'#FF8A65','stroke-width':1.5}},
+    {tag:'circle',a:{cx:95,cy:174,r:16,fill:'#FFCC80',stroke:'#FF8F00','stroke-width':2}},
+    {tag:'path',a:{d:'M85 170 Q88 160 95 159 Q102 160 105 168 Q101 163 95 163 Q89 163 85 170 Z',fill:'#8D6E63',stroke:'#6D4C41','stroke-width':1}},
+    {tag:'path',a:{d:'M78 185 Q60 180 55 170',fill:'none',stroke:'#FFCCBC','stroke-width':8,'stroke-linecap':'round'}},
+    // SLING + STONE
+    {tag:'circle',a:{cx:170,cy:120,r:8,fill:'#9E9E9E',stroke:'#616161','stroke-width':1.5}},
+    {tag:'path',a:{d:'M55 170 Q110 140 162 120',fill:'none',stroke:'#8D6E63','stroke-width':2,'stroke-dasharray':'4 3'}},
+    // MOUNTAINS
+    {tag:'path',a:{d:'M0 220 Q60 160 130 220',fill:'#A5D6A7',stroke:'#66BB6A','stroke-width':1}},
+    {tag:'path',a:{d:'M200 220 Q270 150 350 220',fill:'#81C784',stroke:'#66BB6A','stroke-width':1}},
+   ]},
+  {id:'jonas',name:'Jonas e o Peixe',icon:'🐳',color:'#1E88E5',
+   viewBox:'0 0 400 280',
+   bg:'#E3F2FD',
+   elements:[
+    {tag:'rect',a:{x:0,y:0,width:400,height:280,fill:'#E3F2FD'}},
+    {tag:'ellipse',a:{cx:200,cy:150,rx:195,ry:110,fill:'#1565C0',opacity:.85}},
+    {tag:'ellipse',a:{cx:200,cy:135,rx:170,ry:90,fill:'#1976D2',opacity:.9}},
+    // FISH BODY
+    {tag:'ellipse',a:{cx:195,cy:148,rx:130,ry:70,fill:'#26C6DA',stroke:'#00ACC1','stroke-width':2.5}},
+    // TAIL
+    {tag:'path',a:{d:'M322 148 Q355 110 375 90 Q365 148 375 208 Q355 188 322 148 Z',fill:'#00BCD4',stroke:'#00ACC1','stroke-width':2}},
+    // BELLY
+    {tag:'ellipse',a:{cx:190,cy:163,rx:95,ry:40,fill:'#E0F7FA',opacity:.6}},
+    // FINS
+    {tag:'path',a:{d:'M175 78 Q190 55 210 78',fill:'#00BCD4',stroke:'#00ACC1','stroke-width':2}},
+    {tag:'path',a:{d:'M150 195 Q140 215 170 210',fill:'#00BCD4',stroke:'#00ACC1','stroke-width':2}},
+    // EYE
+    {tag:'circle',a:{cx:88,cy:128,r:18,fill:'#fff',stroke:'#00ACC1','stroke-width':2}},
+    {tag:'circle',a:{cx:88,cy:128,r:11,fill:'#1565C0'}},
+    {tag:'circle',a:{cx:92,cy:124,r:4,fill:'#fff'}},
+    // MOUTH
+    {tag:'path',a:{d:'M68 148 Q60 168 68 185',fill:'none',stroke:'#00838F','stroke-width':3,'stroke-linecap':'round'}},
+    // JONAS (silhouette inside)
+    {tag:'ellipse',a:{cx:200,cy:148,rx:22,ry:30,fill:'#FFCC80',stroke:'#FF8F00','stroke-width':1.5,opacity:.8}},
+    {tag:'circle',a:{cx:200,cy:120,r:11,fill:'#FFCC80',stroke:'#FF8F00','stroke-width':1.5,opacity:.8}},
+    // WAVES
+    {tag:'path',a:{d:'M10 240 Q50 230 90 240 Q130 250 170 240 Q210 230 250 240 Q290 250 330 240 Q360 232 390 240',fill:'none',stroke:'#0288D1','stroke-width':2.5,opacity:.7}},
+    {tag:'path',a:{d:'M0 260 Q50 250 100 260 Q150 270 200 260 Q250 250 300 260 Q350 270 400 260',fill:'none',stroke:'#0288D1','stroke-width':2,opacity:.5}},
+    // BOAT ON TOP
+    {tag:'path',a:{d:'M130 65 Q200 45 270 65 Q270 80 200 85 Q130 80 130 65 Z',fill:'#8D6E63',stroke:'#5D4037','stroke-width':2}},
+    {tag:'rect',a:{x:190,y:40,width:5,height:28,fill:'#5D4037'}},
+    {tag:'path',a:{d:'M195 42 L215 52 L195 62 Z',fill:'#FFEB3B',stroke:'#F9A825','stroke-width':1}},
+   ]},
+  {id:'natal',name:'Nascimento de Jesus',icon:'⭐',color:'#7B1FA2',
+   viewBox:'0 0 400 280',
+   bg:'#1A237E',
+   elements:[
+    {tag:'rect',a:{x:0,y:0,width:400,height:280,fill:'#1A237E'}},
+    // STARS
+    {tag:'circle',a:{cx:30,cy:30,r:2,fill:'#E8EAF6'}},
+    {tag:'circle',a:{cx:70,cy:20,r:1.5,fill:'#E8EAF6'}},
+    {tag:'circle',a:{cx:120,cy:35,r:2,fill:'#E8EAF6'}},
+    {tag:'circle',a:{cx:170,cy:18,r:1.5,fill:'#E8EAF6'}},
+    {tag:'circle',a:{cx:300,cy:25,r:2,fill:'#E8EAF6'}},
+    {tag:'circle',a:{cx:350,cy:15,r:1.5,fill:'#E8EAF6'}},
+    {tag:'circle',a:{cx:380,cy:40,r:2,fill:'#E8EAF6'}},
+    {tag:'circle',a:{cx:50,cy:80,r:1.5,fill:'#E8EAF6'}},
+    {tag:'circle',a:{cx:380,cy:90,r:2,fill:'#E8EAF6'}},
+    // BIG STAR
+    {tag:'polygon',a:{points:'200,8 208,32 232,32 213,46 220,70 200,56 180,70 187,46 168,32 192,32',fill:'#FFF176',stroke:'#FDD835','stroke-width':1.5}},
+    {tag:'circle',a:{cx:200,cy:40,r:40,fill:'#FFF176',opacity:.07}},
+    // HILLS
+    {tag:'path',a:{d:'M230 225 Q300 165 400 195 L400 225 Z',fill:'#2E7D32'}},
+    {tag:'path',a:{d:'M0 205 Q80 150 185 215 L0 225 Z',fill:'#388E3C'}},
+    // GROUND
+    {tag:'path',a:{d:'M0 218 Q100 208 200 218 Q300 228 400 218 L400 280 L0 280 Z',fill:'#33691E'}},
+    // STABLE ROOF
+    {tag:'path',a:{d:'M120 200 L200 160 L280 200 Z',fill:'#8D6E63',stroke:'#5D4037','stroke-width':2}},
+    {tag:'rect',a:{x:130,y:198,width:140,height:30,fill:'#A1887F',stroke:'#6D4C41','stroke-width':2}},
+    // DOOR
+    {tag:'path',a:{d:'M178 228 L178 208 Q200 200 222 208 L222 228 Z',fill:'#6D4C41',stroke:'#4E342E','stroke-width':1.5}},
+    // MANGER + BABY
+    {tag:'rect',a:{x:170,y:212,width:22,height:12,rx:3,fill:'#FF8F00',stroke:'#E65100','stroke-width':1.5}},
+    {tag:'ellipse',a:{cx:181,cy:213,rx:9,ry:6,fill:'#FFCCBC',stroke:'#FF8A65','stroke-width':1.5}},
+    {tag:'circle',a:{cx:181,cy:208,r:5,fill:'#FFCC80',stroke:'#FF8F00','stroke-width':1}},
+    // MARY
+    {tag:'path',a:{d:'M142 228 Q139 212 144 198 Q154 196 158 203 Q156 216 154 228 Z',fill:'#1565C0',stroke:'#0D47A1','stroke-width':1.5}},
+    {tag:'circle',a:{cx:151,cy:195,r:9,fill:'#FFCC80',stroke:'#FF8F00','stroke-width':1.5}},
+    // JOSEPH
+    {tag:'path',a:{d:'M224 228 Q221 212 226 198 Q236 196 240 203 Q238 216 237 228 Z',fill:'#4CAF50',stroke:'#2E7D32','stroke-width':1.5}},
+    {tag:'circle',a:{cx:233,cy:195,r:9,fill:'#FFCC80',stroke:'#FF8F00','stroke-width':1.5}},
+    // STAR BEAM
+    {tag:'line',a:{x1:200,y1:70,x2:200,y2:162,stroke:'#FFF176','stroke-width':2,'stroke-dasharray':'5 4',opacity:.5}},
+   ]},
+];
+
+// ═══════════════════════════════════
+// QUEBRA-CABEÇA COM FOTOS DO GRUPO
+// Quando as imagens estiverem prontas,
+// salve-as em: fotos-biblicas/
+// com os nomes exatos abaixo
+// ═══════════════════════════════════
+const PZ_PHOTO_SCENES=[
+  {
+    id:'moises-edvan',
+    name:'Edvan como Moisés',
+    icon:'🌊',
+    membro:'Edvan Lima',
+    historia:'Moisés abrindo o Mar Vermelho',
+    img:'fotos-biblicas/moises-edvan.jpg',
+    versículo:'"O Senhor é a minha força e o meu cântico." — Êxodo 15:2'
+  },
+  {
+    id:'noe-samuel',
+    name:'Samuel como Noé',
+    icon:'🚢',
+    membro:'Samuel Muller',
+    historia:'Noé na Arca com os animais',
+    img:'fotos-biblicas/noe-samuel.jpg',
+    versículo:'"Noé fez tudo como Deus lhe havia ordenado." — Gênesis 6:22'
+  },
+  {
+    id:'daniel-leonardo',
+    name:'Leonardo como Daniel',
+    icon:'🦁',
+    membro:'Leonardo Poloni',
+    historia:'Daniel na Cova dos Leões',
+    img:'fotos-biblicas/daniel-leonardo.jpg',
+    versículo:'"Meu Deus enviou o seu anjo e fechou a boca dos leões." — Daniel 6:22'
+  },
+  {
+    id:'davi-felipe',
+    name:'Felipe como Davi',
+    icon:'🪨',
+    membro:'Felipe Paixão',
+    historia:'Davi e o Gigante Golias',
+    img:'fotos-biblicas/davi-felipe.jpg',
+    versículo:'"O Senhor que me livrou das garras do leão..." — 1 Samuel 17:37'
+  },
+  {
+    id:'jonas-andre',
+    name:'Andre como Jonas',
+    icon:'🐳',
+    membro:'Andre Souza',
+    historia:'Jonas e o Grande Peixe',
+    img:'fotos-biblicas/jonas-andre.jpg',
+    versículo:'"Do fundo do abismo clamei, e Tu ouviste a minha voz." — Jonas 2:2'
+  },
+  {
+    id:'reis-deybson',
+    name:'Deybson como Rei Mago',
+    icon:'⭐',
+    membro:'Deybson Soares',
+    historia:'Os Reis Magos visitam Jesus',
+    img:'fotos-biblicas/reis-deybson.jpg',
+    versículo:'"Onde está o que nasceu rei dos judeus?" — Mateus 2:2'
+  },
+  {
+    id:'maria-othilia',
+    name:'Othilia como Maria',
+    icon:'👶',
+    membro:'Othilia Novais',
+    historia:'Maria e o Nascimento de Jesus',
+    img:'fotos-biblicas/maria-othilia.jpg',
+    versículo:'"Bem-aventurada és tu entre as mulheres." — Lucas 1:42'
+  },
+  {
+    id:'ester-ayla',
+    name:'Ayla como Ester',
+    icon:'👑',
+    membro:'Ayla Boneli',
+    historia:'A Rainha Ester salva seu povo',
+    img:'fotos-biblicas/ester-ayla.jpg',
+    versículo:'"Quem sabe se não foi para um momento como este..." — Ester 4:14'
+  },
+  {
+    id:'rute-gabriela',
+    name:'Gabriela como Rute',
+    icon:'🌾',
+    membro:'Gabriela Paixão',
+    historia:'Rute e sua fidelidade',
+    img:'fotos-biblicas/rute-gabriela.jpg',
+    versículo:'"Onde tu morreres, morrerei eu." — Rute 1:17'
+  },
+  {
+    id:'priscila-daniele',
+    name:'Daniele como Priscila',
+    icon:'✝️',
+    membro:'Daniele Souza',
+    historia:'Priscila ensinando a Palavra',
+    img:'fotos-biblicas/priscila-daniele.jpg',
+    versículo:'"Ela e Áqüila o explicaram mais exatamente o caminho de Deus." — Atos 18:26'
+  },
+  {
+    id:'maria-magdalena-cris',
+    name:'Cris como Maria Madalena',
+    icon:'🌹',
+    membro:'Cris Paixão',
+    historia:'Maria Madalena encontra Jesus ressurreto',
+    img:'fotos-biblicas/maria-magdalena-cris.jpg',
+    versículo:'"Jesus lhe disse: Maria! Ela se voltou e exclamou: Mestre!" — João 20:16'
+  },
+  {
+    id:'sara-marcia',
+    name:'Márcia como Sara',
+    icon:'😊',
+    membro:'Márcia Santos',
+    historia:'Sara ri ao ouvir a promessa de Deus',
+    img:'fotos-biblicas/sara-marcia.jpg',
+    versículo:'"Para Deus há alguma coisa impossível?" — Gênesis 18:14'
+  },
+  {
+    id:'debora-michele',
+    name:'Michele como Débora',
+    icon:'⚖️',
+    membro:'Michele Lopes',
+    historia:'Débora, a profetisa e juíza de Israel',
+    img:'fotos-biblicas/debora-michele.jpg',
+    versículo:'"Eu me levantei, uma mãe em Israel." — Juízes 5:7'
+  },
+  {
+    id:'alicia-anjo',
+    name:'Alicia como o Anjo Gabriel',
+    icon:'👼',
+    membro:'Alicia Paixão',
+    historia:'Gabriel anuncia o nascimento de Jesus',
+    img:'fotos-biblicas/gabriel-alicia.jpg',
+    versículo:'"Não temas, Maria, porque achaste graça diante de Deus." — Lucas 1:30'
+  },
+];
+
+// Verifica se a foto existe antes de mostrar no seletor
+async function checkImgExists(src){
+  return new Promise(res=>{const i=new Image();i.onload=()=>res(true);i.onerror=()=>res(false);i.src=src;});
+}
+
+let pzSceneIdx=0, pzGridSize=3, pzMoveCount=0, pzTimerInterval=null, pzSeconds=0, pzPlaced=0, pzDragSrcIdx=null, pzCellCorrect=[], previewVisible=true, pzUsePhoto=false;
+
+function startPuzzle(){
+  showScreen('puzzleScreen');
+  document.getElementById('pzSetup').style.display='block';
+  document.getElementById('pzGame').style.display='none';
+  pzSceneIdx=0; pzUsePhoto=false;
+  buildSceneSelector();
+}
+
+async function buildSceneSelector(){
+  const sel=document.getElementById('pzSceneSel');
+  // Always show SVG scenes
+  let html=PZ_SCENES.map((s,i)=>`
+    <div class="puzzle-scene-btn ${i===0?'active':''}" onclick="selectPzScene(${i},false,this)">
+      <span class="psb-icon">${s.icon}</span>
+      <div class="psb-name">${s.name}</div>
+    </div>`).join('');
+
+  // Check which photo scenes are available
+  let photoFound=false;
+  for(let i=0;i<PZ_PHOTO_SCENES.length;i++){
+    const exists=await checkImgExists(PZ_PHOTO_SCENES[i].img);
+    if(exists){
+      photoFound=true;
+      html+=`
+        <div class="puzzle-scene-btn pz-photo-btn" onclick="selectPzScene(${i},true,this)" style="border-color:rgba(245,158,11,.3);position:relative">
+          <span class="psb-icon">${PZ_PHOTO_SCENES[i].icon}</span>
+          <div class="psb-name">${PZ_PHOTO_SCENES[i].name}</div>
+          <div style="position:absolute;top:4px;right:4px;font-size:.55rem;background:var(--gold);color:#0a0a0a;padding:1px 5px;border-radius:99px;font-weight:700">NOVO</div>
+        </div>`;
+    }
+  }
+
+  if(!photoFound){
+    html+=`
+      <div style="grid-column:1/-1;background:rgba(245,158,11,.06);border:1px dashed rgba(245,158,11,.25);border-radius:12px;padding:1rem;text-align:center;font-size:.78rem;color:var(--text-dim);font-weight:600">
+        🌟 Em breve: quebra-cabeça com os membros do grupo em cenas bíblicas!<br>
+        <span style="font-size:.68rem;opacity:.7">Salve as imagens em <code style="color:var(--gold)">fotos-biblicas/</code> para ativar</span>
+      </div>`;
+  }
+
+  sel.innerHTML=html;
+}
+
+function selectPzScene(i,isPhoto,el){
+  pzSceneIdx=i;
+  pzUsePhoto=isPhoto;
+  document.querySelectorAll('.puzzle-scene-btn').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');
+}
+
+function setPzDiff(size,el){
+  pzGridSize=size;
+  document.querySelectorAll('.puzzle-diff-btn').forEach(b=>b.classList.remove('active'));
+  el.classList.add('active');
+}
+
+function buildSceneSVG(scene, w, h, clipId, row, col, total){
+  const ns='http://www.w3.org/2000/svg';
+  const svg=document.createElementNS(ns,'svg');
+  const [vx,vy,vw,vh]=scene.viewBox.split(' ').map(Number);
+  // Scale to fit cell
+  const scaleX=w*total/vw, scaleY=h*total/vh;
+  const scale=Math.min(scaleX,scaleY);
+  const ox=-col*(vw/total), oy=-row*(vh/total);
+  svg.setAttribute('viewBox',`${-ox} ${-oy} ${vw/total} ${vh/total}`);
+  svg.setAttribute('width',w); svg.setAttribute('height',h);
+  svg.style.display='block';
+  // Draw all elements
+  scene.elements.forEach(el=>{
+    const node=document.createElementNS(ns,el.tag);
+    Object.entries(el.a).forEach(([k,v])=>node.setAttribute(k,v));
+    svg.appendChild(node);
+  });
+  return svg;
+}
+
+function buildFullSVG(scene, w, h){
+  const ns='http://www.w3.org/2000/svg';
+  const svg=document.createElementNS(ns,'svg');
+  svg.setAttribute('viewBox',scene.viewBox);
+  svg.setAttribute('width',w); svg.setAttribute('height',h);
+  svg.style.display='block';
+  scene.elements.forEach(el=>{
+    const node=document.createElementNS(ns,el.tag);
+    Object.entries(el.a).forEach(([k,v])=>node.setAttribute(k,v));
+    svg.appendChild(node);
+  });
+  return svg;
+}
+
+function launchPuzzle(){
+  const scene = pzUsePhoto ? PZ_PHOTO_SCENES[pzSceneIdx] : PZ_SCENES[pzSceneIdx];
+  pzMoveCount=0; pzSeconds=0; pzPlaced=0;
+  document.getElementById('pzMoves').textContent='0';
+  document.getElementById('pzLeft').textContent=pzGridSize*pzGridSize;
+  document.getElementById('pzGameTimer').textContent='00:00';
+  document.getElementById('pzTimer').textContent='00:00';
+  clearInterval(pzTimerInterval);
+  pzTimerInterval=setInterval(()=>{
+    pzSeconds++;
+    const t=fmtTime(pzSeconds);
+    document.getElementById('pzGameTimer').textContent=t;
+    document.getElementById('pzTimer').textContent=t;
+  },1000);
+
+  document.getElementById('pzSetup').style.display='none';
+  document.getElementById('pzGame').style.display='block';
+  document.getElementById('pzWin').classList.remove('show');
+
+  const total=pzGridSize;
+  const boardEl=document.getElementById('pzBoard');
+  const trayEl=document.getElementById('pzTray');
+  const maxW=Math.min(window.innerWidth-220,420);
+  const cellSize=Math.floor(maxW/total);
+  boardEl.style.gridTemplateColumns=`repeat(${total},${cellSize}px)`;
+  boardEl.innerHTML=''; trayEl.innerHTML='';
+  pzCellCorrect=Array(total*total).fill(false);
+
+  // Board empty cells
+  for(let r=0;r<total;r++) for(let c=0;c<total;c++){
+    const idx=r*total+c;
+    const cell=document.createElement('div');
+    cell.className='puzzle-cell';
+    cell.style.width=cellSize+'px'; cell.style.height=cellSize+'px';
+    cell.dataset.idx=idx; cell.dataset.r=r; cell.dataset.c=c;
+    cell.addEventListener('dragover',e=>{e.preventDefault();cell.classList.add('drag-over');});
+    cell.addEventListener('dragleave',()=>cell.classList.remove('drag-over'));
+    cell.addEventListener('drop',e=>{e.preventDefault();cell.classList.remove('drag-over');dropOnCell(cell);});
+    cell.addEventListener('touchend',e=>{e.preventDefault();dropOnCell(cell);},{passive:false});
+    boardEl.appendChild(cell);
+  }
+
+  // Shuffled tray pieces
+  const order=shuffle([...Array(total*total).keys()]);
+  order.forEach(idx=>{
+    const r=Math.floor(idx/total), c=idx%total;
+    const piece=document.createElement('div');
+    piece.className='puzzle-piece';
+    piece.dataset.idx=idx; piece.dataset.r=r; piece.dataset.c=c;
+    piece.style.width=cellSize+'px'; piece.style.height=cellSize+'px';
+    piece.draggable=true;
+
+    if(pzUsePhoto){
+      // Photo piece using background-position
+      const totalPx=cellSize*total;
+      piece.style.backgroundImage=`url('${scene.img}')`;
+      piece.style.backgroundSize=`${totalPx}px ${totalPx}px`;
+      piece.style.backgroundPosition=`-${c*cellSize}px -${r*cellSize}px`;
+      piece.style.backgroundRepeat='no-repeat';
+    } else {
+      const svg=buildSceneSVG(scene,cellSize,cellSize,'',r,c,total);
+      piece.appendChild(svg);
+    }
+
+    piece.addEventListener('dragstart',e=>{pzDragSrcIdx=idx;piece.classList.add('dragging');e.dataTransfer.effectAllowed='move';});
+    piece.addEventListener('dragend',()=>piece.classList.remove('dragging'));
+    piece.addEventListener('touchstart',e=>{pzDragSrcIdx=idx;},{passive:true});
+    trayEl.appendChild(piece);
+  });
+
+  // Preview
+  const prevEl=document.getElementById('pzPreview');
+  prevEl.innerHTML='';
+  if(pzUsePhoto){
+    const img=document.createElement('img');
+    img.src=scene.img; img.style.cssText='width:140px;height:auto;display:block;border-radius:8px';
+    prevEl.appendChild(img);
+    // Show member info
+    const info=document.createElement('div');
+    info.style.cssText='font-size:.68rem;color:var(--text-muted);font-weight:700;margin-top:.4rem;text-align:center;line-height:1.4';
+    info.innerHTML=`<span style="color:var(--gold)">${scene.membro}</span><br><em style="font-size:.62rem;color:var(--text-dim)">${scene.historia}</em>`;
+    prevEl.appendChild(info);
+  } else {
+    const prevSvg=buildFullSVG(scene,140,100);
+    prevEl.appendChild(prevSvg);
+  }
+  previewVisible=true;
+}
+
+function dropOnCell(cell){
+  if(pzDragSrcIdx===null) return;
+  const cellIdx=parseInt(cell.dataset.idx);
+  const pieceIdx=pzDragSrcIdx;
+  if(pzCellCorrect[cellIdx]) return;
+
+  const total=pzGridSize;
+  const pieceR=Math.floor(pieceIdx/total), pieceC=pieceIdx%total;
+  const cellR=parseInt(cell.dataset.r), cellC=parseInt(cell.dataset.c);
+  const isCorrect=(pieceR===cellR && pieceC===cellC);
+  const scene=pzUsePhoto ? PZ_PHOTO_SCENES[pzSceneIdx] : PZ_SCENES[pzSceneIdx];
+  const maxW=Math.min(window.innerWidth-220,420);
+  const cellSize=Math.floor(maxW/total);
+
+  pzMoveCount++;
+  document.getElementById('pzMoves').textContent=pzMoveCount;
+
+  cell.innerHTML='';
+  if(pzUsePhoto){
+    const totalPx=cellSize*total;
+    cell.style.backgroundImage=`url('${scene.img}')`;
+    cell.style.backgroundSize=`${totalPx}px ${totalPx}px`;
+    cell.style.backgroundPosition=`-${pieceC*cellSize}px -${pieceR*cellSize}px`;
+    cell.style.backgroundRepeat='no-repeat';
+  } else {
+    const svg=buildSceneSVG(scene,cellSize,cellSize,'',pieceR,pieceC,total);
+    cell.appendChild(svg);
+  }
+
+  if(isCorrect){
+    cell.classList.add('correct-piece');
+    pzCellCorrect[cellIdx]=true;
+    pzPlaced++;
+    document.getElementById('pzLeft').textContent=total*total-pzPlaced;
+    document.querySelectorAll('.puzzle-piece').forEach(p=>{
+      if(parseInt(p.dataset.idx)===pieceIdx) p.classList.add('placed');
+    });
+    confetti(8);
+    if(pzPlaced===total*total) setTimeout(showPzWin,400);
+  } else {
+    cell.style.background='rgba(239,68,68,.2)';
+    setTimeout(()=>{
+      cell.style.background='';
+      cell.style.backgroundImage='';
+      cell.innerHTML='';
+    },600);
+  }
+  pzDragSrcIdx=null;
+}
+
+function togglePreview(){
+  const prev=document.getElementById('pzPreview');
+  previewVisible=!previewVisible;
+  prev.style.display=previewVisible?'block':'none';
+}
+
+function showPzWin(){
+  clearInterval(pzTimerInterval);
+  const t=fmtTime(pzSeconds);
+  const m=pzMoveCount;
+  const total=pzGridSize*pzGridSize;
+  const efficiency=total/m;
+  let stars='⭐';
+  if(efficiency>=.7)stars='⭐⭐⭐';
+  else if(efficiency>=.4)stars='⭐⭐';
+  document.getElementById('pwTime').textContent=t;
+  document.getElementById('pwMoves').textContent=m;
+  document.getElementById('pwStars').textContent=stars;
+  document.getElementById('pzWin').classList.add('show');
+  addStars(stars.length*2);
+  confetti(60);
+}
+
+function closePzWin(){
+  document.getElementById('pzWin').classList.remove('show');
+  goHome();
+}
+
+// INIT
+showScreen('homeScreen');
+</script>
+</body>
+</html>

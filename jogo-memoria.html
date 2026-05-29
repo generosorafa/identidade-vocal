@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jogo da Memória · Identidade Vocal</title>
+<meta name="description" content="Jogo da memória do Grupo Identidade Vocal com fotos dos membros, modo para um ou dois jogadores e ranking global.">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="icon" type="image/png" href="logo3_branco.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gold:#C9A84C;--gold-light:#E8D08A;--gold-dim:#8A6E30;
+  --dark:#0A0A0A;--dark2:#111111;--dark3:#1A1A1A;--dark4:#222222;
+  --text:#E8E4DC;--text-muted:#9A9186;--text-dim:#5A554E;
+  --p1:#C9A84C;--p2:#5B8FD4;
+  --ff-display:'Cormorant Garamond',Georgia,serif;
+  --ff-body:'Outfit',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--dark);color:var(--text);font-family:var(--ff-body);font-weight:300;min-height:100vh;overflow-x:hidden}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--dark2)}
+::-webkit-scrollbar-thumb{background:var(--gold-dim);border-radius:2px}
+
+/* TOPBAR */
+.topbar{background:rgba(10,10,10,.97);border-bottom:1px solid rgba(201,168,76,.15);padding:0 2rem;height:64px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100}
+.topbar-back{font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color .2s;display:flex;align-items:center;gap:.5rem}
+.topbar-back:hover{color:var(--gold)}
+.topbar-back svg{width:14px;height:14px;fill:none;stroke:currentColor;stroke-width:2}
+.topbar-logo img{height:30px;width:auto}
+
+/* HERO */
+.game-hero{text-align:center;padding:3rem 2rem 1.5rem}
+.game-eyebrow{font-size:.65rem;letter-spacing:.45em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:.8rem}
+.game-title{font-family:var(--ff-display);font-size:clamp(2rem,5vw,3.2rem);font-weight:300;color:var(--text);line-height:1.1}
+.game-title em{font-style:italic;color:var(--gold)}
+
+/* TABS */
+.tabs{display:flex;max-width:560px;margin:0 auto 0;border-bottom:1px solid rgba(201,168,76,.15)}
+.tab{flex:1;padding:.9rem;text-align:center;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text-dim);cursor:pointer;transition:all .2s;border-bottom:2px solid transparent;margin-bottom:-1px}
+.tab.active{color:var(--gold);border-bottom-color:var(--gold)}
+.tab:hover:not(.active){color:var(--text-muted)}
+
+/* SETUP */
+#setupScreen{max-width:560px;margin:0 auto;padding:1.5rem}
+.setup-card{background:var(--dark2);border:1px solid rgba(201,168,76,.15);padding:2rem}
+.setup-title{font-family:var(--ff-display);font-size:1.5rem;font-weight:300;color:var(--text);margin-bottom:.3rem}
+.setup-sub{font-size:.82rem;color:var(--text-muted);margin-bottom:1.8rem}
+.setup-label{font-size:.6rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:1rem;display:block}
+.mode-btns{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem}
+.mode-btn{background:var(--dark3);border:1px solid rgba(201,168,76,.12);padding:1.3rem 1rem;text-align:center;cursor:pointer;transition:all .25s;position:relative}
+.mode-btn:hover,.mode-btn.active{border-color:var(--gold);background:rgba(201,168,76,.06)}
+.mode-btn.active::after{content:'✓';position:absolute;top:.5rem;right:.7rem;font-size:.65rem;color:var(--gold)}
+.mode-icon{font-size:1.8rem;display:block;margin-bottom:.4rem}
+.mode-name{font-size:.82rem;font-weight:500;color:var(--text)}
+.mode-desc{font-size:.68rem;color:var(--text-muted);margin-top:.2rem}
+.player-names{display:flex;flex-direction:column;gap:.8rem;margin-bottom:1.5rem}
+.player-name-group{display:flex;flex-direction:column;gap:.35rem}
+.player-name-label{font-size:.6rem;letter-spacing:.3em;text-transform:uppercase}
+.dot-p1{color:var(--p1)}
+.dot-p2{color:var(--p2)}
+.player-input{background:var(--dark3);border:1px solid rgba(201,168,76,.15);color:var(--text);padding:.75rem 1rem;font-family:var(--ff-body);font-size:.9rem;font-weight:300;outline:none;transition:border-color .2s;width:100%}
+.player-input:focus{border-color:rgba(201,168,76,.45)}
+.player-input::placeholder{color:var(--text-dim)}
+.start-btn{width:100%;background:var(--gold);color:#0a0a0a;border:none;padding:.95rem;font-family:var(--ff-body);font-size:.78rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:background .2s}
+.start-btn:hover{background:var(--gold-light)}
+
+/* RANKING SCREEN */
+#rankingScreen{max-width:560px;margin:0 auto;padding:1.5rem;display:none}
+.ranking-card{background:var(--dark2);border:1px solid rgba(201,168,76,.15);padding:2rem}
+.ranking-title{font-family:var(--ff-display);font-size:1.5rem;font-weight:300;color:var(--text);margin-bottom:.3rem}
+.ranking-sub{font-size:.82rem;color:var(--text-muted);margin-bottom:1.5rem}
+.ranking-list{display:flex;flex-direction:column;gap:.5rem}
+.ranking-row{display:grid;grid-template-columns:40px 1fr auto auto;align-items:center;gap:1rem;padding:.9rem 1rem;background:var(--dark3);border:1px solid rgba(201,168,76,.06);transition:border-color .2s}
+.ranking-row.top1{border-color:rgba(201,168,76,.4);background:rgba(201,168,76,.07)}
+.ranking-row.top2{border-color:rgba(192,192,192,.25)}
+.ranking-row.top3{border-color:rgba(205,127,50,.25)}
+.rank-pos{font-family:var(--ff-display);font-size:1.3rem;font-weight:300;color:var(--text-dim);text-align:center}
+.top1 .rank-pos{color:var(--gold)}
+.rank-name{font-size:.88rem;font-weight:400;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rank-moves{font-size:.72rem;color:var(--text-dim);text-align:right}
+.rank-time{font-family:var(--ff-display);font-size:1.1rem;color:var(--gold);text-align:right;white-space:nowrap}
+.top1 .rank-time{font-size:1.2rem}
+.ranking-empty{text-align:center;padding:2rem;color:var(--text-dim);font-style:italic;font-family:var(--ff-display);font-size:1.2rem}
+.ranking-loading{text-align:center;padding:2rem;color:var(--text-dim);font-size:.8rem;letter-spacing:.1em}
+.ranking-refresh{margin-top:1rem;width:100%;background:transparent;border:1px solid rgba(201,168,76,.25);color:var(--text-muted);padding:.7rem;font-family:var(--ff-body);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:all .2s}
+.ranking-refresh:hover{border-color:var(--gold);color:var(--gold)}
+
+/* SCOREBOARD */
+#gameScreen{display:none;flex-direction:column;padding:1rem 1.5rem 3rem}
+.scoreboard{display:flex;gap:.8rem;justify-content:center;align-items:stretch;margin-bottom:1rem;flex-wrap:wrap}
+.score-box{background:var(--dark2);border:1px solid rgba(201,168,76,.12);padding:1rem 1.5rem;text-align:center;min-width:120px;position:relative;transition:all .3s}
+.score-box.active-turn{border-color:var(--gold);background:rgba(201,168,76,.07)}
+.score-box.active-turn::after{content:'▼';position:absolute;bottom:-14px;left:50%;transform:translateX(-50%);font-size:.6rem;color:var(--gold)}
+.score-name{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;margin-bottom:.2rem;font-weight:500}
+.score-name.p1{color:var(--p1)}
+.score-name.p2{color:var(--p2)}
+.score-name.solo{color:var(--gold)}
+.score-num{font-family:var(--ff-display);font-size:2rem;font-weight:300;color:var(--text);line-height:1}
+.score-sub{font-size:.58rem;color:var(--text-dim);letter-spacing:.12em;text-transform:uppercase;margin-top:.1rem}
+.score-timer{font-family:var(--ff-display);font-size:1.4rem;color:var(--text-muted)}
+.turn-bar{text-align:center;margin-bottom:.8rem;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text-dim);height:1.1rem}
+.turn-bar span{color:var(--gold);font-weight:500}
+
+/* BOARD */
+.board{display:grid;gap:.5rem;max-width:900px;margin:0 auto;width:100%}
+.board.cols-8{grid-template-columns:repeat(8,1fr)}
+
+/* CARD */
+.card{aspect-ratio:3/4;perspective:800px;cursor:pointer}
+.card-inner{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .45s cubic-bezier(.4,0,.2,1)}
+.card.flipped .card-inner,.card.matched .card-inner{transform:rotateY(180deg)}
+.card-face{position:absolute;inset:0;backface-visibility:hidden;-webkit-backface-visibility:hidden;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.card-back{background:var(--dark3);border:1px solid rgba(201,168,76,.2)}
+.card-back img{width:52%;height:52%;object-fit:contain;opacity:.45;filter:brightness(1.2)}
+.card-back-fallback{font-family:var(--ff-display);font-size:clamp(.9rem,2.5vw,1.8rem);color:rgba(201,168,76,.3);font-weight:600}
+.card-front{transform:rotateY(180deg);background:var(--dark4);border:1px solid rgba(201,168,76,.15);flex-direction:column}
+.card-front img{width:100%;height:80%;object-fit:cover;object-position:center top}
+.card-front .card-name{font-size:clamp(.42rem,.75vw,.68rem);font-weight:400;color:var(--text);padding:.25rem .2rem;text-align:center;background:rgba(0,0,0,.65);width:100%;height:20%;display:flex;align-items:center;justify-content:center;line-height:1.2}
+.card-front .card-initials{width:100%;height:80%;display:flex;align-items:center;justify-content:center;font-family:var(--ff-display);font-size:clamp(1rem,2vw,1.8rem);font-weight:300;color:var(--gold-dim)}
+.card.matched .card-front{border-color:rgba(201,168,76,.5);background:rgba(201,168,76,.07)}
+.card:not(.flipped):not(.matched):hover .card-back{border-color:rgba(201,168,76,.5);background:rgba(201,168,76,.05)}
+
+/* WIN SCREEN */
+#winScreen{display:none;position:fixed;inset:0;background:rgba(0,0,0,.93);z-index:200;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;overflow-y:auto}
+.win-icon{font-size:3.5rem;margin-bottom:1rem;animation:pop .5s .2s both}
+.win-title{font-family:var(--ff-display);font-size:clamp(2rem,5vw,3.5rem);font-weight:300;color:var(--text);margin-bottom:.4rem}
+.win-title em{font-style:italic;color:var(--gold)}
+.win-stats{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin:1.5rem 0}
+.win-stat{background:var(--dark2);border:1px solid rgba(201,168,76,.2);padding:1rem 1.5rem;text-align:center;min-width:110px}
+.win-stat-num{font-family:var(--ff-display);font-size:2.2rem;font-weight:300;color:var(--gold);line-height:1}
+.win-stat-label{font-size:.58rem;letter-spacing:.25em;text-transform:uppercase;color:var(--text-dim);margin-top:.3rem}
+.win-saving{font-size:.75rem;color:var(--text-dim);margin-bottom:1rem;letter-spacing:.1em}
+.win-save{width:min(100%,460px);background:var(--dark2);border:1px solid rgba(201,168,76,.2);padding:1rem;margin:.2rem 0 1rem;text-align:left}
+.win-save-label{display:block;font-size:.58rem;letter-spacing:.25em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:.55rem}
+.win-save-row{display:flex;gap:.6rem}
+.win-save-input{flex:1;min-width:0;background:var(--dark3);border:1px solid rgba(201,168,76,.18);color:var(--text);padding:.75rem .9rem;font-family:var(--ff-body);font-size:.9rem;outline:none}
+.win-save-input:focus{border-color:rgba(201,168,76,.5)}
+.win-save-btn{background:var(--gold);color:#0a0a0a;border:none;padding:.75rem 1rem;font-family:var(--ff-body);font-size:.68rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:background .2s;white-space:nowrap}
+.win-save-btn:hover:not(:disabled){background:var(--gold-light)}
+.win-save-btn:disabled{opacity:.55;cursor:default}
+.win-save-help{font-size:.72rem;color:var(--text-dim);line-height:1.45;margin-top:.65rem}
+.win-save-help.ok{color:var(--gold)}
+.win-save-help.error{color:#FCA5A5}
+.win-rank-preview{background:var(--dark2);border:1px solid rgba(201,168,76,.25);padding:1rem 2rem;margin-bottom:1.5rem;font-family:var(--ff-display);font-size:1.2rem;color:var(--text)}
+.win-rank-preview em{color:var(--gold);font-style:normal}
+.win-btns{display:flex;gap:.8rem;flex-wrap:wrap;justify-content:center}
+.btn{padding:.8rem 1.8rem;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;cursor:pointer;transition:all .25s;border:none;font-family:var(--ff-body);font-weight:500;text-decoration:none;display:inline-block}
+.btn-gold{background:var(--gold);color:#0a0a0a}
+.btn-gold:hover{background:var(--gold-light)}
+.btn-outline{border:1px solid rgba(201,168,76,.4);color:var(--gold);background:transparent}
+.btn-outline:hover{border-color:var(--gold);background:rgba(201,168,76,.08)}
+
+/* MEDALS */
+.medal-1::before{content:'🥇 '}
+.medal-2::before{content:'🥈 '}
+.medal-3::before{content:'🥉 '}
+
+@keyframes pop{0%{transform:scale(0);opacity:0}80%{transform:scale(1.2)}100%{transform:scale(1);opacity:1}}
+@keyframes shake{0%,100%{transform:translateX(0)}20%,60%{transform:translateX(-5px)}40%,80%{transform:translateX(5px)}}
+.shake{animation:shake .35s ease}
+
+@media(max-width:700px){
+  .topbar{height:56px;padding:0 1rem}
+  .topbar-back{font-size:.62rem;letter-spacing:.14em}
+  .game-hero{padding:1.6rem 1rem .8rem}
+  .game-eyebrow{font-size:.56rem;letter-spacing:.28em}
+  .tabs{margin:0 1rem}
+  #setupScreen,#rankingScreen{padding:1rem}
+  .setup-card,.ranking-card{padding:1.25rem}
+  .mode-btns{gap:.7rem}
+  .mode-btn{padding:1rem .7rem}
+  #gameScreen{padding:.75rem .7rem 2rem}
+  .scoreboard{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.45rem;margin-bottom:.65rem;width:100%}
+  .board.cols-8{grid-template-columns:repeat(6,1fr)}
+  .score-box{min-width:0;padding:.62rem .45rem}
+  .score-name{font-size:.5rem;letter-spacing:.12em}
+  .score-num{font-size:1.55rem}
+  .score-sub{font-size:.48rem;letter-spacing:.08em}
+  .score-timer{font-size:1.15rem}
+  .turn-bar{font-size:.62rem;margin-bottom:.55rem}
+  .board{gap:.35rem}
+  .win-save-row{flex-direction:column}
+  .win-save-btn{width:100%}
+  .win-stat{min-width:92px;padding:.85rem 1rem}
+}
+@media(max-width:560px){
+  .board.cols-8{grid-template-columns:repeat(4,1fr)}
+  .card-front img{height:76%}
+  .card-front .card-name{height:24%;font-size:clamp(.52rem,2.8vw,.72rem)}
+}
+@media(max-width:380px){
+  .board{gap:.28rem}
+}
+</style>
+</head>
+<body>
+
+<!-- TOPBAR -->
+<div class="topbar">
+  <a class="topbar-back" href="index.html">
+    <svg viewBox="0 0 24 24"><polyline points="15,18 9,12 15,6"/></svg>
+    Voltar
+  </a>
+  <a href="index.html">
+    <img class="topbar-logo" src="logo2_cinza_claro.png" alt="Identidade Vocal" style="height:28px" onerror="this.style.display='none'">
+  </a>
+  <div style="width:80px"></div>
+</div>
+
+<!-- HERO -->
+<div class="game-hero">
+  <p class="game-eyebrow">Você conhece o grupo?</p>
+  <h1 class="game-title">Jogo da <em>Memória</em></h1>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <div class="tab active" onclick="showTab('setup')">🎮 Jogar</div>
+  <div class="tab" onclick="showTab('ranking')">🏆 Ranking</div>
+</div>
+
+<!-- SETUP -->
+<div id="setupScreen">
+  <div class="setup-card">
+    <div class="setup-title">Configurar partida</div>
+    <div class="setup-sub">Pare todos os 16 pares no menor tempo possível!</div>
+    <span class="setup-label">Modo de jogo</span>
+    <div class="mode-btns">
+      <div class="mode-btn active" id="btn1p" onclick="selectMode(1)">
+        <span class="mode-icon">🙋</span>
+        <div class="mode-name">1 Jogador</div>
+        <div class="mode-desc">Sozinho contra o tempo</div>
+      </div>
+      <div class="mode-btn" id="btn2p" onclick="selectMode(2)">
+        <span class="mode-icon">🙋🙋</span>
+        <div class="mode-name">2 Jogadores</div>
+        <div class="mode-desc">Disputem em dupla!</div>
+      </div>
+    </div>
+    <div class="player-names">
+      <div class="player-name-group">
+        <label class="player-name-label dot-p1">● Jogador 1</label>
+        <input class="player-input" id="name1" type="text" placeholder="Seu nome" maxlength="16">
+      </div>
+      <div class="player-name-group" id="p2group" style="display:none">
+        <label class="player-name-label dot-p2">● Jogador 2</label>
+        <input class="player-input" id="name2" type="text" placeholder="Nome do 2º jogador" maxlength="16">
+      </div>
+    </div>
+    <button class="start-btn" onclick="startGame()">Começar jogo ✦</button>
+  </div>
+</div>
+
+<!-- RANKING -->
+<div id="rankingScreen">
+  <div class="ranking-card">
+    <div class="ranking-title">🏆 Ranking Global</div>
+    <div class="ranking-sub">Os 10 melhores tempos de todos os jogadores</div>
+    <div class="ranking-list" id="rankingList">
+      <div class="ranking-loading">Carregando ranking...</div>
+    </div>
+    <button class="ranking-refresh" onclick="loadRanking()">↻ Atualizar ranking</button>
+  </div>
+</div>
+
+<!-- GAME -->
+<div id="gameScreen">
+  <div class="scoreboard" id="scoreboard"></div>
+  <div class="turn-bar" id="turnBar"></div>
+  <div class="board cols-8" id="board"></div>
+</div>
+
+<!-- WIN -->
+<div id="winScreen">
+  <div class="win-icon">🎉</div>
+  <h2 class="win-title" id="winTitle">Parabéns!</h2>
+  <div class="win-stats" id="winStats"></div>
+  <div class="win-save" id="winSaveBox" style="display:none">
+    <label class="win-save-label" for="rankNameInput">Nome no ranking</label>
+    <div class="win-save-row">
+      <input class="win-save-input" id="rankNameInput" type="text" maxlength="16" placeholder="Seu nome">
+      <button class="win-save-btn" id="saveRankBtn" onclick="saveWinScore()">Salvar</button>
+    </div>
+    <div class="win-save-help" id="winSaveHelp">Confira seu nome e toque em salvar para aparecer no ranking global.</div>
+  </div>
+  <div class="win-saving" id="winSaving"></div>
+  <div class="win-rank-preview" id="winRankPreview" style="display:none"></div>
+  <div class="win-btns">
+    <button class="btn btn-gold" onclick="rematch()">🔀 Jogar de novo</button>
+    <button class="btn btn-outline" onclick="showTab('ranking');closeWin()">🏆 Ver ranking</button>
+    <button class="btn btn-outline" onclick="backToSetup()">Mudar modo</button>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════
+     🔥 FIREBASE — Cole sua config aqui!
+     Substitua os valores abaixo pela sua
+     configuração do Firebase Console
+     ══════════════════════════════════════════ -->
+<script>
+window._firebaseReady = false;
+window._firebaseError = 'Firebase ainda não carregou.';
+</script>
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getDatabase, ref, push, query, orderByChild, limitToFirst, get }
+  from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyD9e0C4gkwBT4Q4mrmazHKkxNaXVNFbX1k",
+  authDomain: "identidade-vocal.firebaseapp.com",
+  databaseURL: "https://identidade-vocal-default-rtdb.firebaseio.com",
+  projectId: "identidade-vocal",
+  storageBucket: "identidade-vocal.firebasestorage.app",
+  messagingSenderId: "603340474200",
+  appId: "1:603340474200:web:ab471847fda0364ab5872d"
+};
+
+try {
+  const app = initializeApp(firebaseConfig);
+  const db  = getDatabase(app);
+
+  // Expõe funções para o código principal
+  window._fbSaveScore = async (name, seconds, moves) => {
+    const r = ref(db, 'ranking');
+    const safeName = String(name || 'Jogador').trim().replace(/\s+/g,' ').slice(0,16);
+    const safeSeconds = Math.max(0, Number(seconds) || 0);
+    const safeMoves = Math.max(0, Number(moves) || 0);
+    return push(r, { name: safeName || 'Jogador', seconds: safeSeconds, moves: safeMoves, date: Date.now() });
+  };
+
+  window._fbLoadRanking = async () => {
+    const r = query(ref(db,'ranking'), orderByChild('seconds'), limitToFirst(10));
+    const snap = await get(r);
+    const rows = [];
+    snap.forEach(child => {
+      const value = child.val();
+      if(value && !value.diagnostic) rows.push({ id: child.key, ...value });
+    });
+    rows.sort((a,b) => Number(a.seconds) - Number(b.seconds) || Number(a.moves) - Number(b.moves));
+    return rows;
+  };
+
+  window._firebaseReady = true;
+  window._firebaseError = '';
+  window.dispatchEvent(new Event('firebase-ready'));
+} catch (e) {
+  console.error('Firebase init error:', e);
+  window._firebaseReady = false;
+  window._firebaseError = e.message || 'Erro ao iniciar Firebase.';
+  window.dispatchEvent(new Event('firebase-error'));
+}
+</script>
+
+<script>
+// ── MEMBROS ──
+const MEMBROS = [
+  {nome:"Alicia Paixão",   iniciais:"AL", foto:"fotos-pixar/alicia-paixao.jpg"},
+  {nome:"Aline Cordeiro",  iniciais:"AC", foto:"fotos-pixar/aline-cordeiro.jpg"},
+  {nome:"Andre Souza",     iniciais:"AS", foto:"fotos-pixar/andre-souza.jpg"},
+  {nome:"Ayla Boneli",     iniciais:"AY", foto:"fotos-pixar/ayla-boneli.jpg"},
+  {nome:"Cris Paixão",     iniciais:"CR", foto:"fotos-pixar/cris-paixao.jpg"},
+  {nome:"Daniele Souza",   iniciais:"DA", foto:"fotos-pixar/daniele-souza.jpg"},
+  {nome:"Deybson Soares",  iniciais:"DE", foto:"fotos-pixar/deybson-soares.jpg"},
+  {nome:"Edvan Lima",      iniciais:"EL", foto:"fotos-pixar/edvan-lima.jpg"},
+  {nome:"Felipe Paixão",   iniciais:"FE", foto:"fotos-pixar/felipe-paixao.jpg"},
+  {nome:"Gabriela Paixão", iniciais:"GA", foto:"fotos-pixar/gabriela-paixao.jpg"},
+  {nome:"Leonardo Poloni", iniciais:"LP", foto:"fotos-pixar/leonardo-poloni.jpg"},
+  {nome:"Márcia Santos",   iniciais:"MA", foto:"fotos-pixar/marcia-santos.jpg"},
+  {nome:"Michele Lopes",   iniciais:"MI", foto:"fotos-pixar/michele-lopes.jpg"},
+  {nome:"Othilia Novais",  iniciais:"OT", foto:"fotos-pixar/othilia-novais.jpg"},
+  {nome:"Rafael Generoso", iniciais:"RG", foto:"fotos-pixar/rafael-generoso.jpg"},
+  {nome:"Samuel Muller",   iniciais:"SM", foto:"fotos-pixar/samuel-muller.jpg"},
+];
+
+// ── STATE ──
+let mode=1, players=[{name:'',score:0},{name:'',score:0}];
+let currentPlayer=0, flipped=[], matched=0, locked=false;
+let timerInterval=null, seconds=0, totalMoves=0;
+let activeTab='setup';
+let lastSoloScore=null, scoreSaved=false;
+
+// ── TABS ──
+function showTab(tab) {
+  activeTab = tab;
+  document.querySelectorAll('.tab').forEach((t,i)=>{
+    t.classList.toggle('active', (i===0&&tab==='setup')||(i===1&&tab==='ranking'));
+  });
+  document.getElementById('setupScreen').style.display   = tab==='setup'   ? 'block' : 'none';
+  document.getElementById('rankingScreen').style.display = tab==='ranking' ? 'block' : 'none';
+  document.getElementById('gameScreen').style.display    = 'none';
+  if(tab==='ranking') loadRanking();
+}
+
+// ── FORMAT TIME ──
+function formatTime(s){
+  s = Number.isFinite(Number(s)) ? Number(s) : 0;
+  const m=Math.floor(s/60).toString().padStart(2,'0');
+  return `${m}:${(s%60).toString().padStart(2,'0')}`;
+}
+
+function escapeHtml(value){
+  return String(value ?? '').replace(/[&<>"']/g, ch => ({
+    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+  }[ch]));
+}
+
+function cleanPlayerName(value, fallback){
+  const name = String(value || '').trim().replace(/\s+/g,' ').slice(0,16);
+  return name || fallback;
+}
+
+function friendlyFirebaseError(e, action='acessar o ranking'){
+  const code = e?.code || '';
+  const message = e?.message || window._firebaseError || '';
+  if(code === 'PERMISSION_DENIED' || /permission denied/i.test(message)){
+    return `O Firebase negou permissão para ${action}. Verifique as regras do Realtime Database.`;
+  }
+  if(/network|failed to fetch|offline/i.test(message)){
+    return 'Não consegui conectar ao Firebase. Confira sua internet e tente novamente.';
+  }
+  return `Não foi possível ${action}. ${escapeHtml(message || 'Tente novamente em alguns instantes.')}`;
+}
+
+// ── RANKING ──
+async function loadRanking() {
+  const list = document.getElementById('rankingList');
+  list.innerHTML = '<div class="ranking-loading">Carregando...</div>';
+  if (!window._firebaseReady) {
+    list.innerHTML = `<div class="ranking-empty">Ranking indisponível no momento.<br><small>${escapeHtml(window._firebaseError || 'Firebase não carregou.')}</small></div>`;
+    return;
+  }
+  try {
+    const rows = await window._fbLoadRanking();
+    if (!rows.length) {
+      list.innerHTML = '<div class="ranking-empty">Nenhuma pontuação ainda.<br>Seja o primeiro! 🏆</div>';
+      return;
+    }
+    const medals = ['medal-1','medal-2','medal-3'];
+    list.innerHTML = rows.map((r,i) => `
+      <div class="ranking-row ${i===0?'top1':i===1?'top2':i===2?'top3':''}">
+        <div class="rank-pos ${medals[i]||''}">${i===0?'':'#'+(i+1)}</div>
+        <div class="rank-name">${escapeHtml(r.name)}</div>
+        <div class="rank-moves">${Number(r.moves) || 0} jog.</div>
+        <div class="rank-time">${formatTime(r.seconds)}</div>
+      </div>`).join('');
+  } catch(e) {
+    console.error('Firebase ranking error:', e);
+    list.innerHTML = `<div class="ranking-empty">${friendlyFirebaseError(e, 'carregar o ranking')}</div>`;
+  }
+}
+
+// ── SETUP ──
+function selectMode(m){
+  mode=m;
+  document.getElementById('btn1p').classList.toggle('active',m===1);
+  document.getElementById('btn2p').classList.toggle('active',m===2);
+  document.getElementById('p2group').style.display=m===2?'flex':'none';
+}
+
+function startGame(){
+  const n1=cleanPlayerName(document.getElementById('name1').value,'Jogador 1');
+  const n2=cleanPlayerName(document.getElementById('name2').value,'Jogador 2');
+  players=[{name:n1,score:0},{name:n2,score:0}];
+  currentPlayer=0; flipped=[]; matched=0; locked=false; seconds=0; totalMoves=0;
+  document.getElementById('setupScreen').style.display='none';
+  document.getElementById('rankingScreen').style.display='none';
+  document.getElementById('gameScreen').style.display='flex';
+  document.getElementById('gameScreen').style.flexDirection='column';
+  lastSoloScore=null; scoreSaved=false;
+  buildScoreboard(); buildBoard();
+  clearInterval(timerInterval);
+  timerInterval=setInterval(()=>{
+    seconds++;
+    const el=document.getElementById('timerEl');
+    if(el) el.textContent=formatTime(seconds);
+  },1000);
+}
+
+// ── SCOREBOARD ──
+function buildScoreboard(){
+  const sb=document.getElementById('scoreboard');
+  if(mode===1){
+    sb.innerHTML=`
+      <div class="score-box"><div class="score-name solo">${escapeHtml(players[0].name)}</div>
+        <div class="score-num" id="movesEl">0</div><div class="score-sub">Jogadas</div></div>
+      <div class="score-box"><div class="score-name solo">Pares</div>
+        <div class="score-num" id="pairsEl">0</div><div class="score-sub">de 16</div></div>
+      <div class="score-box"><div class="score-name solo">Tempo</div>
+        <div class="score-timer" id="timerEl">00:00</div><div class="score-sub">mm:ss</div></div>`;
+    document.getElementById('turnBar').innerHTML='';
+  } else {
+    sb.innerHTML=`
+      <div class="score-box active-turn" id="sbox0">
+        <div class="score-name p1">${escapeHtml(players[0].name)}</div>
+        <div class="score-num" id="score0">0</div><div class="score-sub">pares</div></div>
+      <div class="score-box" style="background:transparent;border:none;display:flex;align-items:center">
+        <div class="score-timer" id="timerEl">00:00</div></div>
+      <div class="score-box" id="sbox1">
+        <div class="score-name p2">${escapeHtml(players[1].name)}</div>
+        <div class="score-num" id="score1">0</div><div class="score-sub">pares</div></div>`;
+    updateTurnBar();
+  }
+}
+
+function updateTurnBar(){
+  if(mode!==2) return;
+  const col=currentPlayer===0?'var(--p1)':'var(--p2)';
+  document.getElementById('turnBar').innerHTML=`Vez de <span style="color:${col}">${escapeHtml(players[currentPlayer].name)}</span>`;
+  document.getElementById('sbox0')?.classList.toggle('active-turn',currentPlayer===0);
+  document.getElementById('sbox1')?.classList.toggle('active-turn',currentPlayer===1);
+}
+
+// ── BOARD ──
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a}
+
+function buildBoard(){
+  const cards=shuffle([...MEMBROS,...MEMBROS].map((m,i)=>({...m,uid:i})));
+  const board=document.getElementById('board');
+  board.innerHTML='';
+  cards.forEach(m=>{
+    const card=document.createElement('div');
+    card.className='card';
+    card.dataset.nome=m.nome;
+    card.innerHTML=`<div class="card-inner">
+      <div class="card-face card-back">
+        <img src="logo3_branco.png" alt="ID" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="card-back-fallback" style="display:none">[ID]</div>
+      </div>
+      <div class="card-face card-front">
+        <img src="${m.foto}" alt="${m.nome}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="card-initials" style="display:none">${m.iniciais}</div>
+        <div class="card-name">${m.nome}</div>
+      </div></div>`;
+    card.addEventListener('click',()=>flipCard(card));
+    board.appendChild(card);
+  });
+}
+
+// ── FLIP ──
+function flipCard(card){
+  if(locked||card.classList.contains('flipped')||card.classList.contains('matched')) return;
+  card.classList.add('flipped');
+  flipped.push(card);
+  if(flipped.length===2){
+    locked=true; totalMoves++;
+    players[currentPlayer].score; // track
+    if(mode===1) document.getElementById('movesEl').textContent=totalMoves;
+    const [a,b]=flipped;
+    if(a.dataset.nome===b.dataset.nome){
+      matched++;
+      players[currentPlayer].score++;
+      setTimeout(()=>{
+        a.classList.add('matched'); b.classList.add('matched');
+        flipped=[]; locked=false;
+        if(mode===1) document.getElementById('pairsEl').textContent=matched;
+        else{ document.getElementById(`score${currentPlayer}`).textContent=players[currentPlayer].score; updateTurnBar(); }
+        if(matched===16) endGame();
+      },400);
+    } else {
+      setTimeout(()=>{
+        a.classList.add('shake'); b.classList.add('shake');
+        setTimeout(()=>{
+          a.classList.remove('flipped','shake'); b.classList.remove('flipped','shake');
+          flipped=[]; locked=false;
+          if(mode===2){ currentPlayer=1-currentPlayer; updateTurnBar(); }
+        },350);
+      },750);
+    }
+  }
+}
+
+// ── END GAME ──
+async function endGame(){
+  clearInterval(timerInterval);
+  const ws=document.getElementById('winScreen');
+  const finalTime=formatTime(seconds);
+  const saveBox=document.getElementById('winSaveBox');
+  const saveHelp=document.getElementById('winSaveHelp');
+  const rankInput=document.getElementById('rankNameInput');
+  const saveBtn=document.getElementById('saveRankBtn');
+  const rankPreview=document.getElementById('winRankPreview');
+
+  saveBox.style.display='none';
+  saveHelp.className='win-save-help';
+  saveHelp.textContent='Confira seu nome e toque em salvar para aparecer no ranking global.';
+  saveBtn.disabled=false;
+  saveBtn.textContent='Salvar';
+  rankPreview.style.display='none';
+
+  let titleHTML='', statsHTML='';
+
+  if(mode===1){
+    const name=players[0].name;
+    titleHTML=`Parabéns, <em>${escapeHtml(name)}</em>!`;
+    statsHTML=`
+      <div class="win-stat"><div class="win-stat-num">${finalTime}</div><div class="win-stat-label">Tempo</div></div>
+      <div class="win-stat"><div class="win-stat-num">${totalMoves}</div><div class="win-stat-label">Jogadas</div></div>
+      <div class="win-stat"><div class="win-stat-num">16</div><div class="win-stat-label">Pares</div></div>`;
+
+    document.getElementById('winTitle').innerHTML=titleHTML;
+    document.getElementById('winStats').innerHTML=statsHTML;
+    document.getElementById('winSaving').textContent='';
+    lastSoloScore={ name, seconds, moves: totalMoves };
+    scoreSaved=false;
+    rankInput.value=name;
+    saveBox.style.display='block';
+    ws.style.display='flex';
+
+  } else {
+    const p0=players[0], p1=players[1];
+    const tie=p0.score===p1.score;
+    const winner=tie?null:(p0.score>p1.score?p0:p1);
+    titleHTML=tie?'Empate! 🤝':`Parabéns, <em>${escapeHtml(winner.name)}</em>!`;
+    statsHTML=`
+      <div class="win-stat" style="border-color:rgba(201,168,76,.35)">
+        <div class="win-stat-num" style="color:var(--p1)">${p0.score}</div>
+        <div class="win-stat-label" style="color:var(--p1)">${escapeHtml(p0.name)}</div></div>
+      <div class="win-stat"><div class="win-stat-num">${finalTime}</div><div class="win-stat-label">Tempo</div></div>
+      <div class="win-stat" style="border-color:rgba(91,143,212,.35)">
+        <div class="win-stat-num" style="color:var(--p2)">${p1.score}</div>
+        <div class="win-stat-label" style="color:var(--p2)">${escapeHtml(p1.name)}</div></div>`;
+    document.getElementById('winTitle').innerHTML=titleHTML;
+    document.getElementById('winStats').innerHTML=statsHTML;
+    document.getElementById('winSaving').textContent='Ranking global disponível no modo 1 jogador.';
+    ws.style.display='flex';
+  }
+}
+
+async function saveWinScore(){
+  if(!lastSoloScore || scoreSaved) return;
+
+  const input=document.getElementById('rankNameInput');
+  const btn=document.getElementById('saveRankBtn');
+  const help=document.getElementById('winSaveHelp');
+  const saving=document.getElementById('winSaving');
+  const rp=document.getElementById('winRankPreview');
+  const name=cleanPlayerName(input.value,lastSoloScore.name || 'Jogador');
+  input.value=name;
+
+  if(!window._firebaseReady || !window._fbSaveScore){
+    help.className='win-save-help error';
+    help.textContent=window._firebaseError || 'Firebase não carregou. Recarregue a página e tente novamente.';
+    return;
+  }
+
+  btn.disabled=true;
+  btn.textContent='Salvando...';
+  help.className='win-save-help';
+  help.textContent='Enviando sua pontuação para o ranking global.';
+  saving.textContent='';
+
+  try{
+    await window._fbSaveScore(name,lastSoloScore.seconds,lastSoloScore.moves);
+    scoreSaved=true;
+    players[0].name=name;
+    help.className='win-save-help ok';
+    help.textContent='Pontuação enviada com sucesso.';
+    btn.textContent='Salvo';
+    rp.innerHTML='✅ Pontuação salva no ranking!';
+
+    try{
+      await new Promise(r => setTimeout(r, 500));
+      const rows=await window._fbLoadRanking();
+      const pos=rows.findIndex(r => r.name === name && Number(r.seconds) === Number(lastSoloScore.seconds) && Number(r.moves) === Number(lastSoloScore.moves)) + 1;
+      if(pos === 1) rp.innerHTML='🥇 <strong>NOVO RECORDE!</strong> Você está em 1º lugar no ranking!';
+      else if(pos === 2) rp.innerHTML='🥈 Você está em <em>2º lugar</em> no ranking global!';
+      else if(pos === 3) rp.innerHTML='🥉 Você está em <em>3º lugar</em> no ranking global!';
+      else if(pos > 0) rp.innerHTML=`Você ficou em <em>${pos}º lugar</em> no ranking global!`;
+    } catch(loadError){
+      console.warn('Ranking reload after save failed:', loadError);
+      saving.textContent='Salvo. Não consegui atualizar a posição agora, mas a pontuação foi enviada.';
+    }
+
+    rp.style.display='block';
+  } catch(e){
+    console.error('Firebase save error:', e);
+    btn.disabled=false;
+    btn.textContent='Tentar de novo';
+    help.className='win-save-help error';
+    help.textContent=friendlyFirebaseError(e,'salvar sua pontuação');
+  }
+}
+
+function rematch(){
+  document.getElementById('winScreen').style.display='none';
+  document.getElementById('winRankPreview').style.display='none';
+  document.getElementById('winSaveBox').style.display='none';
+  players.forEach(p=>{p.score=0;});
+  currentPlayer=0; flipped=[]; matched=0; locked=false; seconds=0; totalMoves=0; lastSoloScore=null; scoreSaved=false;
+  buildScoreboard(); buildBoard();
+  clearInterval(timerInterval);
+  timerInterval=setInterval(()=>{seconds++;const el=document.getElementById('timerEl');if(el)el.textContent=formatTime(seconds);},1000);
+}
+
+function closeWin(){ document.getElementById('winScreen').style.display='none'; }
+
+function backToSetup(){
+  clearInterval(timerInterval);
+  document.getElementById('winScreen').style.display='none';
+  document.getElementById('gameScreen').style.display='none';
+  showTab('setup');
+}
+
+// Firebase ready event
+window.addEventListener('firebase-ready', () => {
+  if(activeTab==='ranking') loadRanking();
+});
+
+// Init
+showTab('setup');
+</script>
+</body>
+</html>

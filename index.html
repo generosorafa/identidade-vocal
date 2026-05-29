@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grupo Identidade Vocal</title>
+<meta name="description" content="Grupo Identidade Vocal — Grupo musical da Igreja Adventista, de Piracicaba, SP. Música, fé e ministério.">
+<meta name="theme-color" content="#0A0A0A">
+
+<!-- FAVICON + ÍCONES -->
+<link rel="icon" type="image/png" sizes="512x512" href="logo3_branco.png">
+<link rel="shortcut icon" type="image/png" href="logo3_branco.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-title" content="Identidade Vocal">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gold:#C9A84C;--gold-light:#E8D08A;--gold-dim:#8A6E30;
+  --dark:#0A0A0A;--dark2:#111111;--dark3:#1A1A1A;--dark4:#222222;
+  --text:#E8E4DC;--text-muted:#9A9186;--text-dim:#5A554E;
+  --ff-display:'Cormorant Garamond',Georgia,serif;
+  --ff-body:'Outfit',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{background:var(--dark);color:var(--text);font-family:var(--ff-body);font-weight:300;line-height:1.7;overflow-x:hidden}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--dark2)}
+::-webkit-scrollbar-thumb{background:var(--gold-dim);border-radius:2px}
+
+/* TOPBAR */
+#topbar{position:fixed;top:0;left:0;width:100%;z-index:1000;transition:all .4s ease}
+#topbar.scrolled{background:rgba(10,10,10,.97);border-bottom:1px solid rgba(201,168,76,.15)}
+.tb-inner{max-width:1200px;margin:0 auto;padding:0 2rem;display:flex;align-items:center;justify-content:space-between;height:70px}
+.tb-logo{display:flex;align-items:center;text-decoration:none;transition:opacity .25s}
+.tb-logo:hover{opacity:.75}
+.tb-logo img{height:38px;width:auto;display:block;filter:brightness(1.05)}
+nav{display:flex;align-items:center;gap:1.5rem}
+nav a{font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;transition:color .2s;padding:4px 0;border-bottom:1px solid transparent;white-space:nowrap}
+nav a:hover,nav a.active{color:var(--gold);border-bottom-color:var(--gold)}
+
+/* DROPDOWN EXTRAS */
+.tb-extras{position:relative}
+.tb-extras-btn{font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);background:rgba(201,168,76,.1);border:1px solid rgba(201,168,76,.25);padding:.35rem .9rem;cursor:pointer;font-family:var(--ff-body);transition:all .2s;white-space:nowrap;display:flex;align-items:center;gap:.4rem}
+.tb-extras-btn:hover{background:rgba(201,168,76,.18);border-color:var(--gold)}
+.tb-extras-dropdown{position:absolute;top:calc(100% + .6rem);right:0;background:rgba(10,10,10,.98);border:1px solid rgba(201,168,76,.2);min-width:160px;display:none;flex-direction:column;z-index:200;box-shadow:0 8px 30px rgba(0,0,0,.5)}
+.tb-extras-dropdown.open{display:flex}
+.tb-extras-dropdown a{font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;padding:.85rem 1.2rem;transition:all .2s;border-bottom:1px solid rgba(201,168,76,.08);display:flex;align-items:center;gap:.6rem}
+.tb-extras-dropdown a:last-child{border-bottom:none}
+.tb-extras-dropdown a:hover{color:var(--gold);background:rgba(201,168,76,.06);padding-left:1.5rem}
+.tb-socials{display:flex;gap:.9rem;align-items:center}
+.tb-socials a{color:var(--text-dim);text-decoration:none;transition:color .2s;display:flex;align-items:center}
+.tb-socials a:hover{color:var(--gold)}
+.tb-socials svg{width:18px;height:18px;fill:currentColor;display:block}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.hamburger span{display:block;width:24px;height:1px;background:var(--text-muted);transition:all .3s}
+
+/* MOBILE MENU */
+.mobile-menu{display:none;position:fixed;inset:0;background:rgba(10,10,10,.99);z-index:999;flex-direction:column;align-items:center;justify-content:center;gap:0;overflow-y:auto;padding:5rem 2rem 3rem}
+.mobile-menu.open{display:flex}
+.mobile-menu a{font-family:var(--ff-display);font-size:clamp(1.6rem,7vh,2.2rem);font-weight:300;color:var(--text-muted);text-decoration:none;letter-spacing:.1em;transition:color .2s;padding:.55rem 0;width:100%;text-align:center}
+.mobile-menu a:hover{color:var(--gold)}
+.mobile-close{position:absolute;top:1.5rem;right:2rem;font-size:2rem;color:var(--text-muted);cursor:pointer;background:none;border:none}
+
+/* HERO */
+#inicio{height:100vh;min-height:600px;position:relative;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(160deg,#0f0e0b 0%,#1a1508 40%,#0a0a0a 100%)}
+.hero-photo{position:absolute;inset:0;background-image:url('foto-capa.jpg');background-size:cover;background-position:center top;filter:blur(6px) brightness(.35) saturate(.7);transform:scale(1.08);transition:opacity 1s ease}
+.hero-glow{position:absolute;top:30%;left:50%;transform:translate(-50%,-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(201,168,76,.06) 0%,transparent 70%);pointer-events:none;z-index:1}
+.hero-lines{position:absolute;inset:0;overflow:hidden;opacity:.04;z-index:1}
+.hero-lines::before{content:'';position:absolute;top:0;left:50%;width:1px;height:100%;background:var(--gold)}
+.hero-lines::after{content:'';position:absolute;top:50%;left:0;width:100%;height:1px;background:var(--gold)}
+.hero-content{position:relative;z-index:2;padding:0 1rem}
+.hero-eyebrow{font-size:.7rem;letter-spacing:.45em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:1.5rem;opacity:0;animation:fadeUp .8s .3s ease forwards}
+.hero-title{font-family:var(--ff-display);font-size:clamp(3.5rem,10vw,8rem);font-weight:300;line-height:1;letter-spacing:.05em;color:var(--text);margin-bottom:.3rem;opacity:0;animation:fadeUp .8s .5s ease forwards}
+.hero-title strong{font-weight:600;color:var(--gold);font-style:italic}
+.hero-subtitle{font-family:var(--ff-display);font-size:clamp(1rem,2.5vw,1.6rem);font-weight:300;font-style:italic;color:var(--text-muted);margin-bottom:2.5rem;opacity:0;animation:fadeUp .8s .7s ease forwards}
+.hero-divider{width:60px;height:1px;background:var(--gold);margin:0 auto 2.5rem;opacity:0;animation:fadeUp .8s .9s ease forwards}
+.hero-cta{display:inline-flex;gap:1rem;flex-wrap:wrap;justify-content:center;opacity:0;animation:fadeUp .8s 1.1s ease forwards}
+.btn{padding:.8rem 2.2rem;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;transition:all .3s;cursor:pointer;border:none;display:inline-block}
+.btn-gold{background:var(--gold);color:#0a0a0a;font-weight:500}
+.btn-gold:hover{background:var(--gold-light)}
+.btn-outline{border:1px solid rgba(201,168,76,.4);color:var(--gold);background:transparent}
+.btn-outline:hover{border-color:var(--gold);background:rgba(201,168,76,.08)}
+.hero-scroll{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;opacity:.5;animation:bounce 2s infinite}
+.hero-scroll span{font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--text-muted)}
+.hero-scroll-line{width:1px;height:50px;background:linear-gradient(to bottom,var(--gold),transparent)}
+
+/* SECTIONS */
+section{padding:7rem 2rem}
+.section-inner{max-width:1100px;margin:0 auto}
+.section-label{font-size:.65rem;letter-spacing:.45em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem;display:block}
+.section-title{font-family:var(--ff-display);font-size:clamp(2.5rem,5vw,4rem);font-weight:300;line-height:1.1;color:var(--text);margin-bottom:1rem}
+.section-title em{font-style:italic;color:var(--gold)}
+.section-divider{width:50px;height:1px;background:var(--gold);margin:1.5rem 0 2.5rem}
+
+/* SOBRE */
+#sobre{background:var(--dark2)}
+.sobre-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.sobre-photo-frame{aspect-ratio:3/4;background:var(--dark3);border:1px solid rgba(201,168,76,.15);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+.sobre-photo-frame img{width:100%;height:100%;object-fit:cover}
+.photo-placeholder{display:flex;flex-direction:column;align-items:center;gap:1rem;color:var(--text-dim)}
+.photo-placeholder .icon{font-size:3rem}
+.photo-placeholder p{font-size:.75rem;letter-spacing:.2em;text-transform:uppercase}
+.frame-corner{position:absolute;width:30px;height:30px;border-color:var(--gold);border-style:solid;opacity:.6}
+.fc-tl{top:-8px;left:-8px;border-width:1px 0 0 1px}
+.fc-tr{top:-8px;right:-8px;border-width:1px 1px 0 0}
+.fc-bl{bottom:-8px;left:-8px;border-width:0 0 1px 1px}
+.fc-br{bottom:-8px;right:-8px;border-width:0 1px 1px 0}
+.sobre-text p{color:var(--text-muted);margin-bottom:1.2rem;font-size:1rem}
+.sobre-text blockquote{border-left:2px solid var(--gold);padding-left:1.5rem;margin:2rem 0;font-family:var(--ff-display);font-size:1.4rem;font-style:italic;font-weight:300;color:var(--text);line-height:1.5}
+
+/* STATS */
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(201,168,76,.12);margin-top:3.5rem;border:1px solid rgba(201,168,76,.12)}
+.stat-item{background:var(--dark2);padding:2rem 1.5rem;text-align:center}
+.stat-number{font-family:var(--ff-display);font-size:clamp(2.2rem,4vw,3.5rem);font-weight:300;color:var(--gold);line-height:1;display:block}
+.stat-label{font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:var(--text-dim);margin-top:.5rem;display:block}
+@media(max-width:700px){
+  .stats-grid{grid-template-columns:repeat(2,1fr)}
+  .sobre-grid{grid-template-columns:1fr;gap:3rem}
+}
+
+/* MEMBROS */
+#membros{background:var(--dark)}
+.membros-head{display:flex;align-items:flex-end;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.membros-title-wrap{min-width:260px}
+.membros-filters{display:flex;gap:.6rem;flex-wrap:wrap;justify-content:flex-end}
+.membros-filter{background:transparent;border:1px solid rgba(201,168,76,.18);color:var(--text-muted);padding:.65rem 1.05rem;font-family:var(--ff-body);font-size:.58rem;font-weight:600;letter-spacing:.22em;text-transform:uppercase;cursor:pointer;transition:all .22s}
+.membros-filter:hover,.membros-filter.active{border-color:rgba(201,168,76,.7);color:var(--gold);background:rgba(201,168,76,.08)}
+.membros-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:1.4rem;margin-top:3rem}
+.membro-card{position:relative;min-height:310px;background:linear-gradient(180deg,rgba(26,26,26,.95),rgba(10,10,10,.98));border:1px solid rgba(201,168,76,.1);overflow:hidden;cursor:default;transition:transform .3s,border-color .3s,opacity .3s}
+.membro-card:hover{transform:translateY(-6px);border-color:rgba(201,168,76,.32)}
+.membro-card::after{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(10,10,10,.18) 0%,rgba(10,10,10,.45) 45%,rgba(10,10,10,.93) 100%);z-index:1;pointer-events:none}
+.membro-avatar{position:absolute;inset:0;background:var(--dark3);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.membro-avatar img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:saturate(.78) brightness(.62);transition:transform .45s,filter .45s}
+.membro-card:hover .membro-avatar img{transform:scale(1.04);filter:saturate(.95) brightness(.72)}
+.avatar-initials{font-family:var(--ff-display);font-size:3.6rem;font-weight:300;color:var(--gold-dim);letter-spacing:.06em}
+.membro-badge{position:absolute;top:1rem;right:1rem;z-index:2;border:1px solid rgba(201,168,76,.35);background:rgba(201,168,76,.12);color:var(--gold);padding:.28rem .55rem;font-size:.55rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase}
+.membro-info{position:absolute;left:1rem;right:1rem;bottom:1rem;z-index:2}
+.membro-name{font-family:var(--ff-display);font-size:1.18rem;font-weight:400;color:var(--text);line-height:1.1;margin-bottom:.35rem}
+.membro-voz{font-size:.62rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.membros-empty{display:none;margin-top:2rem;color:var(--text-muted);font-family:var(--ff-display);font-size:1.25rem;text-align:center}
+
+/* MÚSICAS */
+#musicas{background:var(--dark2)}
+.musicas-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem;margin-top:3rem}
+.musica-card{background:var(--dark3);border:1px solid rgba(201,168,76,.1);padding:1.5rem;transition:all .3s;position:relative;overflow:hidden}
+.musica-card::before{content:'';position:absolute;top:0;left:0;width:2px;height:0;background:var(--gold);transition:height .3s}
+.musica-card:hover::before{height:100%}
+.musica-card:hover{border-color:rgba(201,168,76,.25);transform:translateY(-3px)}
+.musica-type{font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:.5rem}
+.musica-title{font-family:var(--ff-display);font-size:1.4rem;font-weight:400;color:var(--text);margin-bottom:.3rem}
+.musica-year{font-size:.8rem;color:var(--text-dim)}
+.musica-links{display:flex;gap:.8rem;margin-top:1rem;flex-wrap:wrap}
+.musica-link{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text-muted);text-decoration:none;border-bottom:1px solid rgba(201,168,76,.3);padding-bottom:1px;transition:color .2s,border-color .2s}
+.musica-link:hover{color:var(--gold);border-color:var(--gold)}
+
+/* VÍDEOS estilo full-width cinematic */
+#videos{background:var(--dark);padding:0}
+.video-panel{position:relative;width:100%;aspect-ratio:16/6;overflow:hidden;cursor:pointer;display:block;text-decoration:none}
+.video-panel-bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .6s ease}
+.video-panel:hover .video-panel-bg{transform:scale(1.03)}
+.video-panel-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.8) 0%,rgba(0,0,0,.3) 50%,rgba(0,0,0,.45) 100%);transition:background .3s}
+.video-panel:hover .video-panel-overlay{background:linear-gradient(to top,rgba(0,0,0,.88) 0%,rgba(0,0,0,.35) 50%,rgba(0,0,0,.5) 100%)}
+.video-panel-content{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:.8rem;padding:1.5rem}
+.video-panel-label{font-size:.6rem;letter-spacing:.45em;text-transform:uppercase;color:rgba(255,255,255,.85);background:rgba(0,0,0,.35);padding:.3rem 1rem;border:1px solid rgba(255,255,255,.25)}
+.video-panel-title{font-family:var(--ff-display);font-size:clamp(1.4rem,4vw,3.5rem);font-weight:300;color:#fff;letter-spacing:.06em;text-transform:uppercase;text-shadow:0 2px 20px rgba(0,0,0,.6);line-height:1.2}
+.video-play-btn{width:56px;height:56px;border-radius:50%;border:2px solid rgba(255,255,255,.8);display:flex;align-items:center;justify-content:center;transition:all .3s;background:rgba(255,255,255,.1);flex-shrink:0}
+.video-panel:hover .video-play-btn{background:rgba(255,255,255,.25);border-color:#fff;transform:scale(1.1)}
+.video-play-btn svg{width:20px;height:20px;fill:#fff;margin-left:3px}
+.videos-header{max-width:1100px;margin:0 auto;padding:7rem 2rem 3rem}
+.videos-footer{max-width:1100px;margin:0 auto;padding:3rem 2rem;text-align:center}
+@media(max-width:700px){
+  .video-panel{aspect-ratio:16/9}
+  .video-panel-label{display:none}
+  .video-panel-title{font-size:clamp(1.3rem,6vw,2rem)}
+  .video-play-btn{width:52px;height:52px}
+  .videos-header{padding:5rem 1.5rem 2rem}
+}
+
+/* AGENDA */
+#agenda{background:var(--dark2)}
+.agenda-trimestre{margin-bottom:3rem}
+.agenda-trimestre-titulo{font-size:.65rem;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);border-bottom:1px solid rgba(201,168,76,.2);padding-bottom:.8rem;margin-bottom:0}
+.agenda-subheading{font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin:1.8rem 0 .3rem}
+.agenda-subheading.past{color:var(--text-dim);margin-top:2.4rem}
+.agenda-list{display:flex;flex-direction:column;gap:0}
+.agenda-item{display:grid;grid-template-columns:90px 1fr auto;align-items:center;gap:2rem;padding:1.6rem 0;border-bottom:1px solid rgba(201,168,76,.07);transition:all .3s;color:inherit}
+.agenda-item:hover{padding-left:.8rem;background:rgba(201,168,76,.03)}
+.agenda-item.past{opacity:.58}
+.agenda-item.past:hover{opacity:.86}
+.agenda-item.past .agenda-day{color:var(--gold-dim)}
+.agenda-day{font-family:var(--ff-display);font-size:2.3rem;font-weight:300;color:var(--gold);line-height:1;text-align:center}
+.agenda-month{font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--text-dim);text-align:center}
+.agenda-venue{font-size:1.05rem;font-weight:500;color:var(--text);margin-bottom:.35rem}
+.agenda-details{display:flex;align-items:center;gap:1rem;flex-wrap:wrap;font-size:.78rem;color:var(--text-muted)}
+.agenda-detail{display:inline-flex;align-items:center;gap:.35rem}
+.agenda-detail-icon{color:var(--text-dim);font-size:.85rem}
+.agenda-status{display:inline-block;margin-top:.45rem;font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;color:var(--text-dim);border:1px solid rgba(201,168,76,.14);padding:.12rem .45rem}
+.agenda-actions{display:flex;align-items:center;justify-content:flex-end;gap:.65rem;flex-wrap:wrap}
+.agenda-action{min-width:102px;min-height:40px;display:inline-flex;align-items:center;justify-content:center;gap:.5rem;border:1px solid rgba(201,168,76,.2);background:rgba(10,10,10,.18);color:var(--text-muted);text-decoration:none;font-size:.62rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;transition:all .22s}
+.agenda-action svg{width:16px;height:16px;display:block;flex-shrink:0}
+.agenda-action.maps{border-color:rgba(66,133,244,.45);color:#5bb8ff}
+.agenda-action.waze{border-color:rgba(0,220,185,.38);color:#20e0c1}
+.agenda-action:hover{transform:translateY(-2px);background:rgba(201,168,76,.07)}
+.agenda-action.maps:hover{border-color:#5bb8ff}
+.agenda-action.waze:hover{border-color:#20e0c1}
+.agenda-empty{color:var(--text-muted);font-style:italic;text-align:center;padding:3rem 0;font-family:var(--ff-display);font-size:1.3rem}
+@media(max-width:600px){
+  .agenda-item{grid-template-columns:70px 1fr;gap:1rem;padding:1.3rem 0}
+  .agenda-actions{grid-column:2;justify-content:flex-start;margin-top:.15rem}
+  .agenda-action{min-width:96px;min-height:38px;font-size:.58rem}
+  .agenda-day{font-size:1.9rem}
+}
+
+/* SONHO */
+#sonho{background:var(--dark2);position:relative;overflow:hidden;text-align:center}
+#sonho::before{content:'';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(201,168,76,.05) 0%,transparent 70%);pointer-events:none}
+.sonho-inner{position:relative;z-index:1;max-width:800px;margin:0 auto}
+.sonho-text{color:var(--text-muted);font-size:1.05rem;margin-bottom:1.2rem;max-width:620px;margin-left:auto;margin-right:auto}
+.sonho-metas{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem;margin:3rem 0}
+.meta-card{background:var(--dark3);border:1px solid rgba(201,168,76,.12);padding:2rem 1.5rem;text-align:center}
+.meta-icon{font-size:1.8rem;margin-bottom:.8rem;display:block}
+.meta-valor{font-family:var(--ff-display);font-size:2rem;font-weight:400;color:var(--gold);margin-bottom:.3rem}
+.meta-desc{font-size:.8rem;color:var(--text-muted);letter-spacing:.05em}
+.pix-area{background:var(--dark3);border:1px solid rgba(201,168,76,.2);padding:2rem;max-width:400px;margin:2rem auto 0;text-align:center}
+.pix-label{font-size:.65rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:.8rem}
+.pix-key{font-family:var(--ff-display);font-size:1.3rem;font-weight:400;color:var(--text);word-break:break-all}
+.pix-note{font-size:.75rem;color:var(--text-dim);margin-top:.5rem}
+
+/* CONTATO */
+#contato{background:var(--dark)}
+.contato-grid{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.contato-links{display:flex;flex-direction:column;gap:1rem}
+.contato-link{display:flex;align-items:center;gap:1rem;color:var(--text-muted);text-decoration:none;transition:color .2s;font-size:.9rem}
+.contato-link:hover{color:var(--gold)}
+.contato-link-icon{width:36px;height:36px;border:1px solid rgba(201,168,76,.2);display:flex;align-items:center;justify-content:center;font-size:.75rem;color:var(--gold-dim);flex-shrink:0;transition:all .2s}
+.contato-link:hover .contato-link-icon{border-color:var(--gold);color:var(--gold)}
+.contato-form{display:flex;flex-direction:column;gap:1rem}
+.form-group{display:flex;flex-direction:column;gap:.4rem}
+.form-label{font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;color:var(--text-dim)}
+.form-input{background:var(--dark3);border:1px solid rgba(201,168,76,.1);color:var(--text);padding:.9rem 1.2rem;font-family:var(--ff-body);font-size:.9rem;font-weight:300;transition:border-color .2s;outline:none;resize:none;width:100%}
+.form-input:focus{border-color:rgba(201,168,76,.4)}
+.form-input::placeholder{color:var(--text-dim)}
+
+/* FOOTER */
+footer{background:var(--dark2);border-top:1px solid rgba(201,168,76,.1);padding:3rem 2rem}
+.footer-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:2rem;flex-wrap:wrap}
+.footer-logo{font-family:var(--ff-display);font-size:1.2rem;color:var(--gold);font-weight:600}
+.footer-copy{font-size:.75rem;color:var(--text-dim);text-align:center}
+.footer-socials{display:flex;gap:1.2rem;align-items:center}
+.footer-socials a{color:var(--text-dim);text-decoration:none;transition:color .2s;display:flex;align-items:center}
+.footer-socials a:hover{color:var(--gold)}
+.footer-socials svg{width:18px;height:18px;fill:currentColor}
+
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav,.tb-socials{display:none}
+  .hamburger{display:flex}
+  .sobre-grid,.contato-grid{grid-template-columns:1fr;gap:3rem}
+  section{padding:5rem 1.5rem}
+  .agenda-item{grid-template-columns:70px 1fr;gap:1rem}
+  .agenda-time{display:none}
+  .videos-grid{grid-template-columns:1fr}
+}
+@media(max-width:600px){
+  .membros-head{align-items:flex-start}
+  .membros-filters{justify-content:flex-start;gap:.45rem}
+  .membros-filter{padding:.55rem .75rem;font-size:.52rem}
+  .membros-grid{grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:1rem}
+  .membro-card{min-height:245px}
+  .membro-name{font-size:1rem}
+  .musicas-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- SVG ICONS (hidden, referenced via use) -->
+<svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="icon-instagram" viewBox="0 0 24 24">
+    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+  </symbol>
+  <symbol id="icon-youtube" viewBox="0 0 24 24">
+    <path d="M23.495 6.205a3.007 3.007 0 0 0-2.088-2.088c-1.87-.501-9.396-.501-9.396-.501s-7.507-.01-9.396.501A3.007 3.007 0 0 0 .527 6.205a31.247 31.247 0 0 0-.522 5.805 31.247 31.247 0 0 0 .522 5.783 3.007 3.007 0 0 0 2.088 2.088c1.868.502 9.396.502 9.396.502s7.506 0 9.396-.502a3.007 3.007 0 0 0 2.088-2.088 31.247 31.247 0 0 0 .5-5.783 31.247 31.247 0 0 0-.5-5.805zM9.609 15.601V8.408l6.264 3.602z"/>
+  </symbol>
+  <symbol id="icon-spotify" viewBox="0 0 24 24">
+    <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"/>
+  </symbol>
+  <symbol id="icon-google-maps" viewBox="0 0 24 24">
+    <path fill="#1A73E8" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/>
+    <path fill="#34A853" d="M12 2v20s7-7.75 7-13c0-3.87-3.13-7-7-7z" opacity=".82"/>
+    <path fill="#FBBC04" d="M7.2 4.1 12 12.1l4.8-8A6.96 6.96 0 0 0 12 2a6.96 6.96 0 0 0-4.8 2.1z"/>
+    <path fill="#EA4335" d="M5 9c0 2.7 1.85 6.13 3.58 8.77L12 12.1 7.2 4.1A6.98 6.98 0 0 0 5 9z"/>
+    <circle cx="12" cy="9" r="2.35" fill="#fff"/>
+  </symbol>
+  <symbol id="icon-waze" viewBox="0 0 24 24">
+    <path fill="#33CCFF" d="M12.4 4.2c4.2 0 7.4 2.9 7.4 6.8 0 3.6-2.9 6.5-7 6.8H8.2l-3.4 2.4.8-3.8C3.6 15 2.5 13 2.5 10.8c0-3.8 4.2-6.6 9.9-6.6z"/>
+    <path fill="#0A0A0A" d="M7.2 10.1c0-.55.45-1 1-1s1 .45 1 1-.45 1-1 1-1-.45-1-1zm6.8 0c0-.55.45-1 1-1s1 .45 1 1-.45 1-1 1-1-.45-1-1zM8.1 13.1h7.2c-.6 1.35-1.85 2.15-3.6 2.15-1.72 0-3-.8-3.6-2.15z"/>
+    <circle cx="8.2" cy="18.2" r="1.7" fill="#0A0A0A"/>
+    <circle cx="16.1" cy="18.2" r="1.7" fill="#0A0A0A"/>
+  </symbol>
+</svg>
+
+<!-- TOPBAR -->
+<header id="topbar">
+  <div class="tb-inner">
+    <a class="tb-logo" href="#inicio">
+      <img src="logo2_cinza_claro.png" alt="Grupo Identidade Vocal">
+    </a>
+    <nav>
+      <a href="#inicio" class="active">Início</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#membros">Membros</a>
+      <a href="#musicas">Músicas</a>
+      <a href="#videos">Vídeos</a>
+      <a href="#agenda">Agenda</a>
+      <a href="#sonho">Sonho</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <div class="tb-extras" id="tbExtras">
+      <button class="tb-extras-btn" onclick="toggleExtras()">✦ Extras ▾</button>
+      <div class="tb-extras-dropdown" id="extrasDropdown">
+        <a href="jogo-memoria.html">🃏 Jogo da Memória</a>
+        <a href="kids.html">👶 Área Kids</a>
+      </div>
+    </div>
+    <div class="tb-socials">
+      <a href="https://instagram.com/grupoidentidadevocal" target="_blank" rel="noopener noreferrer" title="Instagram">
+        <svg><use href="#icon-instagram"/></svg>
+      </a>
+      <a href="https://youtube.com/@GrupoIdentidadeVocal" target="_blank" rel="noopener noreferrer" title="YouTube">
+        <svg><use href="#icon-youtube"/></svg>
+      </a>
+      <a href="https://open.spotify.com/intl-pt/artist/65ru8Sc7f6mfbmdx2k02ed" target="_blank" rel="noopener noreferrer" title="Spotify">
+        <svg><use href="#icon-spotify"/></svg>
+      </a>
+    </div>
+    <div class="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</header>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" onclick="toggleMenu()">✕</button>
+  <a href="#inicio" onclick="toggleMenu()">Início</a>
+  <a href="#sobre" onclick="toggleMenu()">Sobre</a>
+  <a href="#membros" onclick="toggleMenu()">Membros</a>
+  <a href="#musicas" onclick="toggleMenu()">Músicas</a>
+  <a href="#videos" onclick="toggleMenu()">Vídeos</a>
+  <a href="#agenda" onclick="toggleMenu()">Agenda</a>
+  <a href="#sonho" onclick="toggleMenu()">Sonho</a>
+  <a href="#contato" onclick="toggleMenu()">Contato</a>
+  <a href="jogo-memoria.html" style="color:var(--gold)">✦ Divirta-se</a>
+  <a href="kids.html" style="color:#EC4899">👶 Kids</a>
+</div>
+
+<!-- HERO -->
+<section id="inicio">
+  <div class="hero-bg"></div>
+  <div class="hero-photo"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-lines"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Igreja Adventista · Grupo Musical · Piracicaba, SP</p>
+    <div style="opacity:0;animation:fadeUp .8s .5s ease forwards;margin-bottom:1.5rem">
+      <img src="logo1_branco.png" alt="Grupo Identidade Vocal" style="height:clamp(160px,22vw,280px);width:auto;filter:drop-shadow(0 4px 24px rgba(0,0,0,.5))">
+    </div>
+    <p class="hero-subtitle">Cantar é a nossa identidade.<br>Adorar é o nosso propósito.</p>
+    <div class="hero-divider"></div>
+    <div class="hero-cta">
+      <a href="#sobre" class="btn btn-gold">Conheça o grupo</a>
+      <a href="#videos" class="btn btn-outline">Assista agora</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    <span>Rolar</span>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section id="sobre">
+  <div class="section-inner">
+    <div class="sobre-grid">
+      <div class="reveal" style="position:relative">
+        <div class="frame-corner fc-tl"></div>
+        <div class="frame-corner fc-tr"></div>
+        <div class="frame-corner fc-bl"></div>
+        <div class="frame-corner fc-br"></div>
+        <div class="sobre-photo-frame">
+          <img src="foto-quem-somos.jpg" alt="Grupo Identidade Vocal" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="photo-placeholder" style="display:none">
+            <div class="icon">🎵</div>
+            <p>Foto do grupo</p>
+          </div>
+        </div>
+      </div>
+      <div class="sobre-text reveal">
+        <span class="section-label">Quem somos</span>
+        <h2 class="section-title">Sobre o<br><em>Identidade Vocal</em></h2>
+        <div class="section-divider"></div>
+        <blockquote>"A música é a nossa voz,<br>e o louvor é a nossa identidade."</blockquote>
+        <p>O Identidade Vocal é um grupo musical formado por jovens da Igreja Adventista do Sétimo Dia, unidos pela paixão pela música e pelo desejo de compartilhar fé e esperança através do canto.</p>
+        <p>Com raízes em Piracicaba — SP, os integrantes do grupo vivem e respiram a cidade, mas levam seu ministério para muito além: atuam em toda a região, percorrem o estado de São Paulo e estão prontos para ir a qualquer lugar do Brasil — ou do mundo — onde houver um convite e corações dispostos a ouvir.</p>
+        <p>Mais do que música, o Identidade Vocal é um ministério — uma família que encontrou na harmonia das vozes a forma mais linda de servir a Deus e às pessoas.</p>
+        <div style="margin-top:2rem">
+          <a href="#membros" class="btn btn-outline">Conheça os membros</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="stats-grid reveal">
+      <div class="stat-item">
+        <span class="stat-number" id="statAnos">0</span>
+        <span class="stat-label">Anos de ministério</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number" id="statApres">0</span>
+        <span class="stat-label">Apresentações realizadas</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number" id="statCidades">0</span>
+        <span class="stat-label">Cidades visitadas</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number" id="statEstados">0</span>
+        <span class="stat-label">Estados visitados</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MEMBROS -->
+<section id="membros">
+  <div class="section-inner">
+    <div class="membros-head reveal">
+      <div class="membros-title-wrap">
+        <span class="section-label">As vozes</span>
+        <h2 class="section-title">Os <em>membros</em></h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="membros-filters" id="membrosFilters" aria-label="Filtrar membros"></div>
+    </div>
+    <div class="membros-grid" id="membrosGrid"></div>
+    <div class="membros-empty" id="membrosEmpty">Nenhum membro encontrado nesse filtro.</div>
+  </div>
+</section>
+
+<!-- MÚSICAS -->
+<section id="musicas">
+  <div class="section-inner">
+    <span class="section-label reveal">Discografia</span>
+    <h2 class="section-title reveal">Nossas <em>Músicas</em></h2>
+    <div class="section-divider reveal"></div>
+    <div class="musicas-grid">
+      <div class="musica-card reveal">
+        <div class="musica-type">Single · 2021</div>
+        <div class="musica-title">Quero que seja o meu Deus</div>
+        <div class="musica-year" style="margin-bottom:1rem">Primeiro registro fonográfico do grupo</div>
+        <iframe style="border-radius:6px;margin-bottom:.5rem" src="https://open.spotify.com/embed/track/1IKJVxfsYCPpxcsTXMAuJN?utm_source=generator&theme=0" width="100%" height="80" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <div class="musica-links">
+          <a class="musica-link" href="https://open.spotify.com/intl-pt/track/1IKJVxfsYCPpxcsTXMAuJN?si=b5719a3421c84e44" target="_blank" rel="noopener noreferrer">Spotify</a>
+          <a class="musica-link" href="https://youtu.be/ezk5KW_SEsE?si=l6aHCpC3fB9sslZq" target="_blank" rel="noopener noreferrer">YouTube</a>
+        </div>
+      </div>
+      <div class="musica-card reveal">
+        <div class="musica-type">Single · 2024</div>
+        <div class="musica-title">Pensou em Mim</div>
+        <div class="musica-year" style="margin-bottom:1rem">Lançamento mais recente do grupo</div>
+        <iframe style="border-radius:6px;margin-bottom:.5rem" src="https://open.spotify.com/embed/track/4CvqRfVmJPhJwlAb0XDkKz?utm_source=generator&theme=0" width="100%" height="80" frameBorder="0" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        <div class="musica-links">
+          <a class="musica-link" href="https://open.spotify.com/intl-pt/track/4CvqRfVmJPhJwlAb0XDkKz?si=be9fb6ca5d0e4c9c" target="_blank" rel="noopener noreferrer">Spotify</a>
+          <a class="musica-link" href="https://youtu.be/ZzrZJZizcWQ?si=K4SSzQi0Rd6xobKs" target="_blank" rel="noopener noreferrer">YouTube</a>
+        </div>
+      </div>
+      <div class="musica-card reveal" style="border-style:dashed;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:160px;opacity:.45">
+        <div class="musica-type" style="margin-bottom:.8rem">Em breve</div>
+        <div class="musica-title" style="font-size:1.1rem;color:var(--text-muted)">Próximo lançamento</div>
+        <div class="musica-year" style="margin-top:.5rem">Acompanhe nossas redes 🎶</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VÍDEOS -->
+<section id="videos">
+  <div class="videos-header reveal">
+    <span class="section-label">Assista agora</span>
+    <h2 class="section-title">Nossos <em>Vídeos</em></h2>
+    <div class="section-divider"></div>
+  </div>
+
+  <!-- Vídeo 1 -->
+  <a class="video-panel" href="https://youtu.be/ezk5KW_SEsE" target="_blank" rel="noopener noreferrer">
+    <div class="video-panel-bg" style="background-image:url('https://img.youtube.com/vi/ezk5KW_SEsE/maxresdefault.jpg')"></div>
+    <div class="video-panel-overlay"></div>
+    <div class="video-panel-content">
+      <span class="video-panel-label">Assista agora</span>
+      <div class="video-panel-title">Quero que seja o meu Deus</div>
+      <div class="video-play-btn">
+        <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+      </div>
+    </div>
+  </a>
+
+  <!-- Vídeo 2 -->
+  <a class="video-panel" href="https://youtu.be/ZzrZJZizcWQ" target="_blank" rel="noopener noreferrer">
+    <div class="video-panel-bg" style="background-image:url('https://img.youtube.com/vi/ZzrZJZizcWQ/maxresdefault.jpg')"></div>
+    <div class="video-panel-overlay"></div>
+    <div class="video-panel-content">
+      <span class="video-panel-label">Assista</span>
+      <div class="video-panel-title">Pensou em Mim</div>
+      <div class="video-play-btn">
+        <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+      </div>
+    </div>
+  </a>
+
+  <div class="videos-footer reveal">
+    <a href="https://youtube.com/@GrupoIdentidadeVocal" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Ver canal no YouTube</a>
+  </div>
+</section>
+
+<!-- AGENDA -->
+<section id="agenda">
+  <div class="section-inner">
+    <span class="section-label reveal">Próximas apresentações</span>
+    <h2 class="section-title reveal">Agenda</h2>
+    <div class="section-divider reveal"></div>
+
+    <div class="agenda-trimestre reveal">
+      <div class="agenda-trimestre-titulo">2º Trimestre · Abr · Mai · Jun · 2026</div>
+      <div class="agenda-list">
+
+        <div class="agenda-subheading">Próximas apresentações</div>
+
+        <div class="agenda-item">
+          <div><div class="agenda-day">14</div><div class="agenda-month">Jun</div></div>
+          <div>
+            <div class="agenda-venue">Espaço Novo Tempo Piracicaba</div>
+            <div class="agenda-details">
+              <span class="agenda-detail"><span class="agenda-detail-icon">⌖</span>Piracicaba - SP</span>
+              <span class="agenda-detail"><span class="agenda-detail-icon">◷</span>9h</span>
+            </div>
+          </div>
+          <div class="agenda-actions">
+            <a class="agenda-action maps" href="https://www.google.com/maps/place/Espa%C3%A7o+Novo+Tempo+de+Piracicaba/data=!4m2!3m1!1s0x0:0x19eab504d0ad64cc?sa=X&ved=1t:2428&ictx=111" target="_blank" rel="noopener noreferrer" aria-label="Abrir Espaço Novo Tempo Piracicaba no Google Maps"><svg aria-hidden="true"><use href="#icon-google-maps"/></svg><span>Maps</span></a>
+            <a class="agenda-action waze" href="https://waze.com/ul?q=Espa%C3%A7o%20Novo%20Tempo%20Piracicaba%20Piracicaba%20SP&navigate=yes" target="_blank" rel="noopener noreferrer" aria-label="Abrir Espaço Novo Tempo Piracicaba no Waze"><svg aria-hidden="true"><use href="#icon-waze"/></svg><span>Waze</span></a>
+          </div>
+        </div>
+
+        <div class="agenda-item">
+          <div><div class="agenda-day">20</div><div class="agenda-month">Jun</div></div>
+          <div>
+            <div class="agenda-venue">IASD São Francisco</div>
+            <div class="agenda-details">
+              <span class="agenda-detail"><span class="agenda-detail-icon">⌖</span>Piracicaba - SP</span>
+              <span class="agenda-detail"><span class="agenda-detail-icon">◷</span>19h</span>
+            </div>
+          </div>
+          <div class="agenda-actions">
+            <a class="agenda-action maps" href="https://www.google.com/maps/place/Igreja+Adventista+do+S%C3%A9timo+Dia+S%C3%A3o+Francisco%2Fpiracicaba/data=!4m2!3m1!1s0x0:0x2f9546de3cf513b6?sa=X&ved=1t:2428&ictx=111" target="_blank" rel="noopener noreferrer" aria-label="Abrir IASD São Francisco no Google Maps"><svg aria-hidden="true"><use href="#icon-google-maps"/></svg><span>Maps</span></a>
+            <a class="agenda-action waze" href="https://waze.com/ul?q=IASD%20S%C3%A3o%20Francisco%20Piracicaba%20SP&navigate=yes" target="_blank" rel="noopener noreferrer" aria-label="Abrir IASD São Francisco no Waze"><svg aria-hidden="true"><use href="#icon-waze"/></svg><span>Waze</span></a>
+          </div>
+        </div>
+
+        <div class="agenda-subheading past">Já realizadas</div>
+
+        <div class="agenda-item past">
+          <div><div class="agenda-day">25</div><div class="agenda-month">Abr</div></div>
+          <div>
+            <div class="agenda-venue">IASD Jardim São Paulo</div>
+            <div class="agenda-details">
+              <span class="agenda-detail"><span class="agenda-detail-icon">⌖</span>Piracicaba - SP</span>
+              <span class="agenda-detail"><span class="agenda-detail-icon">◷</span>9h</span>
+            </div>
+            <span class="agenda-status">Realizada</span>
+          </div>
+          <div class="agenda-actions">
+            <a class="agenda-action maps" href="https://www.google.com/maps?vet=10CAAQoqAOahcKEwiQoO2MoMuUAxUAAAAAHQAAAAAQCQ..i&sca_esv=987102333fe88aad&pvq=Cg0vZy8xMWNqaHJ2MTR4IgoKBGlhc2QQAhgD&lqi=ChppYXNkIHPDo28gcGF1bG8gcGlyYWNpY2FiYUicifT7wauAgAhaJhAAGAAYARgCGAMiGmlhc2Qgc8OjbyBwYXVsbyBwaXJhY2ljYWJhkgEcc2V2ZW50aF9kYXlfYWR2ZW50aXN0X2NodXJjaA&fvr=1&cs=1&um=1&ie=UTF-8&fb=1&gl=br&sa=X&ftid=0x94c630efb2cdb29b:0x2e640d6d2141913f" target="_blank" rel="noopener noreferrer" aria-label="Abrir IASD Jardim São Paulo no Google Maps"><svg aria-hidden="true"><use href="#icon-google-maps"/></svg><span>Maps</span></a>
+            <a class="agenda-action waze" href="https://waze.com/ul?q=IASD%20Jardim%20S%C3%A3o%20Paulo%20Piracicaba%20SP&navigate=yes" target="_blank" rel="noopener noreferrer" aria-label="Abrir IASD Jardim São Paulo no Waze"><svg aria-hidden="true"><use href="#icon-waze"/></svg><span>Waze</span></a>
+          </div>
+        </div>
+
+        <div class="agenda-item past">
+          <div><div class="agenda-day">09</div><div class="agenda-month">Mai</div></div>
+          <div>
+            <div class="agenda-venue">IASD Central de Limeira</div>
+            <div class="agenda-details">
+              <span class="agenda-detail"><span class="agenda-detail-icon">⌖</span>Limeira - SP</span>
+              <span class="agenda-detail"><span class="agenda-detail-icon">◷</span>9h · 17h</span>
+            </div>
+            <span class="agenda-status">Realizada</span>
+          </div>
+          <div class="agenda-actions">
+            <a class="agenda-action maps" href="https://www.google.com/maps/place/Igreja+Adventista+do+S%C3%A9timo+Dia/@-22.5705223,-47.4002908,17z/data=!3m1!4b1!4m6!3m5!1s0x3fdfed5c1f7ca43:0x2460c1eaad6ac3cb!8m2!3d-22.5705223!4d-47.4002908!16s%2Fg%2F11b77443fl?entry=ttu&g_ep=EgoyMDI2MDUxNy4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" aria-label="Abrir IASD Central de Limeira no Google Maps"><svg aria-hidden="true"><use href="#icon-google-maps"/></svg><span>Maps</span></a>
+            <a class="agenda-action waze" href="https://waze.com/ul?q=IASD%20Central%20de%20Limeira%20Limeira%20SP&navigate=yes" target="_blank" rel="noopener noreferrer" aria-label="Abrir IASD Central de Limeira no Waze"><svg aria-hidden="true"><use href="#icon-waze"/></svg><span>Waze</span></a>
+          </div>
+        </div>
+
+        <div class="agenda-item past">
+          <div><div class="agenda-day">23</div><div class="agenda-month">Mai</div></div>
+          <div>
+            <div class="agenda-venue">IASD Vila Cristina</div>
+            <div class="agenda-details">
+              <span class="agenda-detail"><span class="agenda-detail-icon">⌖</span>Piracicaba - SP</span>
+              <span class="agenda-detail"><span class="agenda-detail-icon">◷</span>9h</span>
+            </div>
+            <span class="agenda-status">Realizada</span>
+          </div>
+          <div class="agenda-actions">
+            <a class="agenda-action maps" href="https://www.google.com/maps/place/IASD+Vila+Cristina/@-22.7433954,-47.6654297,19z/data=!4m6!3m5!1s0x94c6310a75a9404d:0x320afe9c32b2193e!8m2!3d-22.7435439!4d-47.6651958!16s%2Fg%2F11shn9xvcw?entry=ttu&g_ep=EgoyMDI2MDUxNy4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener noreferrer" aria-label="Abrir IASD Vila Cristina no Google Maps"><svg aria-hidden="true"><use href="#icon-google-maps"/></svg><span>Maps</span></a>
+            <a class="agenda-action waze" href="https://waze.com/ul?q=IASD%20Vila%20Cristina%20Piracicaba%20SP&navigate=yes" target="_blank" rel="noopener noreferrer" aria-label="Abrir IASD Vila Cristina no Waze"><svg aria-hidden="true"><use href="#icon-waze"/></svg><span>Waze</span></a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- SONHO -->
+<section id="sonho">
+  <div class="section-inner sonho-inner">
+    <span class="section-label reveal" style="display:block;margin:0 auto 1rem">O nosso sonho</span>
+    <h2 class="section-title reveal" style="text-align:center">Um <em>Sonho</em> que vale<br>cada nota</h2>
+    <div class="section-divider reveal" style="margin:1.5rem auto 2.5rem"></div>
+    <p class="sonho-text reveal">Temos um sonho: gravar nossos EPs e levar a mensagem do Identidade Vocal para ainda mais pessoas. Cada contribuição é um passo concreto para que isso aconteça.</p>
+    <p class="sonho-text reveal" style="margin-top:-.5rem">Acreditamos que a música tem o poder de transformar vidas — e com a sua ajuda, podemos alcançar corações que ainda não ouviram a nossa história.</p>
+    <div class="sonho-metas reveal">
+      <div class="meta-card">
+        <span class="meta-icon">🎙️</span>
+        <div class="meta-valor">EP 1</div>
+        <div class="meta-desc">Gravação do primeiro EP<br>em estúdio profissional</div>
+      </div>
+      <div class="meta-card">
+        <span class="meta-icon">🎬</span>
+        <div class="meta-valor">Clipe</div>
+        <div class="meta-desc">Videoclipe oficial<br>das músicas gravadas</div>
+      </div>
+      <div class="meta-card">
+        <span class="meta-icon">✈️</span>
+        <div class="meta-valor">Turnê</div>
+        <div class="meta-desc">Apresentações em<br>outras cidades e estados</div>
+      </div>
+    </div>
+    <div class="pix-area reveal">
+      <div class="pix-label">Contribuições</div>
+      <div class="pix-key">Solicite a chave oficial pelo contato</div>
+      <div class="pix-note">Assim garantimos que cada contribuição chegue corretamente ao ministério.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato">
+  <div class="section-inner">
+    <div class="contato-grid">
+      <div class="reveal">
+        <span class="section-label">Fale conosco</span>
+        <h2 class="section-title">Contato</h2>
+        <div class="section-divider"></div>
+        <p style="color:var(--text-muted);margin-bottom:2rem">Quer nos chamar para uma apresentação, tem uma dúvida ou só quer mandar um oi? Ficaremos felizes em conversar com você!</p>
+        <div class="contato-links">
+          <a class="contato-link" href="mailto:contato@identidadevocal.com.br">
+            <div class="contato-link-icon">✉</div>
+            contato@identidadevocal.com.br
+          </a>
+          <a class="contato-link" href="https://instagram.com/grupoidentidadevocal" target="_blank" rel="noopener noreferrer">
+            <div class="contato-link-icon">
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><use href="#icon-instagram"/></svg>
+            </div>
+            @grupoidentidadevocal
+          </a>
+          <a class="contato-link" href="https://youtube.com/@GrupoIdentidadeVocal" target="_blank" rel="noopener noreferrer">
+            <div class="contato-link-icon">
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><use href="#icon-youtube"/></svg>
+            </div>
+            @GrupoIdentidadeVocal
+          </a>
+          <a class="contato-link" href="https://open.spotify.com/intl-pt/artist/65ru8Sc7f6mfbmdx2k02ed" target="_blank" rel="noopener noreferrer">
+            <div class="contato-link-icon">
+              <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><use href="#icon-spotify"/></svg>
+            </div>
+            Ouça no Spotify
+          </a>
+        </div>
+      </div>
+      <div class="reveal">
+        <form class="contato-form" onsubmit="sendContactMessage(event)">
+          <div class="form-group">
+            <label class="form-label" for="contactName">Seu nome</label>
+            <input class="form-input" id="contactName" type="text" placeholder="Como posso te chamar?" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="contactEmail">E-mail</label>
+            <input class="form-input" id="contactEmail" type="email" placeholder="seu@email.com" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="contactSubject">Assunto</label>
+            <input class="form-input" id="contactSubject" type="text" placeholder="Apresentação, parceria, outro..." required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="contactMessage">Mensagem</label>
+            <textarea class="form-input" id="contactMessage" rows="5" placeholder="Escreva sua mensagem..." required></textarea>
+          </div>
+          <button class="btn btn-gold" type="submit" style="margin-top:.5rem;align-self:flex-start">Enviar mensagem</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHATSAPP FLUTUANTE -->
+<a href="mailto:contato@identidadevocal.com.br?subject=Convite%20para%20apresenta%C3%A7%C3%A3o" class="contact-float" title="Enviar e-mail" aria-label="Enviar e-mail">
+  <span aria-hidden="true">✉</span>
+</a>
+
+<style>
+.contact-float{position:fixed;bottom:2rem;right:2rem;z-index:900;width:52px;height:52px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(201,168,76,.35);transition:transform .3s,box-shadow .3s;color:#0a0a0a;text-decoration:none;font-size:1.35rem;font-weight:600}
+.contact-float:hover{transform:scale(1.1);box-shadow:0 6px 28px rgba(201,168,76,.5)}
+</style>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">
+      <img src="logo2_cinza_claro.png" alt="Grupo Identidade Vocal" style="height:32px;width:auto;opacity:.7">
+    </div>
+    <p class="footer-copy">© 2018–2026 Identidade Vocal · Todos os direitos reservados<br>
+    <span style="font-size:.65rem;opacity:.6">Grupo musical da Igreja Adventista · Piracicaba, SP</span></p>
+    <div class="footer-socials">
+      <a href="https://instagram.com/grupoidentidadevocal" target="_blank" rel="noopener noreferrer" title="Instagram">
+        <svg viewBox="0 0 24 24"><use href="#icon-instagram"/></svg>
+      </a>
+      <a href="https://youtube.com/@GrupoIdentidadeVocal" target="_blank" rel="noopener noreferrer" title="YouTube">
+        <svg viewBox="0 0 24 24"><use href="#icon-youtube"/></svg>
+      </a>
+      <a href="https://open.spotify.com/intl-pt/artist/65ru8Sc7f6mfbmdx2k02ed" target="_blank" rel="noopener noreferrer" title="Spotify">
+        <svg viewBox="0 0 24 24"><use href="#icon-spotify"/></svg>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<script>
+function sendContactMessage(event) {
+  event.preventDefault();
+  const name = document.getElementById('contactName').value.trim();
+  const email = document.getElementById('contactEmail').value.trim();
+  const subject = document.getElementById('contactSubject').value.trim() || 'Contato pelo site';
+  const message = document.getElementById('contactMessage').value.trim();
+  const body = `Olá, Grupo Identidade Vocal!\n\n${message}\n\nNome: ${name}\nE-mail: ${email}`;
+  window.location.href = `mailto:contato@identidadevocal.com.br?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
+// MEMBROS em ordem alfabética
+// MEMBROS com fotos
+const membros = [
+  {nome:"Alicia Paixão",    voz:"Social Media",        naipe:"Equipe",    iniciais:"AL", foto:"fotos/alicia-paixao.jpg"},
+  {nome:"Aline Cordeiro",   voz:"Contralto",           naipe:"Contralto", iniciais:"AC", foto:"fotos/aline-cordeiro.jpg"},
+  {nome:"Andre Souza",      voz:"Tenor",               naipe:"Tenor",     iniciais:"AS", foto:"fotos/andre-souza.jpg"},
+  {nome:"Ayla Boneli",      voz:"Soprano",             naipe:"Soprano",   iniciais:"AY", foto:"fotos/ayla-boneli.jpg"},
+  {nome:"Cris Paixão",      voz:"Soprano",             naipe:"Soprano",   iniciais:"CR", foto:"fotos/cris-paixao.jpg"},
+  {nome:"Daniele Souza",    voz:"Soprano",             naipe:"Soprano",   iniciais:"DA", foto:"fotos/daniele-souza.jpg"},
+  {nome:"Deybson Soares",   voz:"Tenor",               naipe:"Tenor",     iniciais:"DE", foto:"fotos/deybson-soares.jpg"},
+  {nome:"Edvan Lima",       voz:"Tenor · Direção",     naipe:"Tenor",     iniciais:"EL", foto:"fotos/edvan-lima.jpg"},
+  {nome:"Felipe Paixão",    voz:"Barítono",            naipe:"Barítono",  iniciais:"FE", foto:"fotos/felipe-paixao.jpg"},
+  {nome:"Gabriela Paixão",  voz:"Contralto",           naipe:"Contralto", iniciais:"GA", foto:"fotos/gabriela-paixao.jpg"},
+  {nome:"Leonardo Poloni",  voz:"Barítono · Direção",  naipe:"Barítono",  iniciais:"LP", foto:"fotos/leonardo-poloni.jpg"},
+  {nome:"Márcia Santos",    voz:"Contralto",           naipe:"Contralto", iniciais:"MA", foto:"fotos/marcia-santos.jpg"},
+  {nome:"Michele Lopes",    voz:"Contralto",           naipe:"Contralto", iniciais:"MI", foto:"fotos/michele-lopes.jpg"},
+  {nome:"Othilia Novais",   voz:"Soprano",             naipe:"Soprano",   iniciais:"OT", foto:"fotos/othilia-novais.jpg"},
+  {nome:"Rafael Generoso",  voz:"Técnica",             naipe:"Equipe",    iniciais:"RG", foto:"fotos/rafael-generoso.jpg"},
+  {nome:"Samuel Muller",    voz:"Barítono · Direção",  naipe:"Barítono",  iniciais:"SM", foto:"fotos/samuel-muller.jpg"},
+];
+
+const grid = document.getElementById('membrosGrid');
+const membrosFilters = document.getElementById('membrosFilters');
+const membrosEmpty = document.getElementById('membrosEmpty');
+const filtrosMembros = ['Todos','Soprano','Contralto','Tenor','Barítono','Equipe'];
+let filtroMembroAtivo = 'Todos';
+
+function renderMembroFilters(){
+  membrosFilters.innerHTML = filtrosMembros.map(f => `
+    <button class="membros-filter ${f === filtroMembroAtivo ? 'active' : ''}" type="button" data-filter="${f}" aria-pressed="${f === filtroMembroAtivo}">
+      ${f}
+    </button>`).join('');
+  membrosFilters.querySelectorAll('button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      filtroMembroAtivo = btn.dataset.filter;
+      renderMembroFilters();
+      renderMembros();
+    });
+  });
+}
+
+function renderMembros(){
+  const filtrados = filtroMembroAtivo === 'Todos'
+    ? membros
+    : membros.filter(m => m.naipe === filtroMembroAtivo);
+
+  grid.innerHTML = filtrados.map(m => {
+    const avatarContent = `<img src="${m.foto}" alt="${m.nome}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="avatar-initials" style="display:none">${m.iniciais}</div>`;
+    return `<article class="membro-card">
+      <div class="membro-avatar">${avatarContent}</div>
+      <div class="membro-badge">${m.naipe}</div>
+      <div class="membro-info">
+        <div class="membro-name">${m.nome}</div>
+        <div class="membro-voz">${m.voz}</div>
+      </div>
+    </article>`;
+  }).join('');
+
+  membrosEmpty.style.display = filtrados.length ? 'none' : 'block';
+}
+
+renderMembroFilters();
+renderMembros();
+
+// CONTADOR ANIMADO
+function animateCounter(id, target, suffix='') {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const duration = 1800;
+  const start = performance.now();
+  const update = (now) => {
+    const elapsed = now - start;
+    const progress = Math.min(elapsed / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    el.textContent = Math.floor(eased * target) + suffix;
+    if (progress < 1) requestAnimationFrame(update);
+  };
+  requestAnimationFrame(update);
+}
+
+// Trigger counters when stats section enters view
+const statsObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      // Ajuste os números abaixo conforme a realidade do grupo!
+      animateCounter('statAnos', 8, '+');
+      animateCounter('statApres', 80, '+');
+      animateCounter('statCidades', 10, '+');
+      animateCounter('statEstados', 3, '+');
+      statsObserver.disconnect();
+    }
+  });
+}, { threshold: 0.3 });
+const statsGrid = document.querySelector('.stats-grid');
+if (statsGrid) statsObserver.observe(statsGrid);
+
+// SCROLL HEADER + ACTIVE NAV
+window.addEventListener('scroll', () => {
+  document.getElementById('topbar').classList.toggle('scrolled', window.scrollY > 60);
+  document.querySelectorAll('nav a').forEach(a => {
+    const id = a.getAttribute('href');
+    const sec = document.querySelector(id);
+    if(sec){
+      const r = sec.getBoundingClientRect();
+      a.classList.toggle('active', r.top <= 80 && r.bottom > 80);
+    }
+  });
+});
+
+// REVEAL ON SCROLL
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('visible'); });
+}, {threshold: .1, rootMargin: '0px 0px -60px 0px'});
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// EXTRAS DROPDOWN
+function toggleExtras(){
+  document.getElementById('extrasDropdown').classList.toggle('open');
+}
+document.addEventListener('click', e => {
+  const extras = document.getElementById('tbExtras');
+  if(extras && !extras.contains(e.target)){
+    document.getElementById('extrasDropdown').classList.remove('open');
+  }
+});
+
+// MOBILE MENU
+function toggleMenu(){
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+</script>
+</body>
+</html>

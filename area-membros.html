@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Área dos Participantes · Identidade Vocal</title>
+<meta name="description" content="Área reservada dos participantes do Grupo Identidade Vocal com repertório, playbacks, kits de voz e paletas de apresentação.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="icon" type="image/png" href="logo3_branco.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gold:#C9A84C;--gold-light:#E8D08A;--gold-dim:#8A6E30;
+  --dark:#0A0A0A;--dark2:#111111;--dark3:#1A1A1A;--dark4:#222222;
+  --text:#E8E4DC;--text-muted:#9A9186;--text-dim:#5A554E;
+  --green:#79D7B6;--blue:#6BA9FF;--danger:#FCA5A5;
+  --ff-display:'Cormorant Garamond',Georgia,serif;
+  --ff-body:'Outfit',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{min-height:100vh;background:var(--dark);color:var(--text);font-family:var(--ff-body);font-weight:300;line-height:1.7;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background:
+  linear-gradient(180deg,rgba(10,10,10,.72),rgba(10,10,10,.98) 52%,#0A0A0A 100%),
+  url('foto-capa.jpg') center top/cover no-repeat;filter:saturate(.7);z-index:-2}
+body::after{content:'';position:fixed;inset:0;background:radial-gradient(circle at 72% 8%,rgba(201,168,76,.08),transparent 34%);z-index:-1;pointer-events:none}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--dark2)}
+::-webkit-scrollbar-thumb{background:var(--gold-dim);border-radius:2px}
+.topbar{position:sticky;top:0;z-index:20;background:rgba(10,10,10,.96);border-bottom:1px solid rgba(201,168,76,.15)}
+.topbar-inner{max-width:1180px;margin:0 auto;height:68px;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.topbar-link,.logout-btn{display:inline-flex;align-items:center;gap:.5rem;color:var(--text-muted);text-decoration:none;background:transparent;border:0;font-family:var(--ff-body);font-size:.68rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;transition:color .2s}
+.topbar-link:hover,.logout-btn:hover{color:var(--gold)}
+.topbar-logo img{height:31px;width:auto;display:block;opacity:.9}
+.logout-btn[hidden]{display:none}
+.shell{width:min(1180px,calc(100% - 2rem));margin:0 auto}
+.section-label{font-size:.62rem;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.85rem}
+.muted{color:var(--text-muted)}
+.auth-screen{min-height:calc(100vh - 68px);display:flex;align-items:center;justify-content:center;padding:3rem 0}
+.auth-card{width:min(100%,430px);background:rgba(17,17,17,.88);border:1px solid rgba(201,168,76,.18);padding:2.2rem;backdrop-filter:blur(16px)}
+.auth-title{font-family:var(--ff-display);font-size:clamp(2.3rem,8vw,3.5rem);font-weight:300;line-height:1;color:var(--text);margin-bottom:.7rem}
+.auth-title em{font-style:italic;color:var(--gold)}
+.auth-copy{color:var(--text-muted);font-size:.93rem;margin-bottom:1.7rem}
+.form{display:flex;flex-direction:column;gap:1rem}
+.form-group{display:flex;flex-direction:column;gap:.42rem}
+.form-label{font-size:.58rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold-dim)}
+.input,.select{width:100%;background:rgba(26,26,26,.95);border:1px solid rgba(201,168,76,.16);color:var(--text);font-family:var(--ff-body);font-size:.92rem;font-weight:300;padding:.82rem .95rem;outline:none;transition:border-color .2s,background .2s}
+.input:focus,.select:focus{border-color:rgba(201,168,76,.55);background:var(--dark3)}
+.input::placeholder{color:var(--text-dim)}
+.btn{min-height:44px;display:inline-flex;align-items:center;justify-content:center;gap:.55rem;border:1px solid rgba(201,168,76,.3);background:transparent;color:var(--gold);font-family:var(--ff-body);font-size:.66rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;padding:.78rem 1rem;cursor:pointer;transition:all .22s}
+.btn:hover:not(:disabled){border-color:var(--gold);background:rgba(201,168,76,.08);transform:translateY(-1px)}
+.btn-primary{background:var(--gold);border-color:var(--gold);color:#0A0A0A}
+.btn-primary:hover:not(:disabled){background:var(--gold-light);border-color:var(--gold-light)}
+.btn-blue{border-color:rgba(107,169,255,.42);color:var(--blue)}
+.btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+.message{min-height:1.2rem;font-size:.78rem;color:var(--text-muted)}
+.message.error{color:var(--danger)}
+.message.ok{color:var(--green)}
+.member-app{display:none;padding:3rem 0 5rem}
+.member-app.active{display:block}
+.hero-panel{display:grid;grid-template-columns:minmax(0,1.45fr) minmax(280px,.55fr);gap:2rem;align-items:end;margin-bottom:2rem}
+.hero-kicker{font-size:.62rem;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);margin-bottom:.9rem}
+.hero-title{font-family:var(--ff-display);font-size:clamp(2.5rem,7vw,5rem);font-weight:300;line-height:.98;color:var(--text)}
+.hero-title em{font-style:italic;color:var(--gold)}
+.hero-meta{display:flex;flex-wrap:wrap;gap:.65rem;margin-top:1.4rem}
+.meta-pill{display:inline-flex;align-items:center;gap:.45rem;border:1px solid rgba(201,168,76,.16);background:rgba(17,17,17,.65);color:var(--text-muted);font-size:.75rem;padding:.43rem .72rem}
+.profile-panel,.tool-panel{background:rgba(17,17,17,.88);border:1px solid rgba(201,168,76,.14)}
+.profile-panel{padding:1.3rem}
+.profile-name{font-family:var(--ff-display);font-size:1.85rem;font-weight:300;line-height:1.1;color:var(--text);margin-bottom:.25rem}
+.profile-email{font-size:.75rem;color:var(--text-dim);overflow-wrap:anywhere}
+.access-note{margin-top:1rem;font-size:.72rem;color:var(--text-dim)}
+.dashboard{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr);gap:1.5rem;align-items:start}
+.stack{display:flex;flex-direction:column;gap:1.5rem}
+.tool-panel{padding:1.35rem}
+.panel-head{display:flex;align-items:flex-start;justify-content:space-between;gap:1rem;margin-bottom:1.15rem}
+.panel-title{font-family:var(--ff-display);font-size:1.65rem;font-weight:300;color:var(--text);line-height:1.1}
+.panel-title em{color:var(--gold);font-style:italic}
+.panel-sub{font-size:.78rem;color:var(--text-dim);margin-top:.25rem}
+.voice-row{display:grid;grid-template-columns:1fr;gap:.7rem}
+.song-list{display:flex;flex-direction:column;border-top:1px solid rgba(201,168,76,.08)}
+.song-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:1rem;align-items:center;padding:1rem 0;border-bottom:1px solid rgba(201,168,76,.08)}
+.song-title{font-size:1rem;font-weight:500;color:var(--text);line-height:1.25}
+.song-meta{font-size:.72rem;color:var(--text-dim);margin-top:.2rem}
+.song-chip{display:inline-flex;margin-left:.35rem;border:1px solid rgba(201,168,76,.16);padding:.03rem .38rem;color:var(--gold-dim);font-size:.55rem;letter-spacing:.14em;text-transform:uppercase}
+.player-box{display:none;margin-top:1.2rem;border:1px solid rgba(201,168,76,.16);background:rgba(10,10,10,.4);padding:1rem}
+.player-box.active{display:block}
+.player-title{font-size:.82rem;color:var(--text);margin-bottom:.7rem}
+.player-box audio{width:100%;height:38px}
+.player-actions{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:.8rem}
+.palette-hero{display:grid;grid-template-columns:1fr;gap:1rem}
+.swatches{display:flex;gap:.55rem;flex-wrap:wrap}
+.swatch{width:42px;height:42px;border:1px solid rgba(255,255,255,.15);box-shadow:0 0 0 1px rgba(0,0,0,.35) inset}
+.palette-name{font-family:var(--ff-display);font-size:1.45rem;color:var(--text);line-height:1.1}
+.palette-note{font-size:.82rem;color:var(--text-muted)}
+.look-grid,.palette-grid,.offer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem}
+.look-card,.palette-card,.offer-item{border:1px solid rgba(201,168,76,.12);background:rgba(10,10,10,.35);overflow:hidden}
+.look-visual{height:140px;background:linear-gradient(135deg,var(--look-a,#111) 0 48%,var(--look-b,#f3efe2) 48% 72%,var(--look-c,#c9a84c) 72%);position:relative}
+.look-visual img{width:100%;height:100%;object-fit:cover;display:block}
+.look-body,.palette-body,.offer-body{padding:1rem}
+.look-label,.offer-label{font-size:.55rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-dim);margin-bottom:.35rem}
+.look-title,.offer-title{font-size:.94rem;font-weight:500;color:var(--text);line-height:1.25}
+.look-note,.offer-note{font-size:.76rem;color:var(--text-muted);margin-top:.35rem}
+.palette-card .swatches{padding:1rem 1rem 0}
+.palette-card .swatch{width:32px;height:32px}
+.empty-state{border:1px dashed rgba(201,168,76,.16);color:var(--text-dim);padding:1rem;text-align:center;font-family:var(--ff-display);font-size:1.1rem}
+.access-list{display:flex;flex-direction:column;gap:.55rem}
+.access-row{display:grid;grid-template-columns:1fr auto;gap:1rem;border-bottom:1px solid rgba(201,168,76,.08);padding-bottom:.55rem;font-size:.8rem}
+.access-row:last-child{border-bottom:0;padding-bottom:0}
+.access-email{color:var(--text);overflow-wrap:anywhere}
+.access-time{color:var(--text-dim);white-space:nowrap}
+@media(max-width:880px){
+  .hero-panel,.dashboard{grid-template-columns:1fr}
+  .hero-panel{gap:1rem}
+  .profile-panel{order:-1}
+}
+@media(max-width:620px){
+  .topbar-inner{height:62px;padding:0 1rem}
+  .topbar-logo img{height:26px}
+  .topbar-link,.logout-btn{font-size:.58rem;letter-spacing:.12em}
+  .shell{width:min(100% - 1.2rem,1180px)}
+  .auth-screen{padding:1.2rem 0;align-items:flex-start}
+  .auth-card,.tool-panel,.profile-panel{padding:1rem}
+  .member-app{padding:1.6rem 0 3rem}
+  .hero-title{font-size:2.55rem}
+  .meta-pill{width:100%;justify-content:flex-start}
+  .song-row{grid-template-columns:1fr;gap:.75rem}
+  .song-row .btn{width:100%}
+  .look-grid,.palette-grid,.offer-grid{grid-template-columns:1fr}
+  .access-row{grid-template-columns:1fr}
+  .access-time{white-space:normal}
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="topbar-link" href="index.html">‹ Site</a>
+    <a class="topbar-logo" href="index.html" aria-label="Identidade Vocal">
+      <img src="logo2_cinza_claro.png" alt="Identidade Vocal">
+    </a>
+    <button class="logout-btn" id="logoutBtn" type="button" hidden>Sair</button>
+  </div>
+</header>
+
+<main>
+  <section class="auth-screen shell" id="loginScreen">
+    <div class="auth-card">
+      <span class="section-label">Área dos participantes</span>
+      <h1 class="auth-title">Entrar no <em>grupo</em></h1>
+      <p class="auth-copy">Acesso reservado para participantes do Identidade Vocal.</p>
+      <form class="form" id="loginForm">
+        <div class="form-group">
+          <label class="form-label" for="memberEmail">E-mail</label>
+          <input class="input" id="memberEmail" type="email" autocomplete="email" placeholder="seu@email.com" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="memberPassword">Senha</label>
+          <input class="input" id="memberPassword" type="password" autocomplete="current-password" placeholder="Sua senha" required>
+        </div>
+        <button class="btn btn-primary" id="loginBtn" type="submit">Entrar</button>
+        <div class="message" id="authMessage" aria-live="polite"></div>
+      </form>
+    </div>
+  </section>
+
+  <section class="member-app shell" id="memberApp" aria-live="polite">
+    <div class="hero-panel">
+      <div>
+        <div class="hero-kicker">Próxima apresentação</div>
+        <h1 class="hero-title" id="presentationTitle">Ensaio e <em>repertório</em></h1>
+        <div class="hero-meta" id="presentationMeta"></div>
+      </div>
+      <aside class="profile-panel">
+        <div class="profile-name" id="memberName">Bem-vindo</div>
+        <div class="profile-email" id="memberEmailText"></div>
+        <div class="access-note" id="accessStatus">Registrando entrada...</div>
+      </aside>
+    </div>
+
+    <div class="dashboard">
+      <div class="stack">
+        <section class="tool-panel">
+          <div class="panel-head">
+            <div>
+              <h2 class="panel-title">Repertório da <em>vez</em></h2>
+              <p class="panel-sub" id="setlistSub"></p>
+            </div>
+          </div>
+          <div class="voice-row">
+            <label class="form-label" for="voiceSelect">Meu timbre</label>
+            <select class="select" id="voiceSelect">
+              <option value="">Playback normal</option>
+              <option value="soprano">Soprano</option>
+              <option value="contralto">Contralto</option>
+              <option value="tenor">Tenor</option>
+              <option value="baritono">Barítono</option>
+              <option value="baixo">Baixo</option>
+            </select>
+          </div>
+          <div class="song-list" id="songList"></div>
+          <div class="player-box" id="playerBox">
+            <div class="player-title" id="playerTitle"></div>
+            <audio id="audioPlayer" controls preload="none"></audio>
+            <div class="player-actions">
+              <a class="btn btn-blue" id="openAudioLink" href="#" target="_blank" rel="noopener noreferrer">Abrir link</a>
+            </div>
+            <div class="message" id="playerMessage"></div>
+          </div>
+        </section>
+
+        <section class="tool-panel">
+          <div class="panel-head">
+            <div>
+              <h2 class="panel-title">Paleta da <em>apresentação</em></h2>
+              <p class="panel-sub">Referência visual para a próxima saída do grupo.</p>
+            </div>
+          </div>
+          <div class="palette-hero" id="presentationPalette"></div>
+          <div class="look-grid" id="lookIdeas" style="margin-top:1rem"></div>
+        </section>
+      </div>
+
+      <div class="stack">
+        <section class="tool-panel">
+          <div class="panel-head">
+            <div>
+              <h2 class="panel-title">Paletas <em>oficiais</em></h2>
+              <p class="panel-sub">Combinações que o grupo pode usar ao longo do ano.</p>
+            </div>
+          </div>
+          <div class="palette-grid" id="officialPalettes"></div>
+        </section>
+
+        <section class="tool-panel">
+          <div class="panel-head">
+            <div>
+              <h2 class="panel-title">Ofertas <em>publicadas</em></h2>
+              <p class="panel-sub">Peças aprovadas pela direção para consulta rápida.</p>
+            </div>
+          </div>
+          <div class="offer-grid" id="offerGrid"></div>
+        </section>
+
+        <section class="tool-panel" id="adminAccessPanel" hidden>
+          <div class="panel-head">
+            <div>
+              <h2 class="panel-title">Últimos <em>acessos</em></h2>
+              <p class="panel-sub">Registro simples de entrada na área dos participantes.</p>
+            </div>
+          </div>
+          <div class="access-list" id="accessList"></div>
+        </section>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut }
+  from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+import { getDatabase, ref, push, update, query, orderByChild, limitToLast, get, serverTimestamp }
+  from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyD9e0C4gkwBT4Q4mrmazHKkxNaXVNFbX1k",
+  authDomain: "identidade-vocal.firebaseapp.com",
+  databaseURL: "https://identidade-vocal-default-rtdb.firebaseio.com",
+  projectId: "identidade-vocal",
+  storageBucket: "identidade-vocal.firebasestorage.app",
+  messagingSenderId: "603340474200",
+  appId: "1:603340474200:web:ab471847fda0364ab5872d"
+};
+
+const MEMBER_AREA_CONTENT = {
+  adminEmails: [
+    "contato@identidadevocal.com.br"
+  ],
+  presentation: {
+    title: "Espaço Novo Tempo Piracicaba",
+    date: "14 de junho de 2026",
+    time: "9h",
+    city: "Piracicaba - SP",
+    setlistNote: "Repertório em atualização pela direção.",
+    palette: {
+      name: "Preto, off-white e dourado discreto",
+      colors: ["#0A0A0A", "#F1EDE3", "#C9A84C"],
+      note: "Base elegante, com contraste limpo e detalhe dourado em acessório ou acabamento.",
+      looks: [
+        { audience:"Masculino", title:"Camisa off-white + calça preta", note:"Sapato ou cinto preto mantém o conjunto alinhado.", colors:["#F1EDE3","#0A0A0A","#C9A84C"], image:"" },
+        { audience:"Feminino", title:"Blusa preta + saia ou calça off-white", note:"Brinco, cinto fino ou detalhe dourado fecha a paleta.", colors:["#0A0A0A","#F1EDE3","#C9A84C"], image:"" }
+      ]
+    },
+    songs: [
+      {
+        title: "Repertório em definição",
+        moment: "Abertura",
+        playbackUrl: "",
+        voiceKits: { soprano:"", contralto:"", tenor:"", baritono:"", baixo:"" }
+      },
+      {
+        title: "Música congregacional",
+        moment: "Participação",
+        playbackUrl: "",
+        voiceKits: { soprano:"", contralto:"", tenor:"", baritono:"", baixo:"" }
+      },
+      {
+        title: "Música final",
+        moment: "Encerramento",
+        playbackUrl: "",
+        voiceKits: { soprano:"", contralto:"", tenor:"", baritono:"", baixo:"" }
+      }
+    ]
+  },
+  officialPalettes: [
+    { name:"Preto e dourado", colors:["#0A0A0A","#C9A84C","#F2EEE2"], note:"Clássica para cultos especiais e noites." },
+    { name:"Azul marinho e branco", colors:["#10192B","#F7F7F2","#C9A84C"], note:"Boa para manhãs e eventos com visual mais leve." },
+    { name:"Vinho e preto", colors:["#4A1421","#111111","#E8E4DC"], note:"Séria, elegante e fácil de compor com peças básicas." },
+    { name:"Verde profundo e bege", colors:["#173D31","#D8C7A3","#0A0A0A"], note:"Opção terrosa, discreta e diferente das combinações mais usadas." }
+  ],
+  offers: []
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const db = getDatabase(app);
+
+const loginScreen = document.getElementById("loginScreen");
+const memberApp = document.getElementById("memberApp");
+const loginForm = document.getElementById("loginForm");
+const loginBtn = document.getElementById("loginBtn");
+const authMessage = document.getElementById("authMessage");
+const logoutBtn = document.getElementById("logoutBtn");
+const voiceSelect = document.getElementById("voiceSelect");
+const audioPlayer = document.getElementById("audioPlayer");
+const playerBox = document.getElementById("playerBox");
+const playerTitle = document.getElementById("playerTitle");
+const playerMessage = document.getElementById("playerMessage");
+const openAudioLink = document.getElementById("openAudioLink");
+
+let currentUser = null;
+let selectedVoice = localStorage.getItem("iv-member-voice") || "";
+voiceSelect.value = selectedVoice;
+
+loginForm.addEventListener("submit", async (event) => {
+  event.preventDefault();
+  const email = document.getElementById("memberEmail").value.trim();
+  const password = document.getElementById("memberPassword").value;
+  setAuthMessage("Entrando...", "");
+  loginBtn.disabled = true;
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+  } catch (error) {
+    setAuthMessage(friendlyAuthError(error), "error");
+  } finally {
+    loginBtn.disabled = false;
+  }
+});
+
+logoutBtn.addEventListener("click", () => signOut(auth));
+
+voiceSelect.addEventListener("change", () => {
+  selectedVoice = voiceSelect.value;
+  localStorage.setItem("iv-member-voice", selectedVoice);
+  renderSongs();
+});
+
+onAuthStateChanged(auth, async (user) => {
+  currentUser = user;
+  if (!user) {
+    loginScreen.style.display = "flex";
+    memberApp.classList.remove("active");
+    logoutBtn.hidden = true;
+    audioPlayer.pause();
+    return;
+  }
+
+  loginScreen.style.display = "none";
+  memberApp.classList.add("active");
+  logoutBtn.hidden = false;
+  setAuthMessage("", "");
+  renderApp(user);
+  await registerAccess(user);
+  if (isAdmin(user)) loadAccessList();
+});
+
+function renderApp(user){
+  const displayName = getDisplayName(user);
+  document.getElementById("memberName").textContent = `Olá, ${displayName}`;
+  document.getElementById("memberEmailText").textContent = user.email || "";
+
+  const presentation = MEMBER_AREA_CONTENT.presentation;
+  document.getElementById("presentationTitle").textContent = presentation.title;
+  document.getElementById("presentationMeta").innerHTML = [
+    presentation.date,
+    presentation.time,
+    presentation.city
+  ].map(item => `<span class="meta-pill">${escapeHtml(item)}</span>`).join("");
+  document.getElementById("setlistSub").textContent = presentation.setlistNote || "";
+
+  renderSongs();
+  renderPresentationPalette();
+  renderOfficialPalettes();
+  renderOffers();
+
+  const adminPanel = document.getElementById("adminAccessPanel");
+  adminPanel.hidden = !isAdmin(user);
+}
+
+function renderSongs(){
+  const songs = MEMBER_AREA_CONTENT.presentation.songs;
+  const list = document.getElementById("songList");
+  list.innerHTML = songs.map((song, index) => {
+    const audio = resolveSongAudio(song);
+    const chip = selectedVoice ? labelVoice(selectedVoice) : "Playback";
+    return `<div class="song-row">
+      <div>
+        <div class="song-title">${escapeHtml(song.title)} <span class="song-chip">${escapeHtml(chip)}</span></div>
+        <div class="song-meta">${escapeHtml(song.moment || "")}${audio ? ` · ${escapeHtml(audio.label)}` : " · Áudio em preparação"}</div>
+      </div>
+      <button class="btn ${audio ? "btn-primary" : ""}" type="button" data-song="${index}" ${audio ? "" : "disabled"}>${audio ? "Escutar" : "Em breve"}</button>
+    </div>`;
+  }).join("");
+
+  list.querySelectorAll("button[data-song]").forEach(button => {
+    button.addEventListener("click", () => playSong(Number(button.dataset.song)));
+  });
+}
+
+function resolveSongAudio(song){
+  const kitUrl = selectedVoice && song.voiceKits ? song.voiceKits[selectedVoice] : "";
+  if (kitUrl) return { url: kitUrl, label: `Kit de voz · ${labelVoice(selectedVoice)}` };
+  if (song.playbackUrl) return { url: song.playbackUrl, label: "Playback normal" };
+  return null;
+}
+
+async function playSong(index){
+  const song = MEMBER_AREA_CONTENT.presentation.songs[index];
+  const audio = resolveSongAudio(song);
+  if (!audio) return;
+
+  playerBox.classList.add("active");
+  playerTitle.textContent = `${song.title} · ${audio.label}`;
+  playerMessage.textContent = "";
+  playerMessage.className = "message";
+  openAudioLink.href = audio.url;
+  audioPlayer.src = audio.url;
+
+  try {
+    await audioPlayer.play();
+  } catch (error) {
+    playerMessage.textContent = "Se o áudio não tocar aqui, abra pelo link.";
+  }
+}
+
+function renderPresentationPalette(){
+  const palette = MEMBER_AREA_CONTENT.presentation.palette;
+  document.getElementById("presentationPalette").innerHTML = `
+    <div class="swatches">${renderSwatches(palette.colors)}</div>
+    <div>
+      <div class="palette-name">${escapeHtml(palette.name)}</div>
+      <div class="palette-note">${escapeHtml(palette.note)}</div>
+    </div>`;
+
+  document.getElementById("lookIdeas").innerHTML = palette.looks.map(look => renderLookCard(look)).join("");
+}
+
+function renderLookCard(look){
+  const colors = look.colors || ["#111111","#F1EDE3","#C9A84C"];
+  const visual = look.image
+    ? `<img src="${escapeAttr(look.image)}" alt="${escapeAttr(look.title)}" loading="lazy">`
+    : "";
+  return `<article class="look-card">
+    <div class="look-visual" style="--look-a:${escapeAttr(colors[0])};--look-b:${escapeAttr(colors[1])};--look-c:${escapeAttr(colors[2] || colors[1])}">${visual}</div>
+    <div class="look-body">
+      <div class="look-label">${escapeHtml(look.audience)}</div>
+      <div class="look-title">${escapeHtml(look.title)}</div>
+      <div class="look-note">${escapeHtml(look.note || "")}</div>
+    </div>
+  </article>`;
+}
+
+function renderOfficialPalettes(){
+  const grid = document.getElementById("officialPalettes");
+  grid.innerHTML = MEMBER_AREA_CONTENT.officialPalettes.map(palette => `
+    <article class="palette-card">
+      <div class="swatches">${renderSwatches(palette.colors)}</div>
+      <div class="palette-body">
+        <div class="look-title">${escapeHtml(palette.name)}</div>
+        <div class="look-note">${escapeHtml(palette.note)}</div>
+      </div>
+    </article>`).join("");
+}
+
+function renderOffers(){
+  const grid = document.getElementById("offerGrid");
+  const offers = MEMBER_AREA_CONTENT.offers || [];
+  if (!offers.length) {
+    grid.innerHTML = `<div class="empty-state">Nenhuma oferta publicada agora.</div>`;
+    return;
+  }
+
+  grid.innerHTML = offers.map(offer => `
+    <article class="offer-item">
+      ${offer.image ? `<div class="look-visual"><img src="${escapeAttr(offer.image)}" alt="${escapeAttr(offer.title)}" loading="lazy"></div>` : ""}
+      <div class="offer-body">
+        <div class="offer-label">${escapeHtml(offer.audience || "Grupo")}</div>
+        <div class="offer-title">${escapeHtml(offer.title)}</div>
+        <div class="offer-note">${escapeHtml(offer.price || "")}</div>
+        <a class="btn btn-blue" href="${escapeAttr(offer.link)}" target="_blank" rel="noopener noreferrer" style="margin-top:.8rem;width:100%">Ver oferta</a>
+      </div>
+    </article>`).join("");
+}
+
+async function registerAccess(user){
+  const accessStatus = document.getElementById("accessStatus");
+  const payload = {
+    uid: user.uid,
+    email: user.email || "",
+    name: getDisplayName(user),
+    enteredAt: serverTimestamp()
+  };
+
+  try {
+    await Promise.all([
+      push(ref(db, "memberAccess"), payload),
+      update(ref(db, `memberProfiles/${user.uid}`), {
+        email: payload.email,
+        name: payload.name,
+        lastLoginAt: serverTimestamp()
+      })
+    ]);
+    accessStatus.textContent = "Entrada registrada.";
+  } catch (error) {
+    console.warn("Access log error:", error);
+    accessStatus.textContent = "Entrada feita. Registro pendente no Firebase.";
+  }
+}
+
+async function loadAccessList(){
+  const accessList = document.getElementById("accessList");
+  accessList.innerHTML = `<div class="empty-state">Carregando acessos...</div>`;
+  try {
+    const recent = query(ref(db, "memberAccess"), orderByChild("enteredAt"), limitToLast(12));
+    const snap = await get(recent);
+    const rows = [];
+    snap.forEach(child => rows.push(child.val()));
+    rows.sort((a,b) => Number(b.enteredAt || 0) - Number(a.enteredAt || 0));
+    if (!rows.length) {
+      accessList.innerHTML = `<div class="empty-state">Nenhum acesso registrado.</div>`;
+      return;
+    }
+    accessList.innerHTML = rows.map(row => `
+      <div class="access-row">
+        <div>
+          <div class="access-email">${escapeHtml(row.name || row.email || "Participante")}</div>
+          <div class="look-note">${escapeHtml(row.email || "")}</div>
+        </div>
+        <div class="access-time">${formatDate(row.enteredAt)}</div>
+      </div>`).join("");
+  } catch (error) {
+    accessList.innerHTML = `<div class="empty-state">Não foi possível carregar os acessos.</div>`;
+  }
+}
+
+function renderSwatches(colors){
+  return colors.map(color => `<span class="swatch" style="background:${escapeAttr(color)}"></span>`).join("");
+}
+
+function getDisplayName(user){
+  if (user.displayName) return user.displayName;
+  if (user.email) return user.email.split("@")[0].replace(/[._-]+/g, " ");
+  return "participante";
+}
+
+function isAdmin(user){
+  const email = String(user?.email || "").toLowerCase();
+  return MEMBER_AREA_CONTENT.adminEmails.map(item => item.toLowerCase()).includes(email);
+}
+
+function labelVoice(voice){
+  return ({
+    soprano:"Soprano",
+    contralto:"Contralto",
+    tenor:"Tenor",
+    baritono:"Barítono",
+    baixo:"Baixo"
+  })[voice] || "Playback";
+}
+
+function formatDate(value){
+  const time = Number(value || 0);
+  if (!time) return "agora";
+  return new Intl.DateTimeFormat("pt-BR", {
+    day:"2-digit",
+    month:"2-digit",
+    year:"2-digit",
+    hour:"2-digit",
+    minute:"2-digit"
+  }).format(new Date(time));
+}
+
+function friendlyAuthError(error){
+  const code = error?.code || "";
+  if (code.includes("invalid-credential") || code.includes("wrong-password") || code.includes("user-not-found")) {
+    return "E-mail ou senha não conferem.";
+  }
+  if (code.includes("too-many-requests")) {
+    return "Muitas tentativas. Aguarde um pouco e tente novamente.";
+  }
+  if (code.includes("network")) {
+    return "Não consegui conectar. Verifique sua internet.";
+  }
+  return "Não foi possível entrar agora.";
+}
+
+function setAuthMessage(text, type){
+  authMessage.textContent = text;
+  authMessage.className = `message ${type || ""}`.trim();
+}
+
+function escapeHtml(value){
+  return String(value ?? "").replace(/[&<>"']/g, char => ({
+    "&":"&amp;",
+    "<":"&lt;",
+    ">":"&gt;",
+    "\"":"&quot;",
+    "'":"&#39;"
+  }[char]));
+}
+
+function escapeAttr(value){
+  return escapeHtml(value).replace(/`/g, "&#96;");
+}
+</script>
+</body>
+</html>

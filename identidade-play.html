@@ -48,8 +48,9 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(circle 
 .btn-pink{border-color:rgba(236,72,153,.42);color:#F3A3CC}
 .btn-disabled{color:var(--text-dim);border-color:rgba(154,145,134,.16);pointer-events:none}
 .feature-card{background:rgba(17,17,17,.86);border:1px solid rgba(201,168,76,.18);overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,.32)}
-.feature-media{position:relative;min-height:330px;background:url('fotos-pixar/felipe-paixao.jpg') center top/cover no-repeat}
-.feature-media::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,10,.1),rgba(10,10,10,.9))}
+.feature-media{position:relative;min-height:330px;background:var(--dark3);overflow:hidden}
+.feature-media::before{content:'';position:absolute;inset:-14px;background:url('foto-capa.jpg') center top/cover no-repeat;filter:blur(5px) brightness(.38) saturate(.68);transform:scale(1.04)}
+.feature-media::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,10,.2),rgba(10,10,10,.92))}
 .feature-badge{position:absolute;top:1rem;left:1rem;z-index:2;border:1px solid rgba(201,168,76,.35);background:rgba(10,10,10,.55);color:var(--gold);font-size:.56rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;padding:.32rem .58rem}
 .feature-body{position:relative;padding:1.35rem}
 .feature-title{font-family:var(--ff-display);font-size:2rem;font-weight:300;line-height:1;color:var(--text);margin-bottom:.5rem}
@@ -69,7 +70,7 @@ body::after{content:'';position:fixed;inset:0;background:radial-gradient(circle 
 .play-card{position:relative;min-height:260px;background:linear-gradient(180deg,rgba(26,26,26,.92),rgba(10,10,10,.98));border:1px solid rgba(201,168,76,.12);overflow:hidden;padding:1rem;display:flex;flex-direction:column;justify-content:flex-end;transition:transform .25s,border-color .25s}
 .play-card:hover{transform:translateY(-4px);border-color:rgba(201,168,76,.32)}
 .play-card::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,10,.1),rgba(10,10,10,.88));z-index:1}
-.play-card.memory{background-image:url('fotos-pixar/rafael-generoso.jpg');background-size:cover;background-position:center top}
+.play-card.memory{background-image:linear-gradient(180deg,rgba(10,10,10,.3),rgba(10,10,10,.96)),url('foto-capa.jpg');background-size:cover;background-position:center top}
 .play-card.words{background-image:linear-gradient(135deg,rgba(32,224,193,.18),rgba(10,10,10,.95))}
 .play-card.quiz{background-image:linear-gradient(135deg,rgba(91,184,255,.2),rgba(10,10,10,.95))}
 .play-card.hymn{background-image:linear-gradient(135deg,rgba(201,168,76,.22),rgba(10,10,10,.95))}

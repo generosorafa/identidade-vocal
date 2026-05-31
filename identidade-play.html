@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Identidade Play · Grupo Identidade Vocal</title>
+<meta name="description" content="Identidade Play reúne experiências interativas do Grupo Identidade Vocal: memória, caça-palavras, quizzes e desafios musicais.">
+<meta name="theme-color" content="#0A0A0A">
+<link rel="icon" type="image/png" href="logo3_branco.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --gold:#C9A84C;--gold-light:#E8D08A;--gold-dim:#8A6E30;
+  --dark:#0A0A0A;--dark2:#111111;--dark3:#1A1A1A;
+  --text:#E8E4DC;--text-muted:#9A9186;--text-dim:#5A554E;
+  --blue:#5BB8FF;--green:#20E0C1;--pink:#EC4899;
+  --ff-display:'Cormorant Garamond',Georgia,serif;
+  --ff-body:'Outfit',sans-serif;
+}
+html{scroll-behavior:smooth}
+body{min-height:100vh;background:var(--dark);color:var(--text);font-family:var(--ff-body);font-weight:300;line-height:1.7;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background:
+  linear-gradient(180deg,rgba(10,10,10,.55),rgba(10,10,10,.98) 58%,#0A0A0A 100%),
+  url('foto-capa.jpg') center top/cover no-repeat;filter:saturate(.72) brightness(.82);z-index:-2}
+body::after{content:'';position:fixed;inset:0;background:radial-gradient(circle at 22% 12%,rgba(201,168,76,.12),transparent 30%),radial-gradient(circle at 88% 22%,rgba(91,184,255,.08),transparent 28%);z-index:-1;pointer-events:none}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--dark2)}
+::-webkit-scrollbar-thumb{background:var(--gold-dim);border-radius:2px}
+.topbar{position:sticky;top:0;z-index:20;background:rgba(10,10,10,.96);border-bottom:1px solid rgba(201,168,76,.15)}
+.topbar-inner{max-width:1180px;margin:0 auto;height:68px;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.topbar-link{display:inline-flex;align-items:center;gap:.5rem;color:var(--text-muted);text-decoration:none;font-size:.68rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;transition:color .2s;white-space:nowrap}
+.topbar-link:hover{color:var(--gold)}
+.topbar-logo img{height:31px;width:auto;display:block;opacity:.9}
+.shell{width:min(1180px,calc(100% - 2rem));margin:0 auto}
+.hero{min-height:calc(100vh - 68px);display:grid;grid-template-columns:minmax(0,1.08fr) minmax(330px,.92fr);gap:3rem;align-items:center;padding:4rem 0 3rem}
+.eyebrow{font-size:.64rem;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);margin-bottom:1rem}
+.hero-title{font-family:var(--ff-display);font-size:clamp(3.4rem,10vw,7.4rem);font-weight:300;line-height:.92;letter-spacing:.03em;color:var(--text);margin-bottom:1.15rem}
+.hero-title em{font-style:italic;color:var(--gold)}
+.hero-copy{max-width:620px;color:var(--text-muted);font-size:1.02rem;margin-bottom:2rem}
+.hero-actions{display:flex;gap:.8rem;flex-wrap:wrap}
+.btn{min-height:44px;display:inline-flex;align-items:center;justify-content:center;gap:.55rem;border:1px solid rgba(201,168,76,.32);background:transparent;color:var(--gold);font-family:var(--ff-body);font-size:.68rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;padding:.78rem 1.05rem;transition:all .22s;cursor:pointer}
+.btn:hover{border-color:var(--gold);background:rgba(201,168,76,.08);transform:translateY(-1px)}
+.btn-primary{background:var(--gold);border-color:var(--gold);color:#0A0A0A}
+.btn-primary:hover{background:var(--gold-light);border-color:var(--gold-light)}
+.btn-blue{border-color:rgba(91,184,255,.42);color:var(--blue)}
+.btn-pink{border-color:rgba(236,72,153,.42);color:#F3A3CC}
+.btn-disabled{color:var(--text-dim);border-color:rgba(154,145,134,.16);pointer-events:none}
+.feature-card{background:rgba(17,17,17,.86);border:1px solid rgba(201,168,76,.18);overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,.32)}
+.feature-media{position:relative;min-height:330px;background:url('fotos-pixar/felipe-paixao.jpg') center top/cover no-repeat}
+.feature-media::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,10,.1),rgba(10,10,10,.9))}
+.feature-badge{position:absolute;top:1rem;left:1rem;z-index:2;border:1px solid rgba(201,168,76,.35);background:rgba(10,10,10,.55);color:var(--gold);font-size:.56rem;font-weight:600;letter-spacing:.24em;text-transform:uppercase;padding:.32rem .58rem}
+.feature-body{position:relative;padding:1.35rem}
+.feature-title{font-family:var(--ff-display);font-size:2rem;font-weight:300;line-height:1;color:var(--text);margin-bottom:.5rem}
+.feature-text{font-size:.85rem;color:var(--text-muted);margin-bottom:1rem}
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid rgba(201,168,76,.1);margin-top:1rem}
+.stat{padding:1rem .8rem;border-right:1px solid rgba(201,168,76,.08)}
+.stat:last-child{border-right:0}
+.stat-value{font-family:var(--ff-display);font-size:1.7rem;color:var(--gold);line-height:1}
+.stat-label{font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:var(--text-dim);margin-top:.25rem}
+.section{padding:4rem 0}
+.section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:1.5rem;margin-bottom:1.5rem;flex-wrap:wrap}
+.section-label{font-size:.62rem;letter-spacing:.42em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:.7rem}
+.section-title{font-family:var(--ff-display);font-size:clamp(2.3rem,5vw,4rem);font-weight:300;line-height:1.05;color:var(--text)}
+.section-title em{font-style:italic;color:var(--gold)}
+.section-note{max-width:460px;color:var(--text-muted);font-size:.9rem}
+.play-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1rem}
+.play-card{position:relative;min-height:260px;background:linear-gradient(180deg,rgba(26,26,26,.92),rgba(10,10,10,.98));border:1px solid rgba(201,168,76,.12);overflow:hidden;padding:1rem;display:flex;flex-direction:column;justify-content:flex-end;transition:transform .25s,border-color .25s}
+.play-card:hover{transform:translateY(-4px);border-color:rgba(201,168,76,.32)}
+.play-card::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,10,10,.1),rgba(10,10,10,.88));z-index:1}
+.play-card.memory{background-image:url('fotos-pixar/rafael-generoso.jpg');background-size:cover;background-position:center top}
+.play-card.words{background-image:linear-gradient(135deg,rgba(32,224,193,.18),rgba(10,10,10,.95))}
+.play-card.quiz{background-image:linear-gradient(135deg,rgba(91,184,255,.2),rgba(10,10,10,.95))}
+.play-card.hymn{background-image:linear-gradient(135deg,rgba(201,168,76,.22),rgba(10,10,10,.95))}
+.play-tag{position:absolute;top:1rem;right:1rem;z-index:2;border:1px solid rgba(201,168,76,.28);background:rgba(10,10,10,.55);color:var(--gold);font-size:.55rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;padding:.28rem .48rem}
+.play-content{position:relative;z-index:2}
+.play-title{font-family:var(--ff-display);font-size:1.7rem;font-weight:300;line-height:1.05;color:var(--text);margin-bottom:.45rem}
+.play-text{font-size:.78rem;color:var(--text-muted);margin-bottom:.85rem}
+.kids-band{display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,.55fr);gap:1.5rem;align-items:center;border:1px solid rgba(236,72,153,.22);background:linear-gradient(135deg,rgba(236,72,153,.12),rgba(10,10,10,.88));padding:1.4rem}
+.kids-title{font-family:var(--ff-display);font-size:2rem;font-weight:300;line-height:1.05;color:var(--text);margin-bottom:.45rem}
+.kids-title em{font-style:italic;color:#F3A3CC}
+.kids-copy{color:var(--text-muted);font-size:.9rem}
+.mini-list{display:flex;gap:.55rem;flex-wrap:wrap;justify-content:flex-end}
+.mini-pill{border:1px solid rgba(255,255,255,.12);color:var(--text-muted);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;padding:.35rem .55rem;background:rgba(10,10,10,.28)}
+footer{border-top:1px solid rgba(201,168,76,.1);background:rgba(10,10,10,.9);padding:2rem 1rem;text-align:center;color:var(--text-dim);font-size:.72rem;letter-spacing:.08em}
+@media(max-width:980px){
+  .hero{grid-template-columns:1fr;gap:2rem;min-height:auto;padding:3rem 0}
+  .feature-media{min-height:280px}
+  .play-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:650px){
+  .topbar-inner{height:62px;padding:0 1rem}
+  .topbar-logo img{height:26px}
+  .topbar-link{font-size:.58rem;letter-spacing:.12em}
+  .shell{width:min(100% - 1.2rem,1180px)}
+  .hero-title{font-size:3.6rem}
+  .hero-actions .btn{width:100%}
+  .feature-media{min-height:230px}
+  .stats-row{grid-template-columns:1fr}
+  .stat{border-right:0;border-bottom:1px solid rgba(201,168,76,.08)}
+  .stat:last-child{border-bottom:0}
+  .play-grid{grid-template-columns:1fr}
+  .kids-band{grid-template-columns:1fr}
+  .mini-list{justify-content:flex-start}
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="topbar-link" href="index.html">‹ Site</a>
+    <a class="topbar-logo" href="index.html" aria-label="Grupo Identidade Vocal">
+      <img src="logo2_cinza_claro.png" alt="Identidade Vocal">
+    </a>
+    <a class="topbar-link" href="area-membros.html">Membros</a>
+  </div>
+</header>
+
+<main class="shell">
+  <section class="hero">
+    <div>
+      <div class="eyebrow">Experiências interativas</div>
+      <h1 class="hero-title">Identidade <em>Play</em></h1>
+      <p class="hero-copy">Um espaço para desafios, memória, caça-palavras e experiências que aproximam visitantes, amigos e membros do universo do Grupo Identidade Vocal.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="jogo-memoria.html">Jogar memória</a>
+        <a class="btn btn-blue" href="#catalogo">Ver catálogo</a>
+        <a class="btn btn-pink" href="kids.html">Área Kids</a>
+      </div>
+    </div>
+
+    <article class="feature-card">
+      <div class="feature-media">
+        <div class="feature-badge">Disponível agora</div>
+      </div>
+      <div class="feature-body">
+        <h2 class="feature-title">Jogo da Memória</h2>
+        <p class="feature-text">Encontre os pares dos participantes, jogue sozinho ou em dupla e tente entrar no ranking global.</p>
+        <a class="btn btn-primary" href="jogo-memoria.html">Abrir desafio</a>
+        <div class="stats-row">
+          <div class="stat">
+            <div class="stat-value">16</div>
+            <div class="stat-label">Pares</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">1-2</div>
+            <div class="stat-label">Jogadores</div>
+          </div>
+          <div class="stat">
+            <div class="stat-value">Top 10</div>
+            <div class="stat-label">Ranking</div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <section class="section" id="catalogo">
+    <div class="section-head">
+      <div>
+        <span class="section-label">Catálogo</span>
+        <h2 class="section-title">Desafios e <em>passatempos</em></h2>
+      </div>
+      <p class="section-note">A ideia é manter aqui as experiências gerais do site, sem misturar com a área infantil.</p>
+    </div>
+
+    <div class="play-grid">
+      <article class="play-card memory">
+        <div class="play-tag">Online</div>
+        <div class="play-content">
+          <h3 class="play-title">Memória</h3>
+          <p class="play-text">O jogo atual com fotos dos membros, modo solo, dupla e ranking.</p>
+          <a class="btn btn-primary" href="jogo-memoria.html">Jogar</a>
+        </div>
+      </article>
+
+      <article class="play-card words">
+        <div class="play-tag">Em breve</div>
+        <div class="play-content">
+          <h3 class="play-title">Caça-palavras</h3>
+          <p class="play-text">Palavras bíblicas, música, ministério e termos do Identidade Vocal.</p>
+          <span class="btn btn-disabled">Preparando</span>
+        </div>
+      </article>
+
+      <article class="play-card quiz">
+        <div class="play-tag">Em breve</div>
+        <div class="play-content">
+          <h3 class="play-title">Quiz Identidade Vocal</h3>
+          <p class="play-text">Perguntas sobre músicas, Bíblia, apresentações e história do grupo.</p>
+          <span class="btn btn-disabled">Preparando</span>
+        </div>
+      </article>
+
+      <article class="play-card hymn">
+        <div class="play-tag">Em breve</div>
+        <div class="play-content">
+          <h3 class="play-title">Desafio do Hino</h3>
+          <p class="play-text">Adivinhe hinos por tema, pista, trecho ou contexto bíblico.</p>
+          <span class="btn btn-disabled">Preparando</span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="kids-band">
+      <div>
+        <h2 class="kids-title">Kids fica em uma área <em>própria</em></h2>
+        <p class="kids-copy">A parte infantil continua separada, com jogos, histórias e atividades para crianças. Assim o Identidade Play fica mais amplo, e o Kids mantém sua linguagem própria.</p>
+      </div>
+      <div>
+        <div class="mini-list" aria-label="Conteúdos da área Kids">
+          <span class="mini-pill">Histórias</span>
+          <span class="mini-pill">Colorir</span>
+          <span class="mini-pill">Bíblia</span>
+          <span class="mini-pill">Atividades</span>
+        </div>
+        <a class="btn btn-pink" href="kids.html" style="margin-top:1rem;width:100%">Abrir Kids</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  Identidade Play · Grupo Identidade Vocal
+</footer>
+</body>
+</html>
